@@ -10,12 +10,6 @@ import ArrowIcon from './img/arrow.png'
 import SearchIcon from './img/search-icon.png'
 import Upload from './img/upload.png'
 
-
-
-
-
-
-
 export {
     Profile,
     Heart,

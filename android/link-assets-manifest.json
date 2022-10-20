@@ -24,6 +24,50 @@
     {
       "path": "src/assets/fonts/Poppins-ExtraBoldItalic.ttf",
       "sha1": "94d3ee3acdbd00e37a715a25f2b5237666b5b8a3"
+    },
+    {
+      "path": "src/assets/fonts/Poppins-Medium.ttf",
+      "sha1": "6575dbf38e9e61beec498e2be61c89d43399db24"
+    },
+    {
+      "path": "src/assets/fonts/Poppins-Regular.ttf",
+      "sha1": "dd48971530e3f19f7067ad80ce6c215365fe7269"
+    },
+    {
+      "path": "src/assets/fonts/SFProDisplay-Black.ttf",
+      "sha1": "e3263641787151d41c0bf2009d5c31a3b0cc2d62"
+    },
+    {
+      "path": "src/assets/fonts/SFProDisplay-Bold.ttf",
+      "sha1": "8c67a84fce342cf54ef01e9b30b46f75048aefd3"
+    },
+    {
+      "path": "src/assets/fonts/SFProDisplay-Heavy.ttf",
+      "sha1": "f09a1ee5896d705a78af272661432e139debac98"
+    },
+    {
+      "path": "src/assets/fonts/SFProDisplay-Light.ttf",
+      "sha1": "517af7eebd05cdafe07790446d6ba96fddfe09de"
+    },
+    {
+      "path": "src/assets/fonts/SFProDisplay-Medium.ttf",
+      "sha1": "063378dbd1b8b0b03263d86714a455ae11afb743"
+    },
+    {
+      "path": "src/assets/fonts/SFProDisplay-Regular.ttf",
+      "sha1": "00e029c09a98fd014a7a1013e7efe357b40da352"
+    },
+    {
+      "path": "src/assets/fonts/SFProDisplay-Semibold.ttf",
+      "sha1": "9dd7c8e0a103ff7d074b046272a87e4a0565e6b2"
+    },
+    {
+      "path": "src/assets/fonts/SFProDisplay-Ultralight.ttf",
+      "sha1": "f5089a46779aaa8f26f9ca77c0adc56dac8a1a79"
+    },
+    {
+      "path": "src/assets/icons/icomoon.ttf",
+      "sha1": "c761ad2f5f757151115f48ab84d57a331b99eea9"
     }
   ]
 }
