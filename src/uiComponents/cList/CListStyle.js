@@ -5,7 +5,7 @@ import {getLayoutDirection} from "../../utils/methods";
 export default StyleSheet.create({
     listContainer: {
         flex: 1,
-        position: 'relative'
+        position: 'relative',
     },
     // listItem: {
     //     flexDirection: 'row',
@@ -87,7 +87,7 @@ export default StyleSheet.create({
         borderWidth: 1,
         borderRadius: 10,
         borderColor: themes['light'].colors.lightBorderColor,
-        backgroundColor: themes['light'].colors.tertiary,
+        backgroundColor: themes['light'].colors.white,
         shadowColor: 'rgba(0, 0, 0, 0.4)',
         shadowOffset: {
             width: 0,
@@ -155,8 +155,9 @@ export default StyleSheet.create({
         fontSize: 12,
         textAlign: 'center',
         fontFamily: themes.font.regular,
-        color: themes['light'].colors.lightGray,
-        marginBottom: 5
+        color: themes['light'].colors.dark,
+        marginBottom: 5,
+        fontWeight:'400'
     },
 
 

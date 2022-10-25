@@ -1,14 +1,16 @@
-import Profile from './img/profile.png'
-import Heart from './img/heart-icon.png'
-import Share from './img/share-icon.png'
-import ProfileIcon from './img/profile-icon.png'
-import HeartFooterIcon from './img/heart-footer-icon.png'
-import TissueBox from './img/tissue-box.png'
-import MenuIcon from './img/menu-icon.png'
-import HomeIcon from './img/home-icon.png'
-import ArrowIcon from './img/arrow.png'
-import SearchIcon from './img/search-icon.png'
-import Upload from './img/upload.png'
+import Profile from './images/profile/profile.png'
+import Heart from './images/profile/heart-icon.png'
+import Share from './images/profile/share-icon.png'
+import ProfileIcon from './images/profile/profile-icon.png'
+import HeartFooterIcon from './images/profile/heart-footer-icon.png'
+import TissueBox from './images/profile/tissue-box.png'
+import HomeIcon from './images/profile/home-icon.png'
+import ArrowIcon from './images/profile/arrow.png'
+import Upload from './images/profile/upload.png'
+import Send from './images/profile/send.png'
+import Dots from './images/profile/dots.png'
+
+
 
 export {
     Profile,
@@ -17,9 +19,9 @@ export {
     ProfileIcon,
     HeartFooterIcon,
     TissueBox,
-    MenuIcon,
     HomeIcon,
     ArrowIcon,
-    SearchIcon,
-    Upload
+    Upload,
+    Send,
+    Dots     
 }

@@ -6,7 +6,7 @@ import {themes as Theme} from "../../theme/colors";
 
 function CList(props) {
     const {data, loading, contentContainerStyle, onRefreshLoading, onRefreshHandler, isShowFooter, onEndReached,
-        scrollEventThrottle, onEndThreshold, emptyOptions, numColumns} = props;
+        scrollEventThrottle, onEndThreshold, emptyOptions, numColumns , ListHeaderComponent} = props;
     const renderFooterFunc = () => {
         if (isShowFooter) {
             return (
@@ -20,6 +20,7 @@ function CList(props) {
     return (
        <View style={styles.listContainer}>
           {loading ? <CLoading transparent={true} loading={true}/> : <FlatList
+          ListHeaderComponent={ListHeaderComponent}
            {...props}
            data={data}
            refreshControl={onRefreshHandler ? <RefreshControl

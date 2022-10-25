@@ -10,12 +10,12 @@ export default StyleSheet.create({
 
     //input style
     inputContainer: {
-        marginBottom: 30,
+        marginBottom: 15,
     },
     inputLabel: {
         fontSize: 14,
         color: themes['light'].colors.tertiary,
-        fontFamily: themes.font.medium,
+        fontFamily: themes.font.regular,
         fontWeight:'400',
         textAlign: 'left',
     },
@@ -32,19 +32,21 @@ export default StyleSheet.create({
         color: themes['light'].colors.tertiary,
         // opacity:0.5,
         textAlign: 'left',
-        fontFamily: themes.font.b,
+        fontFamily: themes.font.regular,
         flex: 1,
+        
         paddingHorizontal: 10,
-        minHeight: 50,
+       
     },
     placeholderStyle: {
-        fontSize: 12,
+        fontSize: 11,
         color: themes['light'].colors.tertiary,
         // opacity:0.5,
         textAlign: 'left',
-        fontFamily: themes.font.medium,
+        fontFamily: themes.font.regular,
         flex: 1,
         paddingHorizontal: 10,
+        
         minHeight: 50,
         fontWeight:'400'
     },
@@ -63,6 +65,7 @@ export default StyleSheet.create({
         borderColor: themes['light'].colors.lightenGray,
         flexDirection: 'row',
         alignItems: 'center',
+    
         height:40,
         minHeight: 40,
     },
@@ -70,7 +73,7 @@ export default StyleSheet.create({
     inputRightIconButton: {
         padding: 5,
         borderRadius: 100,
-        marginRight: 10
+        marginRight: 10,
     },
 
     inputLeftIconButton: {

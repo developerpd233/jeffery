@@ -96,6 +96,12 @@ export default StyleSheet.create({
         marginBottom: 30,
 
     },
+    inputInnerContainerStyle:{
+        height:100,
+        alignItems:'flex-start',
+        justifyContent:'flex-start'
+        
+    },
 
     otpInputView : {
         height: 62,
@@ -175,5 +181,22 @@ export default StyleSheet.create({
         marginBottom:-2,
         
         
+    },
+    filebuttonText:{
+        fontSize:10,
+        fontFamily:theme.font.regular,
+    },
+    filebuttonStyle:{
+        // padding:10,
+        paddingHorizontal:10,
+        height:28                ,
+    },fileChooseText:{
+        color:themes['light'].colors.white5,
+        fontFamily:themes.font.regular,
+        paddingLeft:10,
+        fontSize:12
+
+        
+
     }
 });

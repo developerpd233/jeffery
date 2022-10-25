@@ -4,15 +4,34 @@ import Validations from "./Validations";
 import { View } from "react-native";
 import { CButton, CInput, CText } from "../../../uiComponents";
 import AuthStyle from "../Auth.style";
+import GlobalStyle from "../../../assets/stylings/GlobalStyle";
 
 function CForm(props) {
     const { submit, loading  , toggleCountryModal , selectedCountry, phoneErr} = props;
 
     const form = useRef(null);
     const fullName = useRef(null);
-    const email = useRef(null);
-    const password = useRef(null);
-    const cpassword = useRef(null);
+    const address = useRef(null);
+    const country = useRef(null);
+    const state = useRef(null);
+    const city = useRef(null);
+    const bio = useRef(null);
+    const fbProfile = useRef(null);
+    const linkedInProfile = useRef(null);
+    const twitterProfile = useRef(null);
+    const instaProfile = useRef(null);
+    const profession = useRef(null);
+    const image = useRef(null);
+
+
+
+
+
+
+
+
+
+
 
     return (
         <Formik
@@ -50,12 +69,11 @@ function CForm(props) {
                                  
 
                                 <CInput
-                                    ref={password}
-                                    type='view'
+                                    ref={address}
                                     inputLabel={"Address"}
                                     placeholder={"Your address"}
-                                    value={values.password}
-                                    onChangeText={handleChange("password")}
+                                    value={values.address}
+                                    onChangeText={handleChange("address")}
                                     secureTextEntry={true}
                                     error={errors.password}
                                     returnKeyType="next"
@@ -63,25 +81,76 @@ function CForm(props) {
                                         cpassword.current.focus()
                                     }
                                 />
-
+                                
+                             
+                                
                                 <CInput
-                                    ref={cpassword}
-                                    inputLabel={"Confirm Password"}
-                                    placeholder={"*************"}
-                                    value={values.c_password}
+                                    ref={country}
+                                    type="number"
+                                    // disabled={true}
+                                    onRightPress={()=> toggleCountryModal()}
+                                    selectedCountry={selectedCountry}
+                                    onPress={() => toggleCountryModal()}
+                                    inputLabel={"Country"}
+                                    placeholder={"-- Select country --"}
+                                    value={values?.country}
+                                    rightIconName='nd'
+                                    editable={false}
+                                    returnKeyType="next"
+                                    onSubmitEditing={() => handleSubmit()}
+                                />
+                                <CInput
+                                    ref={country}
+                                    type="number"
+                                    // disabled={true}
+                                    onRightPress={()=> toggleCountryModal()}
+                                    // selectedCountry={selectedCountry}
+                                    onPress={() => toggleCountryModal()}
+                                    inputLabel={"State"}
+                                    placeholder={"-- Select State --"}
+                                    value={values?.country}
+                                    rightIconName='nd'
+                                    editable={false}
+                                    returnKeyType="next"
+                                    onSubmitEditing={() => handleSubmit()}
+                                />
+                                 <CInput
+                                    ref={country}
+                                    type="number"
+                                    // disabled={true}
+                                    onRightPress={()=> toggleCountryModal()}
+                                    // selectedCountry={selectedCountry}
+                                    onPress={() => toggleCountryModal()}
+                                    inputLabel={"City"}
+                                    error={false}
+                                    placeholder={"-- Select City --"}
+                                    value={values?.country}
+                                    rightIconName='nd'
+                                    editable={false}
+                                    returnKeyType="next"
+                                    onSubmitEditing={() => handleSubmit()}
+                                />
+                                  <CInput
+                                    ref={bio}
+                                    multiline={true}
+                                    numberOfLines={4}
+                                    inputInnerContainerStyle={AuthStyle.inputInnerContainerStyle}
+                                    inputLabel={"Bio"}
+                                    placeholder={"Enter your details"}
+                                    value={values.address}
+                                    onChangeText={handleChange("bio")}
                                     secureTextEntry={true}
-                                    onChangeText={handleChange("c_password")}
-                                    error={errors.password}
+                                    error={errors.bio}
                                     returnKeyType="next"
                                     onSubmitEditing={() =>
-                                        email.current.focus()
+                                        cpassword.current.focus()
                                     }
                                 />
 
                                 <CInput
-                                    ref={email}
-                                    inputLabel={"Email Address"}
-                                    placeholder={"Martha765@gmail.com"}
+                                    ref={state}
+                                    inputLabel={"Facebook Profile Page"}
+                                    placeholder={"Link here..."}
                                     value={values.email}
                                     onChangeText={handleChange("email")}
                                     error={errors.email}
@@ -89,6 +158,70 @@ function CForm(props) {
                                     returnKeyType="next"
                                     onSubmitEditing={() => handleSubmit()}
                                 />
+                                <CInput
+                                    ref={state}
+                                    inputLabel={"Linkedin Profile Page"}
+                                    placeholder={"Link here..."}
+                                    value={values.email}
+                                    onChangeText={handleChange("email")}
+                                    error={errors.email}
+                                    sec
+                                    returnKeyType="next"
+                                    onSubmitEditing={() => handleSubmit()}
+                                />
+                                <CInput
+                                    ref={state}
+                                    inputLabel={"Twitter Profile Page"}
+                                    placeholder={"Link here..."}
+                                    value={values.email}
+                                    onChangeText={handleChange("email")}
+                                    error={errors.email}
+                                    sec
+                                    returnKeyType="next"
+                                    onSubmitEditing={() => handleSubmit()}
+                                />
+                                <CInput
+                                    ref={state}
+                                    inputLabel={"Instagram Profile Page"}
+                                    placeholder={"Link here..."}
+                                    value={values.email}
+                                    onChangeText={handleChange("email")}
+                                    error={errors.email}
+                                    sec
+                                    returnKeyType="next"
+                                    onSubmitEditing={() => handleSubmit()}
+                                />
+                              <CInput
+                                    ref={country}
+                                    type="number"
+                                    // disabled={true}
+                                    onRightPress={()=> toggleCountryModal()}
+                                    // selectedCountry={selectedCountry}
+                                    onPress={() => toggleCountryModal()}
+                                    inputLabel={"Profession"}
+                                    error={false}
+                                    placeholder={"-- Select Profession --"}
+                                    value={values?.country}
+                                    rightIconName='nd'
+                                    editable={false}
+                                    returnKeyType="next"
+                                    onSubmitEditing={() => handleSubmit()}
+                                />
+                                 <CText style={GlobalStyle.inputLabel}>
+                                 Image
+                            </CText>
+                                <View style={{flexDirection:'row' ,alignItems:'center' , backgroundColor:'rgba(255,255,255,0.2)' , padding:10 , height:45 , marginTop:5}}>
+                                <CButton
+                                title={"Choose File"}
+                                buttonStyle={AuthStyle.filebuttonStyle}
+                                loading={loading}
+                                onPress={() => handleSubmit()}
+                                buttonText={AuthStyle.filebuttonText}
+                            />
+                            <CText style={AuthStyle.fileChooseText}>
+                            No file chosen
+                            </CText>
+                                </View>
                             </View>
 
                             <CButton

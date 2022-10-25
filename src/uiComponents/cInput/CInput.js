@@ -39,12 +39,14 @@ const CInput = React.forwardRef((props, ref) => {
         error,
         toggleRightIconFunc,
         rightIconButtonStyle,
-        rightIconName,
+        onRightPress,
+        rightIconName ='caretdown',
         rightButton,
         style,
         value,
         countryView,
         countryViewLoading = false,
+        multiline=false,
         placeholder,
         secureTextEntry = false,
         lableandSubLabelStyle,
@@ -88,17 +90,19 @@ const CInput = React.forwardRef((props, ref) => {
     const renderRightIcon = () => {
         return (
             <TouchableOpacity
-                activeOpacity={1}
-                onPress={toggleRightIconFunc}
-                style={{
-                    ...GlobalStyle.inputRightIconButton,
-                    ...rightIconButtonStyle,
-                }}
-            >
-                <Icons
-                    name={rightIconName}
-                    style={{ ...GlobalStyle.inputIcon, ...iconStyle }}
-                />
+            style={{
+                ...GlobalStyle.inputRightIconButton,
+                ...rightIconButtonStyle,
+            }}
+                disabled={disabled}
+                onPress={onRightPress}
+            >       
+                    <Fragment>       
+                        <AntDesign
+                            name={rightIconName}
+                            style={GlobalStyle.countryViewDropDownIcon}
+                        />
+                    </Fragment>
             </TouchableOpacity>
         );
     };
@@ -118,9 +122,11 @@ const CInput = React.forwardRef((props, ref) => {
             <MaskInput
                 ref={ref}
                 maskChar="x"
+                multiline={multiline}
                 autoCorrect={false}
+                numberOfLines={10}
                 secureTextEntry={secureTextEntry}
-                placeholderTextColor={themes["light"].colors.white5}
+                dfv={themes["light"].colors.white5}
                 style={[ value ? {  ...GlobalStyle.inputStyle, ...style }:{...GlobalStyle.placeholderStyle,}]}
                 autoCapitalize="none"
                 value={value}
@@ -171,12 +177,12 @@ const CInput = React.forwardRef((props, ref) => {
                             source={{ uri: selectedCountry?.flags?.png }}
                         />
                         <CText style={GlobalStyle.countryViewText}>
-                            {selectedCountry?.detail?.code}
+                            {selectedCountry?.detail?.name}
                         </CText>
-                        <AntDesign
+                        {/* <AntDesign
                             name="caretdown"
                             style={GlobalStyle.countryViewDropDownIcon}
-                        />
+                        /> */}
                     </Fragment>
                 )}
             </TouchableOpacity>
@@ -192,14 +198,17 @@ const CInput = React.forwardRef((props, ref) => {
             </View>
             <View
                 style={{
-                    ...GlobalStyle.inputInnerContainer,
+                    ...GlobalStyle.inputInnerContainer, 
                     ...inputInnerContainerStyle,
                     ...(error && GlobalStyle.errorBorder),
                 }}
             >
                 {leftIconName ? renderLeftIcon() : null}
-                {type === "view" ? renderSelectionView() : renderInputView()}
-                
+                {type === "view"  ? renderSelectionView() : selectedCountry && Object.keys(selectedCountry).length
+                    ? renderCountryView() : renderInputView()}
+                {/* {selectedCountry && Object.keys(selectedCountry).length
+                    ? renderCountryView()
+                    : null} */}
                 {rightIconName ? renderRightIcon() : null}
                 {rightButton ? rightButton() : null}
             </View>

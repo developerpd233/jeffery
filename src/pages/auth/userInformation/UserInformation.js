@@ -1,27 +1,44 @@
-import React from "react";
-import { Container } from "../../../containers";
-import { ProgressiveImage } from "../../../uiComponents";
-import { useDispatch, useSelector } from "react-redux";
-import { View } from "react-native";
+import React, { useState } from "react";
+import { Container, CountriesModal } from "../../../containers";
+import { CLoading, ProgressiveImage } from "../../../uiComponents";
+import { useSelector, useDispatch } from "react-redux";
+import { Modal, View } from "react-native";
 import AuthStyle from "../Auth.style";
+import { BlurView, VibrancyView } from "@react-native-community/blur";
 import CForm from "./Form";
+import _ from "lodash";
+import ApiSauce from "../../../utils/network";
 import { useNavigation } from "@react-navigation/native";
-import { login, signUp } from "../../../store/actions/Auth.action";
 
 function UserInformation({ route }) {
-    const { phone } = route?.params || {};
-    console.log(
-        "🚀 ~ file: UserInformation.js ~ line 13 ~ UserInformation ~ route?.params",
-        route?.params
-    );
     const navigation = useNavigation();
     const dispatch = useDispatch();
 
+    const [isLoading, setIsLoading] = useState(false);
+    const [phoneError, setPhoneError] = useState(" ");
+
     const reduxState = useSelector(({ auth, global }) => {
         return {
-            loading: auth.signUpLoading,
+            loading: auth.sendOtpLoading,
+            currentCountry: global.currentCountry,
+            countries: global.countries,
         };
     });
+
+    const [countryModalIsOpen, updateCountryModalIsOpen] = useState(false);
+    const [selectedCountry, updateSelectedCountry] = useState(
+        reduxState.currentCountry
+    );
+
+    const toggleCountryModal = () => {
+        updateCountryModalIsOpen(!countryModalIsOpen);
+    };
+
+    const countryOnSelect = (item) => {
+        updateSelectedCountry(item);
+        toggleCountryModal();
+    };
+
    
     const submit = (values) => {
         const payload = {
@@ -52,7 +69,28 @@ function UserInformation({ route }) {
                 />
             </View>
 
-            <CForm submit={submit} loading={reduxState?.loading} />
+            <CForm
+                submit={submit}
+                loading={reduxState?.loading}
+                selectedCountry={selectedCountry}
+                toggleCountryModal={toggleCountryModal}
+                phoneErr={phoneError}
+                onLoginPress={() => navigation.navigate("login")}
+            />
+
+            <Modal
+                transparent={true}
+                visible={countryModalIsOpen}
+                onRequestClose={() => toggleCountryModal()}
+            >
+                <View style={AuthStyle.modalContainer}>
+                    <View style={AuthStyle.modalInnerContainer}>
+                        <CountriesModal
+                            onSelect={(val) => countryOnSelect(val)}
+                        />
+                    </View>
+                </View>
+            </Modal>
         </Container>
     );
 }

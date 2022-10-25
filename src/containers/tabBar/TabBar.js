@@ -25,7 +25,7 @@ function TabBar(props) {
 
     const [stateIndex, updateStateIndex] = useState(0);
 
-    const tabName = ['home', 'store', 'cart', 'location', 'profile'];
+    const tabName = ['home', 'Contest' ];
 
     useEffect(() => {
         let currentRouteName = getCurrentRouteName(state)?.toLowerCase();
@@ -50,45 +50,40 @@ function TabBar(props) {
             name: 'Home',
             key: 'home',
             icon: 'home',
-            // onPress: () => navigation.navigate('Home'),
-            fontSize: 32,
+            onPress: () => navigation.navigate('Home'),
+            fontSize: 22,
             marginTop: -40
         },
         {
-            name: 'Store',
-            key: 'store',
-            icon: 'search',
-            // onPress: () => navigation.navigate('Store', {
-            //     screen: 'store',
-            //     initial: false
-            // }),
-            fontSize: 30
+            name: 'Contest',
+            key: 'Contest',
+            icon: 'list2',
+            
+            onPress: () => navigation.navigate('Contest', {
+                screen: 'Contest',
+                initial: false
+            }),
+            fontSize: 22
         },
         {
             name: 'Cart',
             key: 'cart',
-            icon: 'bookmark',
+            icon: 'download',
             // onPress: () =>  navigation.navigate('Cart', {
             //     screen: 'cart',
             //     initial: false
             // }),
             // onPress: () =>  navigation.navigate('Cart'),
-            fontSize: 30
+            fontSize: 22
         },
         {
             name: 'Location',
             key: 'location',
-            icon: 'pin-location',
+            icon: 'heart',
             // onPress: () => navigation.navigate('Location'),
-            fontSize: 30
+            fontSize: 22
         },
-        {
-            name: 'Profile',
-            key: 'profile',
-            icon: 'user-2',
-            // onPress: () => navigation.navigate('Profile'),
-            fontSize: 30
-        },
+        
     ];
 
     if(!getTabBarVisibility(state)) { return null }
@@ -99,8 +94,8 @@ function TabBar(props) {
 
             <View style={Styles.absoluteFillObject}>
                 <SpotLight style={[Styles.spotLight, {width: tabWidth}]} pose={`route${state?.index}`}>
-                    <View style={Styles.spotLightInner}>
-                    </View>
+                    {/* <View style={Styles.spotLightInner}>
+                    </View> */}
                 </SpotLight>
             </View>
 
@@ -108,15 +103,16 @@ function TabBar(props) {
                 <MappedElement
                     data={routes}
                     renderElement={(route, i) => {
+    console.log("🚀 ~ file: TabBar.js ~ line 86 ~ TabBar ~ state", state)
+
                         const isRouteActive = route?.key === getCurrentRouteName(state)?.toLowerCase();
                         return (
                             <TouchableOpacity key={i} onPress={route.onPress} style={Styles.tab}>
                                 <Icon name={route.icon}
                                            style={[Styles.tabIcon, {
                                                fontSize: route?.fontSize,
-                                               color: isRouteActive ? themes['light'].colors.secondary : themes['light'].colors.gray8
+                                               color: isRouteActive ? themes['light'].colors.tertiary : themes['light'].colors.white4
                                            }]} />
-                                <CText style={Styles.tabText}>{route?.name}</CText>
                             </TouchableOpacity>
                         )
                     }}

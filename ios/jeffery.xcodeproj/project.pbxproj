@@ -30,7 +30,7 @@
 		6D5C5960556B45BE994F9515 /* SFProDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84A54F3552E94D93AD95DD7B /* SFProDisplay-Regular.ttf */; };
 		EE938F95EA9844B2830E5E02 /* SFProDisplay-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA3FEAB143A2400CA9BB7981 /* SFProDisplay-Semibold.ttf */; };
 		FE5C8AA55B2E4CDA8596C198 /* SFProDisplay-Ultralight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C42D8A61426D4C45A3D2936B /* SFProDisplay-Ultralight.ttf */; };
-		16D26C74FD4A4ED0867656B1 /* icomoon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9DF6A91E618F46C58B5F5CAE /* icomoon.ttf */; };
+		4B9F9786E51C47C8BFB63BA7 /* icomoon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 414F2F20DB324B3190F1F107 /* icomoon.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,7 +77,7 @@
 		84A54F3552E94D93AD95DD7B /* SFProDisplay-Regular.ttf */ = {isa = PBXFileReference; name = "SFProDisplay-Regular.ttf"; path = "../src/assets/fonts/SFProDisplay-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		EA3FEAB143A2400CA9BB7981 /* SFProDisplay-Semibold.ttf */ = {isa = PBXFileReference; name = "SFProDisplay-Semibold.ttf"; path = "../src/assets/fonts/SFProDisplay-Semibold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		C42D8A61426D4C45A3D2936B /* SFProDisplay-Ultralight.ttf */ = {isa = PBXFileReference; name = "SFProDisplay-Ultralight.ttf"; path = "../src/assets/fonts/SFProDisplay-Ultralight.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		9DF6A91E618F46C58B5F5CAE /* icomoon.ttf */ = {isa = PBXFileReference; name = "icomoon.ttf"; path = "../src/assets/icons/icomoon.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		414F2F20DB324B3190F1F107 /* icomoon.ttf */ = {isa = PBXFileReference; name = "icomoon.ttf"; path = "../src/assets/icons/icomoon.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,7 +202,7 @@
 				84A54F3552E94D93AD95DD7B /* SFProDisplay-Regular.ttf */,
 				EA3FEAB143A2400CA9BB7981 /* SFProDisplay-Semibold.ttf */,
 				C42D8A61426D4C45A3D2936B /* SFProDisplay-Ultralight.ttf */,
-				9DF6A91E618F46C58B5F5CAE /* icomoon.ttf */,
+				414F2F20DB324B3190F1F107 /* icomoon.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -320,7 +320,7 @@
 				6D5C5960556B45BE994F9515 /* SFProDisplay-Regular.ttf in Resources */,
 				EE938F95EA9844B2830E5E02 /* SFProDisplay-Semibold.ttf in Resources */,
 				FE5C8AA55B2E4CDA8596C198 /* SFProDisplay-Ultralight.ttf in Resources */,
-				16D26C74FD4A4ED0867656B1 /* icomoon.ttf in Resources */,
+				4B9F9786E51C47C8BFB63BA7 /* icomoon.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

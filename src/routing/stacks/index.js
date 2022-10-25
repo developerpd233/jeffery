@@ -1,13 +1,12 @@
 import HomeStack from "./Home";
-import StoreStack from "./Store";
-import CartStack from "./Cart";
-import LocationStack from "./Location";
-import ProfileStack from "./Profile";
+import ContestStack from "./Contest";
+import VoteStack from "./Vote";
+
+
 
 export {
     HomeStack,
-    StoreStack,
-    CartStack,
-    LocationStack,
-    ProfileStack,
+    ContestStack,
+    VoteStack
+    
 }

@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { View, Platform, StatusBar } from "react-native";
-import { Auth, Root } from "./src/routing";
+import { Auth, Root  , Drawer} from "./src/routing";
 import { getCountries } from "./src/store/actions/Global.action";
 import { CLoading } from "./src/uiComponents";
 import SplashScreen from "react-native-splash-screen";
@@ -42,7 +42,7 @@ const App = () => {
             {reduxState?.getUserProfileLoading ? (
                 <CLoading loading={reduxState?.getUserProfileLoading} />
             ) : (
-                renderRouting(false)
+                renderRouting(true)
             )}
         </View>
     );

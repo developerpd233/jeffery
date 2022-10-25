@@ -4,16 +4,14 @@ import {themes as theme, themes} from "../../theme/colors";
 const Styles = StyleSheet.create({
 
     tabContainer: {
-        // backgroundColor: themes['light'].colors.tertiary,
+        backgroundColor:"#22315C",
+        
         // position: 'relative',
-        borderTopRightRadius: 40,
-        borderTopLeftRadius: 40,
-        marginTop: -40
+        // marginTop: -0
     },
     absoluteFillObject: {
         backgroundColor: themes['light'].colors.primary,
-        borderTopRightRadius: 40,
-        borderTopLeftRadius: 40,
+        borderRadius:200,
         position: 'absolute',
         left: 0,
         right: 0,
@@ -43,7 +41,7 @@ const Styles = StyleSheet.create({
         paddingHorizontal: 18,
         justifyContent: 'center',
         alignItems: 'center',
-        height: 65,
+        height: 45,
         marginVertical: 5,
     },
     tabIcon: {

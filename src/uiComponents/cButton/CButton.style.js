@@ -17,13 +17,14 @@ export default StyleSheet.create({
     buttonText: {
         color: theme['light'].colors.tertiary,
         fontSize: 14,
+        fontWeight:'600',
         fontFamily: themes.font.medium,
     },
     buttonIcon: {
         color: theme['light'].colors.secondary,
         fontSize: 12,
         marginLeft: 10,
-        marginTop: Platform.OS === 'ios' ? 2 : 4
+        marginTop: Platform.OS === 'ios' ? 2 : 4,
     },
 
 })

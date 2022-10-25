@@ -5,7 +5,7 @@ import {
     responsiveWidth,
     responsiveFontSize
 } from "react-native-responsive-dimensions";
-console.log('responsiveWidth(32)', responsiveWidth(72), responsiveHeight(45))
+import { themes } from '../../theme/colors';
 
 export const styles = StyleSheet.create({
     container: {
@@ -14,18 +14,20 @@ export const styles = StyleSheet.create({
         width: responsiveWidth(43),
         borderRadius: 5,
         overflow: 'hidden',
+        marginVertical:10,
+        marginHorizontal:9,
     },
     image: {
         borderEndColor: Colors.Black,
         height: responsiveHeight(20),
-        width: responsiveWidth(43),
+        width: '100%',
     },
     icons: {
-        width: responsiveWidth(43),
+        width: '100%',
         flexDirection: 'row',
         justifyContent: 'space-between',
         position: 'absolute',
-        padding: 5
+        padding: 10,
     },
     heart: {
         height: 12,
@@ -54,14 +56,18 @@ export const styles = StyleSheet.create({
     profileName: {
         fontSize: 11,
         fontWeight: "700",
-        color: Colors.Black,
-        textAlign: 'center'
+        color: themes['light'].colors.dark,
+        fontFamily: themes.font.medium,
+        // color: Colors.Black,
+        textAlign: 'center',
+        marginVertical:3,
     },
     proFileSubHead: {
         fontSize: 10,
         fontWeight: "400",
-        color: Colors.DeepSkyBlue,
-        textAlign: 'center'
+        textAlign: 'center',
+        color: themes['light'].colors.primary,
+        fontFamily: themes.font.regular,
 
     }
 })

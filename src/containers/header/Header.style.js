@@ -4,9 +4,12 @@ export const headerHeight = Platform.OS === 'ios' ? 44 : 56;
 
 const styles = StyleSheet.create({
     headerLogo: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
+        flex: 1 ,
+        marginLeft:20,
+        marginTop:10,
+        // marginRight:-10
+        // alignItems: 'center',
+        // justifyContent: 'center',
     },
     headerLogoImage: {
         width: 140.6,
@@ -17,11 +20,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         paddingHorizontal: 20,
-        backgroundColor: theme['light'].colors.tertiary,
+        backgroundColor: theme['light'].colors.transparent,
 
     },
     headerStyle: {
-        backgroundColor: theme['light'].colors.tertiary,
+        backgroundColor: theme['light'].colors.transparent,
         paddingVertical: 10,
         position: 'relative',
         zIndex: 1
@@ -37,23 +40,38 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(227, 227, 224, 0.1)',
     },
     headerTitleStyle: {
-        color: theme['light'].colors.fontColor,
-        fontFamily: theme.font.medium,
+        color: theme['light'].colors.tertiary,
+        fontFamily: theme.font.bold,
+        // fontWeight:"700",
+       
         fontSize: 24,
         lineHeight: 24,
-        marginTop: 3,
+        marginTop: 5,
+        paddingTop:6,
         marginHorizontal: 15,
         flex: 1,
         textAlign: 'center',
     },
+    headerSubTitleStyle: {
+        color: theme['light'].colors.tertiary,
+        fontFamily: theme.font.regular,
+        fontWeight:"400",   
+       
+        fontSize: 12,
+        lineHeight: 18,
+        marginTop: 10                                                                                      ,
+        flex: 1,
+        textAlign: 'center',         
+    },
     headerButton: {},
     headerButtonIcon: {
-        fontSize: 24,
-        color: theme['light'].colors.primary,
+        fontSize: 20,
+        color: theme['light'].colors.tertiary,
     },
     otherOptions: {
         flexDirection: 'row',
         alignItems: 'center',
+        marginRight:10
     },
     otherOptionsButtonSpace: {
         marginRight: 20
@@ -67,14 +85,12 @@ const styles = StyleSheet.create({
 
 
     headerCartButton: {
-        width: 45,
-        height: 45,
-        borderRadius: 45,
-        borderWidth: 1,
-        borderColor: theme['light'].colors.lightBorderColor,
+        width: 35,
+        height: 35,
+        backgroundColor: theme['light'].colors.primary,
+        marginRight:-20,
         justifyContent: 'center',
         alignItems: 'center',
-        marginLeft: -25,
     },
     headerCartBadge: {
         backgroundColor: theme['light'].colors.primary,
@@ -99,6 +115,28 @@ const styles = StyleSheet.create({
         marginLeft: -5,
         fontSize: 24,
         color: theme['light'].colors.primary,
+    },
+    sideLogo:{
+        width:50,
+        height:36,resizeMode:'contain',
+        
+    },
+    centerInput:{
+        flex:1,
+        width:100,
+    },
+    inputInnerContainerStyle:{
+        height:35,
+        minHeight:35
+    },
+    rightTextStyles:{
+        color: theme['light'].colors.tertiary,
+        fontFamily: theme.font.regular,
+        fontWeight:"400",   
+       
+        fontSize: 16,
+        lineHeight: 18,
+        textAlign: 'center',
     }
 });
 

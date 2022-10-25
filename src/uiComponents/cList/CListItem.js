@@ -16,12 +16,14 @@ function CListItem(props) {
         listItemStyle,
         listItemView,
         rightIconName,
-        orderNumber,
+        subTitle,
         imageStyle,
         priceStyle,
         buttonFunc,
         buttonIcon,
         buttonText,
+        titleStyles,
+        subTitleStyles
     } = props;
     return (
         <TouchableOpacity
@@ -40,7 +42,7 @@ function CListItem(props) {
                     listItemView,
                 ]}
             >
-                <View
+               {image ? <View
                     style={[
                         Styles.listItemImageContainer,
                         type === "horizontal" &&
@@ -53,22 +55,22 @@ function CListItem(props) {
                         resizeMode={imageResizeMode}
                         style={Styles.listItemImage}
                     />
-                </View>
+                </View> : null}
                 <View
                     style={[
                         Styles.listItemContent,
                         type === "horizontal" && Styles.horizontalItemContent,
                     ]}
                 >
-                    {orderNumber ? (
+                    {subTitle ? (
                         <CText
-                            style={Styles.listItemOrderNumber}
+                            style={[Styles.listItemOrderNumber , subTitleStyles]}
                             numberOfLines={1}
                         >
-                            {orderNumber}
+                            {subTitle}
                         </CText>
                     ) : null}
-                    <CText style={Styles.listItemTitle} numberOfLines={1}>
+                    <CText style={[Styles.listItemTitle , titleStyles]} >
                         {title}
                     </CText>
                     {price ? (

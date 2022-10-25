@@ -1,4 +1,4 @@
-import { View, Image,Text } from 'react-native'
+import { View, Image,Text , TouchableOpacity } from 'react-native'
 import React from 'react'
 import { styles } from './styles'
 import { Profile  , Heart , Share , ProfileIcon} from '../../assets'
@@ -8,11 +8,11 @@ import { Profile  , Heart , Share , ProfileIcon} from '../../assets'
 
 
 
-const index = (props) => {
-    const {profileName='Michael Robert',profileSubHead='1st Positon, 7 Votes'} = props
+const CCard = (props) => {
+    const {profileName='Michael Robert',profileSubHead='1st Positon, 7 Votes' , onPress , mainContainer} = props
     return (
-        <View style={styles.container}>
-            <Image style={styles.image} source={Profile} resizeMode="contain" />
+        <TouchableOpacity onPress={onPress} style={[styles.container , mainContainer]}>
+            <Image style={styles.image} source={Profile} resizeMode="cover" />
             <View style={styles.icons}>
                 <Image style={styles.heart} source={Heart} />
                 <Image style={styles.share} source={Share} />
@@ -22,8 +22,8 @@ const index = (props) => {
             <Text style={styles.profileName} >{profileName}</Text>
             <Text style={styles.proFileSubHead}>{profileSubHead}</Text>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 
-export default index
+export default CCard
