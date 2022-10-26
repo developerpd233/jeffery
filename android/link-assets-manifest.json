@@ -26,6 +26,14 @@
       "sha1": "94d3ee3acdbd00e37a715a25f2b5237666b5b8a3"
     },
     {
+      "path": "src/assets/fonts/Poppins-ExtraLight.ttf",
+      "sha1": "30bab3b24243bf0ce8ae297ed34c21a2399da47a"
+    },
+    {
+      "path": "src/assets/fonts/Poppins-Light.ttf",
+      "sha1": "37c17e7bee737afaa91b0880df6cbd1f43f1a270"
+    },
+    {
       "path": "src/assets/fonts/Poppins-Medium.ttf",
       "sha1": "6575dbf38e9e61beec498e2be61c89d43399db24"
     },

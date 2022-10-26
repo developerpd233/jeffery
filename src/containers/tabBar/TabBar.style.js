@@ -1,4 +1,4 @@
-import {StyleSheet} from "react-native";
+import {StyleSheet , Platform} from "react-native";
 import {themes as theme, themes} from "../../theme/colors";
 
 const Styles = StyleSheet.create({
@@ -12,7 +12,7 @@ const Styles = StyleSheet.create({
     },
     absoluteFillObject: {
         backgroundColor: themes['light'].colors.primary,
-        borderRadius:200,
+        borderRadius:500,
         position: 'absolute',
         left: 0,
         right: 0,
