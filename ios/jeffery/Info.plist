@@ -58,6 +58,7 @@
 		<string>Poppins-Bold.ttf</string>
 		<string>Poppins-BoldItalic.ttf</string>
 		<string>Poppins-ExtraBold.ttf</string>
+		<string>Poppins-Semibold.ttf</string>
 		<string>Poppins-ExtraBoldItalic.ttf</string>
 		<string>Poppins-Medium.ttf</string>
 		<string>Poppins-Regular.ttf</string>
@@ -70,6 +71,19 @@
 		<string>SFProDisplay-Semibold.ttf</string>
 		<string>SFProDisplay-Ultralight.ttf</string>
 		<string>icomoon.ttf</string>
+		<string>Poppins-ExtraLight.ttf</string>
+		<string>Poppins-Light.ttf</string>
+		<string>AntDesign.ttf</string>
+      <string>Entypo.ttf</string>
+      <string>EvilIcons.ttf</string>
+      <string>Feather.ttf</string>
+      <string>FontAwesome.ttf</string>
+      <string>FontAwesome5_Brands.ttf</string>
+      <string>FontAwesome5_Regular.ttf</string>
+      <string>FontAwesome5_Solid.ttf</string>
+      <string>Fontisto.ttf</string>
+      <string>Foundation.ttf</string>
+      <string>Ionicons.ttf</string>
 	</array>
 </dict>
 </plist>

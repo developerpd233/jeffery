@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, TouchableOpacity, Dimensions} from 'react-native';
+import {View, TouchableOpacity, Dimensions, Platform} from 'react-native';
 import {SafeAreaView} from "../index";
 import Styles from './TabBar.style';
 import Icon from '../../assets/icons/CustomIcon';
@@ -52,13 +52,14 @@ function TabBar(props) {
             icon: 'home',
             onPress: () => navigation.navigate('Home'),
             fontSize: 22,
-            marginTop: -40
         },
         {
             name: 'Contest',
             key: 'Contest',
             icon: 'list2',
-            onPress: () =>  navigation.openDrawer()
+            onPress: () =>  navigation.openDrawer(),
+            fontSize: 23
+
             
         },
         {
@@ -71,14 +72,14 @@ function TabBar(props) {
                 initial: false
             }),
             // onPress: () =>  navigation.navigate('Cart'),
-            fontSize: 22
+            fontSize: 23
         },
         {
             name: 'Favourite',
             key: 'Favourite',
             icon: 'heart',
             onPress: () => navigation.navigate('Favourite'),
-            fontSize: 22
+            fontSize: 23
         },
         
     ];
@@ -87,7 +88,7 @@ function TabBar(props) {
 
     return (
         <SafeAreaView edges={['left', 'right', 'bottom']}
-                      style={Styles.tabContainer}>
+                      style={[Styles.tabContainer ,{height:Platform.OS ==='ios'&& 70}]}>
 
             <View style={Styles.absoluteFillObject}>
                 <SpotLight style={[Styles.spotLight, {width: tabWidth}]} pose={`route${state?.index}`}>
@@ -96,11 +97,10 @@ function TabBar(props) {
                 </SpotLight>
             </View>
 
-            <View style={Styles.tabInnerContainer}>
+            <View style={[Styles.tabInnerContainer]}>
                 <MappedElement
                     data={routes}
                     renderElement={(route, i) => {
-    console.log("🚀 ~ file: TabBar.js ~ line 86 ~ TabBar ~ state", state)
 
                         const isRouteActive = route?.key === getCurrentRouteName(state)?.toLowerCase();
                         return (
