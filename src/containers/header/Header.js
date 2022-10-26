@@ -22,7 +22,8 @@ function Header(props) {
         backButtonIcon = 'arrow-left2',
         showCenterInput = false,
         goBackWithRoute,
-        transparent, theme
+        transparent, theme,
+        onRightPress
     } = props;
 
     const {isLoggedIn} = useSelector(({auth }) => {
@@ -64,7 +65,7 @@ function Header(props) {
         if (backOnPress){
             backOnPress()
         } else {
-            // navigation.goBack()
+            navigation.goBack()
         }
 
     };
@@ -112,12 +113,16 @@ function Header(props) {
     };
     const rightText = () => {
         return (
+            <TouchableOpacity onPress={onRightPress}>
+
             <CText  style={[Styles.rightTextStyles, theme === 'light' && Styles.headerLight]}
                       numberOfLines={1}
                       >
             {headerRightText}
             
         </CText>
+        </TouchableOpacity>
+          
         )
     };
    

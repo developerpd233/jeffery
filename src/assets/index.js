@@ -9,6 +9,14 @@ import ArrowIcon from './images/profile/arrow.png'
 import Upload from './images/profile/upload.png'
 import Send from './images/profile/send.png'
 import Dots from './images/profile/dots.png'
+import Video from './images/profile/video.png'
+import Red_heart from './images/profile/red_heart.png'
+import userIcon from './images/profile/userIcon.png'
+import About from './images/settingIcon/About.png'
+import Account from './images/settingIcon/account.png'
+import Help from './images/settingIcon/help.png'
+import Privacy from './images/settingIcon/privacy.png'
+import Payment from './images/settingIcon/payment.png'
 
 
 
@@ -23,5 +31,13 @@ export {
     ArrowIcon,
     Upload,
     Send,
-    Dots     
+    Dots     ,
+    Video,
+    Red_heart,
+    userIcon,
+    Account,
+    Help,
+    Payment,
+    Privacy,
+    About
 }

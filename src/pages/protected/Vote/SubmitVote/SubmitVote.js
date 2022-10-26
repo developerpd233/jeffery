@@ -1,32 +1,22 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { Container } from "../../../containers";
-import { CList, CInput, CListItem, CText, CButton } from "../../../uiComponents";
-import { View } from "react-native";
-import GlobalStyle from "../../../assets/stylings/GlobalStyle";
-import Styles    from "./Contest.Style";
+import { Container } from "../../../../containers";
+import { CList, CInput, CListItem, CText, CButton, CCard } from "../../../../uiComponents";
+import { View , Image } from "react-native";
+import GlobalStyle from "../../../../assets/stylings/GlobalStyle";
+import Styles    from "../Vote.Styles";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
-import AuthStyle from "../../auth/Auth.style";
-const Home = (props) => {
+const SubmitVote = (props) => {
   const dispatch = useDispatch();
  
 
   const navigation = useNavigation();
 
   const headerProps = {
-      headerTitle: "Contests",
-      subtitle :"Types of contest",
+      
       showCart: false,
-      backOnPress: () => {
-        if(props?.route?.params?.isGoBack) {
-            navigation.goBack()
-        } else {
-            navigation.navigate('Home', {
-                screen: 'Home',
-                initial: false
-            })
-        }
-    }
+      headerRightText: 'Vote Submit' ,
+     
 
   };
 
@@ -74,35 +64,36 @@ const onRefreshHandler = () => {
 
   return (
     <Container
-    bottomSpace
+    bottomSpace={true}
     edges={["left", "right"]}
     headerProps={headerProps}
     showPattern={true}
+    scrollView={true}
     
 >
 
 
-    <CList
-        style={Styles.list}
-        contentContainerStyle={[GlobalStyle.list, { marginBottom: 35 ,  }]}
-        data={reduxState.data}
-        loading={reduxState.loading}
-        renderItem={renderItem}
-        keyExtractor={(item, index) => index.toString()}
-        emptyOptions={{
-            // icon: require('../../assets/images/empty.png'),
-            text: "Store not found",
-        }}
-        onRefreshLoading={reduxState.loading}
-        onRefreshHandler={() => onRefreshHandler()}
-        // onEndReached={onEndReached}
-        onEndReachedThreshold={0.1}
-        maxToRenderPerBatch={10}
-        windowSize={10}
-    />
-</Container>
-  )
-}
+        <CCard mainContainer={Styles.cardmainContainer} />
+        <View style={Styles.userDesc} >
+            <CText style={Styles.confirmVote} >Confirm Your Vote</CText>
+        </View>
+        <View style={[Styles.PrizeView , {marginVertical:10, padding:7 , marginBottom:0}]}>
+              <CText style={Styles.voteAmount}>YOU VOTED AMOUNT </CText>
+                <CText style={Styles.voteAmount}>$1</CText>
+        </View>
 
-export default Home
+        <View style={{marginVertical:20,marginHorizontal:25,justifyContent:'center' , alignSelf:'center' , marginBottom:90 }} >
+              <CText style={Styles.winText}>*All Winning Votes Are Considered A Commitment As Per Rules</CText>
+              <CText  style={Styles.winText}>* Voting Rules Will Not Allow You To Withdraw Your Votes</CText>
+              <CText  style={Styles.winText}>* Review Through Terms And Conditions Before Placing Your Vote</CText>
+              <CButton onPress={()=> navigation.navigate('Profile') }  title='Submit' buttonStyle={[Styles.buttonStyle , {  marginHorizontal:20 ,     }]}/>   
+
+        </View>
+
+       
+</Container>
+
+)
+}
+export default SubmitVote
 

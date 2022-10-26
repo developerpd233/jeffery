@@ -94,7 +94,7 @@ function CForm(props) {
                                     inputLabel={"Country"}
                                     placeholder={"-- Select country --"}
                                     value={values?.country}
-                                    rightIconName='nd'
+                                     rightIconName='down'
                                     editable={false}
                                     returnKeyType="next"
                                     onSubmitEditing={() => handleSubmit()}
@@ -109,7 +109,7 @@ function CForm(props) {
                                     inputLabel={"State"}
                                     placeholder={"-- Select State --"}
                                     value={values?.country}
-                                    rightIconName='nd'
+                                     rightIconName='down'
                                     editable={false}
                                     returnKeyType="next"
                                     onSubmitEditing={() => handleSubmit()}
@@ -125,7 +125,7 @@ function CForm(props) {
                                     error={false}
                                     placeholder={"-- Select City --"}
                                     value={values?.country}
-                                    rightIconName='nd'
+                                     rightIconName='down'
                                     editable={false}
                                     returnKeyType="next"
                                     onSubmitEditing={() => handleSubmit()}
@@ -202,7 +202,7 @@ function CForm(props) {
                                     error={false}
                                     placeholder={"-- Select Profession --"}
                                     value={values?.country}
-                                    rightIconName='nd'
+                                    rightIconName='down'
                                     editable={false}
                                     returnKeyType="next"
                                     onSubmitEditing={() => handleSubmit()}

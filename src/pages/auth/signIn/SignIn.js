@@ -145,9 +145,13 @@ import { ProgressiveImage } from '../../../uiComponents'
 import AuthStyle from "../Auth.style";
 import CForm from "./Form";
 import RNDateTimePicker  from '@react-native-community/datetimepicker'
+import { useDispatch } from 'react-redux';
+import { login } from '../../../store/actions/Auth.action';
 const SignIn = (props) => {
+const dispatch = useDispatch()
+
         const submit = async (values) => {
-            alert('s ms ')
+            dispatch(login())
     };
 
 
@@ -172,7 +176,7 @@ const SignIn = (props) => {
                 <CForm
                 submit={submit}
                 loading={false}
-                onCreatePress={()=> props.navigation.navigate('user_information')}
+                onCreatePress={()=> props.navigation.navigate('sign_up')}
             />
             
  

@@ -40,7 +40,7 @@ const CInput = React.forwardRef((props, ref) => {
         toggleRightIconFunc,
         rightIconButtonStyle,
         onRightPress,
-        rightIconName ='caretdown',
+        rightIconName ,
         rightButton,
         style,
         value,
@@ -50,6 +50,7 @@ const CInput = React.forwardRef((props, ref) => {
         placeholder,
         secureTextEntry = false,
         lableandSubLabelStyle,
+        placeholderTextColor=themes["light"].colors.white5   
     } = props;
 
     const renderLabel = () => {
@@ -125,6 +126,7 @@ const CInput = React.forwardRef((props, ref) => {
                 multiline={multiline}
                 autoCorrect={false}
                 numberOfLines={10}
+                placeholderTextColor={placeholderTextColor}
                 secureTextEntry={secureTextEntry}
                 dfv={themes["light"].colors.white5}
                 style={[ value ? {  ...GlobalStyle.inputStyle, ...style }:{...GlobalStyle.placeholderStyle,}]}
@@ -147,7 +149,7 @@ const CInput = React.forwardRef((props, ref) => {
                 <CText
                     style={[
                         { ...GlobalStyle.inputTextStyle, ...textStyle },
-                        !value && { color: themes["light"].colors.gray4 },
+                        !value && { color: themes["light"].colors.white5 },
                     ]}
                 >
                     {value ? value : placeholder}
@@ -229,7 +231,6 @@ CInput.defaultProps = {
     toggleRightIconFunc: () => null,
     rightButton: () => null,
     rightIconButtonStyle: {},
-    rightIconName: "",
 
     toggleLeftIconFunc: () => null,
     leftIconButtonStyle: {},

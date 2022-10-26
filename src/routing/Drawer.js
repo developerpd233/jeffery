@@ -1,14 +1,48 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React from "react";
 
-const Drawer = () => {
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
+import { ContactStackNavigator } from "./StackNavigator";
+import Root from "./Root";
+import { CustomDrawer } from "../containers";
+import { useWindowDimensions } from 'react-native';
+import { ContestStack } from "./stacks";
+import { Favourite, Setting } from "../pages/protected";
+const Drawer = createDrawerNavigator();
+
+function CustomDrawerContent(props) {
+  const width = useWindowDimensions().width * 0.2;
+
   return (
-    <View>
-      <Text>Drawer</Text>
-    </View>
-  )
+    <DrawerContentScrollView scrollEnabled={false} showsVerticalScrollIndicator={false} {...props}>
+      <CustomDrawer {...props} />
+    </DrawerContentScrollView>
+  );
 }
 
-export default Drawer
 
-const styles = StyleSheet.create({})
+const DrawerNavigator = () => {
+  return (
+    <Drawer.Navigator defaultStatus="closed"  
+    screenOptions={{
+      headerShown: false,
+      drawerType: 'front',
+      swipeEdgeWidth: 0,
+      swipeEnabled: false,
+      drawerStyle: {
+        width: 200,
+      },
+    }}
+    drawerContent={props => <CustomDrawerContent {...props} />}>
+           <Drawer.Screen name="Home" component={Root} />
+           <Drawer.Screen name="Contest" component={ContestStack} />
+           <Drawer.Screen name="Favourite" component={Favourite} />
+           <Drawer.Screen name="Setting" component={Setting} />
+
+
+
+    </Drawer.Navigator>
+  );
+}
+
+export default DrawerNavigator;

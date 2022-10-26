@@ -7,10 +7,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import Styles from '../Contest.Style'
 import {CCard} from '../../../../uiComponents'
-import { Dots, Profile, ProfileIcon, Send } from "../../../../assets";
+import { Dots, Profile, ProfileIcon, Send, Video } from "../../../../assets";
 import { FlatList } from "react-native-gesture-handler";
 import { themes } from "../../../../theme/colors";
-const ContestUser = () => {
+const ContestUser = (props) => {
+    const {item } = props?.route?.params || {}
+    console.log("🚀 ~ file: ContestUser.js ~ line 15 ~ ContestUser ~ item", item)
+  console.log("🚀 ~ file: ContestUser.js ~ line 14 ~ ContestUser ~ props", props)
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const [showProfile , setShowProfile] = useState(true)
@@ -80,12 +83,13 @@ const ContestUser = () => {
         <Image source={ProfileIcon}  style={Styles.ProfileIcon}/>
     );
 }; 
-const renderImageItem = ({ item, index }) => {
+const renderImageItem = ({ }) => {
+    console.log('item.title === Video Contest', item.title === 'Video Contest' , item.title )
     return (
-        <View style={Styles.imgView}>
+         <View style={item.title === 'Video Contest' ? Styles.videoView   : Styles.imgView}>
 
-            <Image source={Profile}  style={Styles.Profile}/>
-        </View>
+            <Image source={ item.title !== 'Video Contest'  ? Profile : Video}  style={item.title === 'Video Contest' ?  Styles.video : Styles.Profile}/>
+        </View> 
     );
 };
 const onRefreshHandler = () => {
@@ -98,12 +102,11 @@ const renderCommentSection = (item , index) =>(
     <View style={{flexDirection:'row' , alignItems:'center' ,  }}>
         <Image source={ProfileIcon}  style={Styles.commentProfile}/>
         
-        <View style={{width:Dimensions.get('window').width*0.57 , height:50 , justifyContent:'center'  , }}>
+        <View style={{width:Dimensions.get('window').width*0.55  , height:50 , justifyContent:'center'  , }}>
                 <CText style={Styles.commentText}>Lorem Ipsum is simply text . . . . . .  </CText>
     </View>
-    <Image source={Dots}  style={[Styles.commentProfile ,{height:15}]} resizeMode='contain' />
-        
-     </View>
+           <Image source={Dots}  style={[Styles.commentProfile ,{height:15}]} resizeMode='contain' />
+    </View>
 
    
 </View>
@@ -156,14 +159,15 @@ const renderProfile  = () =>(
 
         contentContainerStyle={[GlobalStyle.list, { marginBottom: 15 ,  height:70 , paddingHorizontal:10 }]} />
         
-    
+            
         <View style={Styles.ListHeaderComponentStyle}>
             <CText style={Styles.listHeaderText}>Recent Voters <CText style={Styles.listVotes}>(07) </CText></CText>
         </View>
-        <FlatList    
+        <FlatList   
+        numColumns={item?.title === 'Video Contest'  ? 1 : 2} 
+            
             renderItem={renderImageItem}
             data={reduxState.data}
-            numColumns={2}
 
             contentContainerStyle={[GlobalStyle.list, { marginBottom: 15 ,marginVertical:10 , paddingHorizontal:0 ,paddingBottom:0   }]} 
         />
@@ -216,7 +220,7 @@ const renderProfile  = () =>(
                 </View>
                 {
         reduxState.data?.map((item, index)=>(
-            <View style={[Styles.renderComment ,{borderBottomWidth : index === reduxState?.data?.length - 1 ?  0 : 1 ,  }]}>
+            <View style={[Styles.renderComment ,{borderBottomWidth : index === reduxState?.data?.length - 1 ?  0 : 1 , }]}>
            { renderCommentSection(item , index)}
                 </View>
         ))

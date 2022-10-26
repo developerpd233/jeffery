@@ -40,7 +40,7 @@ const Styles = StyleSheet.create({
     },
     ContestList:{
         marginHorizontal: -25 ,
-        marginVertical:10
+        marginVertical:10,
 
     },
     ContestprofileList:{
@@ -73,7 +73,7 @@ ProfileIcon:{
     width:50, 
     height:50,
     marginHorizontal:10,
-    marginVertical:5,
+    marginVertical:10,
 
 },
 commentProfile:{
@@ -110,12 +110,24 @@ imgView:{
     marginBottom:60,
 
 },
+videoView:{
+    width:Dimensions.get('screen').width * 0.9,
+    marginHorizontal:10,
+    height:90,
+    marginBottom:60,
+} , 
 Profile:{
     width:Dimensions.get('screen').width * 0.43,
     height:130,
     borderRadius:5,
     marginHorizontal:5,
 
+},
+video:{
+    width:Dimensions.get('screen').width * 0.9,
+    height:130,
+    borderRadius:5,
+    marginHorizontal:5,
 },
 desText:{
     color: themes['light'].colors.tertiary,
@@ -138,9 +150,9 @@ deccriptionText:{
 
 },
     commentView:{
-    marginLeft:-10,
     paddingVertical:5,
     padding:5,
+    marginVertical:10,
    
     
 

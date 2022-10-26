@@ -11,7 +11,8 @@ const Styles = StyleSheet.create({
     },
     container: {
         paddingHorizontal: 20,
-        paddingBottom: 15
+        paddingBottom: 15,
+        marginVertical:20
     },
 
     center: {
@@ -20,9 +21,9 @@ const Styles = StyleSheet.create({
     },
 
     list: {
-        marginHorizontal: -25  ,
-        // paddingVertical: 20
-    },
+        marginHorizontal: -15  ,
+
+        },
 
     sliderContainer: {
         marginTop: 20
@@ -102,7 +103,6 @@ const Styles = StyleSheet.create({
         color: themes['light'].colors.tertiary,
         fontFamily: themes.font.regular,
         fontWeight:'400',
-        marginBottom: -10
 
     },
 
@@ -120,12 +120,10 @@ const Styles = StyleSheet.create({
                 textAlign:'center',
                 width:Dimensions.get('screen').width * 0.6,
                 
-                alignSelf:'center'
+                alignSelf:'center',
+                marginBottom:20,
     },
-    buttonSpace: {
-        marginVertical: 20
-    },
-
+   
 
     section: {
         marginTop: 20,

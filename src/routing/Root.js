@@ -7,11 +7,23 @@ import {
     HomeStack,
     ContestStack
 } from "./stacks";
+import { Favourite } from "../pages/protected";
 
 const Tab = createBottomTabNavigator();
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
 
 
+// const Root = () =>{
+//     const Drawer = createDrawerNavigator();
+
+//   return (
+//       <Drawer.Navigator initialRouteName="Home">
+//         <Drawer.Screen name="Home" component={HomeStack}  />
+//         <Drawer.Screen name="Contest" component={ContestStack} />
+//       </Drawer.Navigator>
+//   );
+// }
 
   
 const Root = () => {
@@ -27,6 +39,8 @@ const Root = () => {
         >
             <Tab.Screen name="Home" component={HomeStack} />
             <Tab.Screen name="Contest" component={ContestStack} />
+            <Tab.Screen name="Favourite" component={Favourite} />
+
 
         </Tab.Navigator>
     );

@@ -19,7 +19,8 @@ export const login = (payload, CB) => async (dispatch) => {
      dispatch({ type: AUTH.LOGIN_USER_API, loading: false,});
     // dispatch({ type: AUTH.LOGIN_USER_API, loading: true, isLoggedIn: false});
     try {
-        let response = await post(LOGIN, payload);
+    dispatch({ type: AUTH.LOGIN_USER_API, loading: true, isLoggedIn: true});
+
         console.log("🚀 ~ file: Auth.action.js ~ line 23 ~ login ~ response", response)
         // if (response?.data?.error) {
         //     dispatch({ type: AUTH.LOGIN_USER_API, loading: false });
@@ -166,16 +167,30 @@ export const getProfile = (payload, CB) => async (dispatch) => {
     // }
 };
 
-export const logout =
-    (showToast = true, type, message = "Successfully logout!") =>
-    async (dispatch) => {
-        // if(showToast) {
-        //     if(type === 'expire') {
-        //         handleError(message);
-        //     } else {
-        //         // handleSuccess(message);
-        //     }
+export const logout = (payload, CB) => async (dispatch) => {
+    
+     dispatch({ type: AUTH.LOGOUT_USER_API, loading: false,});
+    // dispatch({ type: AUTH.LOGIN_USER_API, loading: true, isLoggedIn: false});
+    try {
+    dispatch({ type: AUTH.LOGOUT_USER_API, loading: true, isLoggedIn: false});
+
+        console.log("🚀 ~ file: Auth.action.js ~ line 23 ~ login ~ response", response)
+        // if (response?.data?.error) {
+        //     dispatch({ type: AUTH.LOGIN_USER_API, loading: false });
+        //     handleError(response?.data?.data?.message || "");
+        // } else {
+        //     // await _setDataToAsyncStorage(TOKEN, response?.data?.data?.token);
+        //     // await getTokenAndSetIntoHeaders(response?.data?.data?.token);
+        //     // dispatch({
+        //     //     type: AUTH.LOGIN_USER_API,
+        //     //     loading: false,
+        //     //     user: response?.data?.data?.data,
+        //     //     isLoggedIn: true,
+        //     // });
         // }
-        // dispatch({ type: AUTH.LOGOUT_USER_API});
-        // await removeUserDetail();
-    };
+    } catch (error) {
+        // handleError(error?.data?.error, { autoHide: false });
+        // dispatch({ type: AUTH.LOGIN_USER_API, loading: false });
+    }
+};
+   

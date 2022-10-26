@@ -7,7 +7,7 @@ import Styles from "./Home.style";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import AuthStyle from "../../auth/Auth.style";
-const Home = () => {
+const Home = (props) => {
   const dispatch = useDispatch();
  
 
@@ -68,6 +68,22 @@ const Home = () => {
                   title: "Boys Monthly Contest",
                      prize:"$ 0.43"
               },
+              {
+                // image: require("../../../assets/images/flowers/six.png"),
+                title: "Boys Monthly Contest",
+                   prize:"$ 0.43"
+            },
+            {
+                // image: require("../../../assets/images/flowers/six.png"),
+                title: "Boys Monthly Contest",
+                   prize:"$ 0.43"
+            },
+            {
+                // image: require("../../../assets/images/flowers/six.png"),
+                title: "Boys Monthly Contest",
+                   prize:"$ 0.43"
+            },
+
           ],
       };
   });
@@ -78,7 +94,7 @@ const Home = () => {
             titleStyles={Styles.title}
             price={item?.prize}
             priceStyle={Styles.price}
-            onPress={() => select(item)}
+            onPress={() => props.navigation.openDrawer()}
         />
     );
 };
@@ -114,7 +130,7 @@ const onRefreshHandler = () => {
     <CList
         style={Styles.list}
         numColumns={2}
-        contentContainerStyle={[GlobalStyle.list, { marginBottom: 35 }]}
+        contentContainerStyle={[GlobalStyle.list, { paddingBottom: 95  , }]}
         data={reduxState.data}
         loading={reduxState.loading}
         renderItem={renderItem}

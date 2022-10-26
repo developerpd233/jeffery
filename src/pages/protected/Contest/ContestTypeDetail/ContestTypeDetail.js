@@ -7,7 +7,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import Styles from '../Contest.Style'
 import {CCard} from '../../../../uiComponents'
-const ContestTypeDetail = () => {
+const ContestTypeDetail = (props) => {
+
+  const {item , index} = props?.route?.params || {}
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
@@ -49,14 +51,29 @@ const ContestTypeDetail = () => {
                   orderNumber:'FROM SEP 02 TO OCT 31',
                   prize:'To Win $11.86 USD, 9 Contestants'
             },
+            {
+              image: require("../../../../assets/images/flowers/one.png"),
+              title: "Monthly Contest",
+              orderNumber:'FROM SEP 02 TO OCT 31',
+              prize:'To Win $11.86 USD, 9 Contestants'
+            },
+            {
+              image: require("../../../../assets/images/flowers/one.png"),
+                title: "Monthly Contest",
+                orderNumber:'FROM SEP 02 TO OCT 31',
+                prize:'To Win $11.86 USD, 9 Contestants'
+          },
+         
+          
             
           ],
       };
   });
 
-  const select = (item) => {
+  const select = () => {
+    console.log('itemitemitemitemitemitemitemitemitemitem', item)
     navigation.navigate("ContestUser", {
-        item,
+        item:props.route.params.item,
     });
 };
 
@@ -78,13 +95,15 @@ const onRefreshHandler = () => {
     
 >
 <CText style={Styles.normalTitle}>
-Contest 1   
+Contest {index}
 </CText>
 <CButton title='Join the Contest' buttonStyle={Styles.buttonStyle2} />
 
     <CList
         style={Styles.ContestList}
-        contentContainerStyle={[GlobalStyle.list, { marginBottom: 35 ,  }]}
+        contentContainerStyle={[GlobalStyle.list, { marginBottom: 35 , 
+          alignSelf:'center',
+        }]}
         data={reduxState.data}
         numColumns={2}
         loading={reduxState.loading}

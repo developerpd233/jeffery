@@ -29,7 +29,7 @@ const App = () => {
     const renderRouting = (value,) => {
         switch (value) {
             case true:
-                return <Root />;
+                return <Drawer />;
             case false:
                 return <Auth  />;
             default:
@@ -42,9 +42,9 @@ const App = () => {
             {reduxState?.getUserProfileLoading ? (
                 <CLoading loading={reduxState?.getUserProfileLoading} />
             ) : (
-                renderRouting(true)
+                renderRouting(reduxState?.isLoggedIn)
             )}
-        </View>
+        </View> 
     );
 };
 

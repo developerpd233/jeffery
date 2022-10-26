@@ -58,29 +58,26 @@ function TabBar(props) {
             name: 'Contest',
             key: 'Contest',
             icon: 'list2',
+            onPress: () =>  navigation.openDrawer()
             
-            onPress: () => navigation.navigate('Contest', {
-                screen: 'Contest',
-                initial: false
-            }),
-            fontSize: 22
         },
         {
             name: 'Cart',
             key: 'cart',
             icon: 'download',
-            // onPress: () =>  navigation.navigate('Cart', {
-            //     screen: 'cart',
-            //     initial: false
-            // }),
+           
+            onPress: () =>  navigation.navigate('Contest', {
+                screen: 'Contest',
+                initial: false
+            }),
             // onPress: () =>  navigation.navigate('Cart'),
             fontSize: 22
         },
         {
-            name: 'Location',
-            key: 'location',
+            name: 'Favourite',
+            key: 'Favourite',
             icon: 'heart',
-            // onPress: () => navigation.navigate('Location'),
+            onPress: () => navigation.navigate('Favourite'),
             fontSize: 22
         },
         

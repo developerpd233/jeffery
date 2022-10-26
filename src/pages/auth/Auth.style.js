@@ -10,7 +10,8 @@ export default StyleSheet.create({
 
     header: {
         // alignItems: 'center',
-        paddingVertical: 10
+        paddingVertical: 10,
+        marginTop:30,
     },
     headerLogo: {
         width: 130,

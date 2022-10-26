@@ -39,6 +39,7 @@ export const themes = {
             dark2: 'rgba(0, 0, 0, 20)',
 
             gray1: '#818080',
+            drawer:'#162550',
             gray2: '#E2E2E2',
             gray3: '#CFCFCF',
             gray4: '#A1A1A1',
