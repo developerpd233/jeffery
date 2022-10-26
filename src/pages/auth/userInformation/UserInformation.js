@@ -9,6 +9,7 @@ import CForm from "./Form";
 import _ from "lodash";
 import ApiSauce from "../../../utils/network";
 import { useNavigation } from "@react-navigation/native";
+import DocumentPicker, { types } from 'react-native-document-picker';
 
 function UserInformation({ route }) {
     const navigation = useNavigation();
@@ -38,6 +39,36 @@ function UserInformation({ route }) {
         updateSelectedCountry(item);
         toggleCountryModal();
     };
+    const handlePick =async ()=>{
+        try {
+            const res = await DocumentPicker.pick({
+              type: [DocumentPicker.types.allFiles],
+              //There can me more options as well
+              // DocumentPicker.types.allFiles
+              // DocumentPicker.types.images
+              // DocumentPicker.types.plainText
+              // DocumentPicker.types.audio
+              // DocumentPicker.types.pdf
+            });
+            //Printing the log realted to the file
+            console.log('res : ' + JSON.stringify(res));
+            console.log('URI : ' + res.uri);
+            console.log('Type : ' + res.type);
+            console.log('File Name : ' + res.name);
+            console.log('File Size : ' + res.size);
+            //Setting the state to show single file attributes
+          } catch (err) {
+            //Handling any exception (If any)
+            if (DocumentPicker.isCancel(err)) {
+              //If user canceled the document selection
+            //   alert('Canceled from single doc picker');
+            } else {
+              //For Unknown Error
+            //   alert('Unknown Error: ' + JSON.stringify(err));
+            //   throw err;
+            }
+          }
+    }
 
    
     const submit = (values) => {
@@ -75,6 +106,7 @@ function UserInformation({ route }) {
                 selectedCountry={selectedCountry}
                 toggleCountryModal={toggleCountryModal}
                 phoneErr={phoneError}
+                handlePick={()=> handlePick()}
                 onLoginPress={() => navigation.navigate("login")}
             />
 

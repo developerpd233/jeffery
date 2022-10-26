@@ -4,7 +4,7 @@ export const themes = {
         bold: 'Poppins-Bold',
         regular: 'Poppins-Regular',
         light: 'Poppins-Light',
-        extraLight: 'Poppins-Ultralight',
+        extraLight: 'Poppins-Light',
         medium: 'Poppins-Medium',
         semiBold: 'Poppins-Semibold',
     },

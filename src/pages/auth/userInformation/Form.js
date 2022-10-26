@@ -7,7 +7,7 @@ import AuthStyle from "../Auth.style";
 import GlobalStyle from "../../../assets/stylings/GlobalStyle";
 
 function CForm(props) {
-    const { submit, loading  , toggleCountryModal , selectedCountry, phoneErr} = props;
+    const { submit, loading  , toggleCountryModal , selectedCountry, phoneErr , handlePick} = props;
 
     const form = useRef(null);
     const fullName = useRef(null);
@@ -100,7 +100,7 @@ function CForm(props) {
                                     onSubmitEditing={() => handleSubmit()}
                                 />
                                 <CInput
-                                    ref={country}
+                                    ref={state}
                                     type="number"
                                     // disabled={true}
                                     onRightPress={()=> toggleCountryModal()}
@@ -115,7 +115,7 @@ function CForm(props) {
                                     onSubmitEditing={() => handleSubmit()}
                                 />
                                  <CInput
-                                    ref={country}
+                                    ref={city}
                                     type="number"
                                     // disabled={true}
                                     onRightPress={()=> toggleCountryModal()}
@@ -148,7 +148,7 @@ function CForm(props) {
                                 />
 
                                 <CInput
-                                    ref={state}
+                                    ref={fbProfile}
                                     inputLabel={"Facebook Profile Page"}
                                     placeholder={"Link here..."}
                                     value={values.email}
@@ -159,7 +159,7 @@ function CForm(props) {
                                     onSubmitEditing={() => handleSubmit()}
                                 />
                                 <CInput
-                                    ref={state}
+                                    ref={linkedInProfile}
                                     inputLabel={"Linkedin Profile Page"}
                                     placeholder={"Link here..."}
                                     value={values.email}
@@ -170,7 +170,7 @@ function CForm(props) {
                                     onSubmitEditing={() => handleSubmit()}
                                 />
                                 <CInput
-                                    ref={state}
+                                    ref={twitterProfile}
                                     inputLabel={"Twitter Profile Page"}
                                     placeholder={"Link here..."}
                                     value={values.email}
@@ -181,7 +181,7 @@ function CForm(props) {
                                     onSubmitEditing={() => handleSubmit()}
                                 />
                                 <CInput
-                                    ref={state}
+                                    ref={instaProfile}
                                     inputLabel={"Instagram Profile Page"}
                                     placeholder={"Link here..."}
                                     value={values.email}
@@ -192,7 +192,7 @@ function CForm(props) {
                                     onSubmitEditing={() => handleSubmit()}
                                 />
                               <CInput
-                                    ref={country}
+                                    ref={profession}
                                     type="number"
                                     // disabled={true}
                                     onRightPress={()=> toggleCountryModal()}
@@ -215,7 +215,7 @@ function CForm(props) {
                                 title={"Choose File"}
                                 buttonStyle={AuthStyle.filebuttonStyle}
                                 loading={loading}
-                                onPress={() => handleSubmit()}
+                                onPress={handlePick}
                                 buttonText={AuthStyle.filebuttonText}
                             />
                             <CText style={AuthStyle.fileChooseText}>

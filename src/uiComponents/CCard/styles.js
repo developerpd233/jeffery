@@ -30,8 +30,8 @@ export const styles = StyleSheet.create({
         padding: 10,
     },
     heart: {
-        height: 12,
-        width: 14,
+        height: 20,
+        width: 20,
 
     },
     share: {

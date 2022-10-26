@@ -10,6 +10,7 @@ import {CCard} from '../../../../uiComponents'
 const ContestTypeDetail = (props) => {
 
   const {item , index} = props?.route?.params || {}
+  const [heart , setHeart] = useState(false)
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
@@ -79,7 +80,7 @@ const ContestTypeDetail = (props) => {
 
   const renderItem = ({ item, index }) => {
     return (
-        <CCard  onPress={()=> select(item)} />
+        <CCard  onHeartPress={()=> setHeart(!heart)}  heart={index} onPress={()=> select(item)} />
     );
 };
 const onRefreshHandler = () => {

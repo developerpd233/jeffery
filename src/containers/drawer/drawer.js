@@ -140,7 +140,7 @@ paddingLeft:20,
         color: themes['light'].colors.tertiary,
         fontSize: 12,
         fontFamily:themes.font.extraLight,
-    },
+    }, 
     View2: {
         backgroundColor: themes['light'].colors.drawer,
      
