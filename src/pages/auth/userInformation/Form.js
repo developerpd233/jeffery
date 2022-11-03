@@ -7,7 +7,7 @@ import AuthStyle from "../Auth.style";
 import GlobalStyle from "../../../assets/stylings/GlobalStyle";
 
 function CForm(props) {
-    const { submit, loading  , toggleCountryModal , selectedCountry, phoneErr , handlePick} = props;
+    const { submit, loading  , toggleCountryModal , selectedCountry, phoneErr , toggleProfeesionalModal, handlePick} = props;
 
     const form = useRef(null);
     const fullName = useRef(null);
@@ -195,9 +195,9 @@ function CForm(props) {
                                     ref={profession}
                                     type="number"
                                     // disabled={true}
-                                    onRightPress={()=> toggleCountryModal()}
+                                    onRightPress={()=> toggleProfeesionalModal()}
                                     // selectedCountry={selectedCountry}
-                                    onPress={() => toggleCountryModal()}
+                                    onPress={() => toggleProfeesionalModal()}
                                     inputLabel={"Profession"}
                                     error={false}
                                     placeholder={"-- Select Profession --"}

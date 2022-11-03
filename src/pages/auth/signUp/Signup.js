@@ -41,7 +41,9 @@ function Signup(props) {
     };
 
     const submit = (values) => {
-        props.navigation.navigate('user_information')
+        props.navigation.navigate('user_information' ,{
+            values
+        })
         // alert('sbjsv')
         // setPhoneError("");
         // let perifix = `${selectedCountry?.idd?.root}${

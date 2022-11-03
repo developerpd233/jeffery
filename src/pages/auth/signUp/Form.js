@@ -47,7 +47,7 @@ function CForm(props) {
                                     placeholder={"User name"}
                                     value={values.name}
                                     onChangeText={handleChange("name")}
-                                    error={errors.userName}
+                                    error={errors.name}
                                     returnKeyType="next"
                                     onSubmitEditing={() =>
                                         email.current.focus()

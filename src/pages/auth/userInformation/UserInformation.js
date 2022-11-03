@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, CountriesModal } from "../../../containers";
 import { CLoading, ProgressiveImage } from "../../../uiComponents";
 import { useSelector, useDispatch } from "react-redux";
@@ -10,6 +10,7 @@ import _ from "lodash";
 import ApiSauce from "../../../utils/network";
 import { useNavigation } from "@react-navigation/native";
 import DocumentPicker, { types } from 'react-native-document-picker';
+import { getLocalCountries } from "../../../store/actions/Auth.action";
 
 function UserInformation({ route }) {
     const navigation = useNavigation();
@@ -18,15 +19,25 @@ function UserInformation({ route }) {
     const [isLoading, setIsLoading] = useState(false);
     const [phoneError, setPhoneError] = useState(" ");
 
+
+
     const reduxState = useSelector(({ auth, global }) => {
         return {
+            data: global.allCountries,
+            currentCountry: global.currentCountry,
             loading: auth.sendOtpLoading,
             currentCountry: global.currentCountry,
             countries: global.countries,
         };
     });
 
+    useEffect(()=>{
+        dispatch(getLocalCountries())
+    },[])
+
     const [countryModalIsOpen, updateCountryModalIsOpen] = useState(false);
+    const [professionModalIsOpen, updateProfessionModalIsOpen] = useState(false);
+
     const [selectedCountry, updateSelectedCountry] = useState(
         reduxState.currentCountry
     );
@@ -34,6 +45,12 @@ function UserInformation({ route }) {
     const toggleCountryModal = () => {
         updateCountryModalIsOpen(!countryModalIsOpen);
     };
+
+    const toggleProfeesionalModal = () => {
+        updateProfessionModalIsOpen(!professionModalIsOpen);
+    };
+
+
 
     const countryOnSelect = (item) => {
         updateSelectedCountry(item);
@@ -46,11 +63,7 @@ function UserInformation({ route }) {
               //There can me more options as well
               // DocumentPicker.types.allFiles
               // DocumentPicker.types.images
-              // DocumentPicker.types.plainText
-              // DocumentPicker.types.audio
-              // DocumentPicker.types.pdf
             });
-            //Printing the log realted to the file
             console.log('res : ' + JSON.stringify(res));
             console.log('URI : ' + res.uri);
             console.log('Type : ' + res.type);
@@ -58,14 +71,9 @@ function UserInformation({ route }) {
             console.log('File Size : ' + res.size);
             //Setting the state to show single file attributes
           } catch (err) {
-            //Handling any exception (If any)
             if (DocumentPicker.isCancel(err)) {
-              //If user canceled the document selection
-            //   alert('Canceled from single doc picker');
             } else {
-              //For Unknown Error
-            //   alert('Unknown Error: ' + JSON.stringify(err));
-            //   throw err;
+              
             }
           }
     }
@@ -105,12 +113,14 @@ function UserInformation({ route }) {
                 loading={reduxState?.loading}
                 selectedCountry={selectedCountry}
                 toggleCountryModal={toggleCountryModal}
+                toggleProfeesionalModal={toggleProfeesionalModal}
+
                 phoneErr={phoneError}
                 handlePick={()=> handlePick()}
                 onLoginPress={() => navigation.navigate("login")}
             />
 
-            <Modal
+            {/* <Modal
                 transparent={true}
                 visible={countryModalIsOpen}
                 onRequestClose={() => toggleCountryModal()}
@@ -118,7 +128,22 @@ function UserInformation({ route }) {
                 <View style={AuthStyle.modalContainer}>
                     <View style={AuthStyle.modalInnerContainer}>
                         <CountriesModal
+                        data={reduxState.data}
                             onSelect={(val) => countryOnSelect(val)}
+                        />
+                    </View>
+                </View>
+            </Modal> */} 
+            <Modal
+                transparent={true}
+                visible={professionModalIsOpen}
+                onRequestClose={() => updateProfessionModalIsOpen()}
+            >
+                <View style={AuthStyle.modalContainer}>
+                    <View style={AuthStyle.modalInnerContainer}>
+                        <CountriesModal
+                        data={reduxState.data}
+                            // onSelect={(val) => countryOnSelect(val)}
                         />
                     </View>
                 </View>

@@ -7,7 +7,7 @@ import Styles from "./CountriesModal.style";
 
 function CountriesModal(props) {
 
-    const {onSelect} = props;
+    const {onSelect , data} = props;
 
     const [searchText, updateSearchText] = useState('');
     const [filteredCountry, updateFilteredCountry] = useState([]);
@@ -21,7 +21,7 @@ function CountriesModal(props) {
     });
 
     useEffect(() => {
-        updateFilteredCountry(reduxState.data);
+        updateFilteredCountry(data);
         setTimeout(() => {
             setLoading(false)
         }, 2000)
@@ -39,17 +39,19 @@ function CountriesModal(props) {
     };
 
     const renderItem = ({item, index}) => {
+        console.log("🚀 ~ file: CountriesModal.js ~ line 42 ~ renderItem ~ item", item)
         return item?.detail?.code ? <TouchableOpacity style={[Styles.listItem, index === 0 && Styles.lastListItem]} onPress={() => onSelect(item)}>
-            <View style={Styles.listItemIcon}>
+            {/* <View style={Styles.listItemIcon}>
                 <ProgressiveImage
                     source={{uri: item?.flags?.png}}
                     resizeMode={'contain'}
                     style={[Styles.listItemIconImage]}/>
-            </View>
-            <CText style={Styles.listItemText}> {item.name.common}</CText>
+            </View> */} 
+            {/* <CText style={Styles.listItemText}> {item.name}</CText>
             <CText style={[Styles.listItemText, Styles.listItemLastText]}>
                {item?.detail?.code}
-            </CText>
+            </CText> */}
+            <CText>djjd</CText>
         </TouchableOpacity> : null
 
     };
