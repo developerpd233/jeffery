@@ -1,10 +1,14 @@
-import {StyleSheet} from 'react-native';
-import {themes as theme} from "../../theme/colors";
+import {Dimensions, StyleSheet} from 'react-native';
+import { Colors } from '../../theme/Color';
+import {themes as theme, themes} from "../../theme/colors";
 
 export default StyleSheet.create({
-    wrapper:  {
+    imageView: {
         flex: 1,
+        // ...StyleSheet.absoluteFillObject,
+        // zIndex: 100,
         justifyContent: 'center',
+        // backgroundColor: 'rgba(255, 255, 255, 0.5)',
         alignItems: 'center',
         position: 'absolute',
         top: 0,
@@ -28,5 +32,22 @@ export default StyleSheet.create({
     animation: {
         width: 100,
         height: 100
-    }
+    },
+      
+      text: {
+        fontSize: 14,
+        // fontFamily: Fonts.type.MontserratRegular,
+        marginLeft: 8,
+        color:themes['light'].colors.primary
+      },
+      container: {
+        backgroundColor: '#FFFFFF',
+        flexDirection: 'row',
+        alignItems: 'center',
+        width: Dimensions.get('screen').width * 0.85,
+        borderRadius: 8,
+        paddingHorizontal: 16,
+        paddingVertical: 24,
+      },
+    
 });

@@ -1,4 +1,6 @@
 import AUTH from "../constants/Auth.constant";
+import GLOBAL from "../constants/Global.constant";
+
 import { handleError, handleSuccess, post, get } from "../../utils/methods";
 import { TOKEN } from "../../utils/asyncStorage/Constants";
 import { useNavigation } from "@react-navigation/native";
@@ -174,7 +176,6 @@ export const logout = (payload, CB) => async (dispatch) => {
     try {
     dispatch({ type: AUTH.LOGOUT_USER_API, loading: true, isLoggedIn: false});
 
-        console.log("🚀 ~ file: Auth.action.js ~ line 23 ~ login ~ response", response)
         // if (response?.data?.error) {
         //     dispatch({ type: AUTH.LOGIN_USER_API, loading: false });
         //     handleError(response?.data?.data?.message || "");
@@ -193,4 +194,26 @@ export const logout = (payload, CB) => async (dispatch) => {
         // dispatch({ type: AUTH.LOGIN_USER_API, loading: false });
     }
 };
+export const getLocalCountries  = (payload, CB) => async (dispatch) => {
+    dispatch({ type: GLOBAL.GET_COUNTRIES, loading:true})
+    try {
+        const resp  = await get(GET_COUNTRY)
+        console.log("🚀 ~ file: Auth.action.js ~ line 201 ~ getLocalCountries ~ resp", resp)
+        if(resp){
+            dispatch({ type: GLOBAL.GET_COUNTRIES,
+                loading: false,
+                // allCountries: updatedCountries,
+                // countries: withoutCurrentCountries,
+                // currentCountry: currentCountry
+            });
+        }
+    } catch (error) {
+        console.log("🚀 ~ file: Auth.action.js ~ line 209 ~ getLocalCountries ~ error", error)
+        
+    }
+    
+
+
+
+}      
    

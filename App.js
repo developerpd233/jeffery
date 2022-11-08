@@ -20,7 +20,7 @@ const App = () => {
         setTimeout(() => {
             SplashScreen.hide();
         }, 3000);
-        dispatch(getCountries());
+        // dispatch(getCountries());
         // dispatch(getProfile());
     }, []);
 

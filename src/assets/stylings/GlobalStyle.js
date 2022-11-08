@@ -552,11 +552,15 @@ export default StyleSheet.create({
 
     searchInput: {
         marginTop: 30,
-        marginBottom: 10
+        marginBottom: 10,
     },
     searchInputInnerContainer: {
-        backgroundColor: theme['light'].colors.secondary3,
-        borderBottomWidth: 0,
+        backgroundColor: theme['light'].colors.tertiary,
+        borderWidth:1,
+        borderColor: theme['light'].colors.primary,
+
+        // borderBottomWidth: 20,
+        marginBottom:10,
         borderRadius: 70,
         minHeight: 50,
 
