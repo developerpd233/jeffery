@@ -11,18 +11,19 @@ export default StyleSheet.create({
         bottom: 0,
         right: 0,
         left: 0,
-        backgroundColor: 'rgba(124, 128, 97, 0.7)',
+        backgroundColor: 'rgba(2,17,65,0.8)',
         zIndex: 3,
     },
     loading: {
         color: theme['light'].colors.tertiary,
         fontSize: 32,
+
     },
     loadingText: {
-        fontSize: 20,
+        fontSize: 10,
         color: theme['light'].colors.tertiary,
         fontFamily: theme.font.medium,
-        marginTop: 15
+        flexDirection:'column',
     },
     animation: {
         width: 100,

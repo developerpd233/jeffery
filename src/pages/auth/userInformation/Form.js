@@ -23,16 +23,6 @@ function CForm(props) {
     const profession = useRef(null);
     const image = useRef(null);
 
-
-
-
-
-
-
-
-
-
-
     return (
         <Formik
             innerRef={form}
@@ -63,7 +53,7 @@ function CForm(props) {
                                     error={errors.fullName}
                                     returnKeyType="next"
                                     onSubmitEditing={() =>
-                                        password.current.focus()
+                                        address.current.focus()
                                     }
                                 />
                                  
@@ -78,7 +68,7 @@ function CForm(props) {
                                     error={errors.password}
                                     returnKeyType="next"
                                     onSubmitEditing={() =>
-                                        cpassword.current.focus()
+                                        bio.current.focus()
                                     }
                                 />
                                 
@@ -143,7 +133,7 @@ function CForm(props) {
                                     error={errors.bio}
                                     returnKeyType="next"
                                     onSubmitEditing={() =>
-                                        cpassword.current.focus()
+                                        fbProfile.current.focus()
                                     }
                                 />
 

@@ -144,46 +144,39 @@ import { Container } from '../../../containers'
 import { ProgressiveImage } from '../../../uiComponents'
 import AuthStyle from "../Auth.style";
 import CForm from "./Form";
-import RNDateTimePicker  from '@react-native-community/datetimepicker'
+import RNDateTimePicker from '@react-native-community/datetimepicker'
 import { useDispatch } from 'react-redux';
 import { login } from '../../../store/actions/Auth.action';
 const SignIn = (props) => {
-const dispatch = useDispatch()
-
-        const submit = async (values) => {
-            dispatch(login())
+    const dispatch = useDispatch()
+    const submit = async (values) => {
+        dispatch(login())
     };
-
-
-
-  return (
-    <View>
-       
-    <Container
-            backgroundColor={"theme-color"}
-            showPattern={true}
-            scrollView={true}
-            loading={false}
-            scrollViewProps={{
-                contentContainerStyle: AuthStyle.container,
-            }}
-        >
-            <View style={AuthStyle.header}>
-                <ProgressiveImage
-                    style={AuthStyle.headerLogo}
-                    source={require("../../../assets/images/logo.png")}
-                />
-                <CForm
-                submit={submit}
+    return (
+        <View>
+            <Container
+                backgroundColor={"theme-color"}
+                showPattern={true}
+                scrollView={true}
                 loading={false}
-                onCreatePress={()=> props.navigation.navigate('sign_up')}
-            />
-            
- 
-            </View>
+                scrollViewProps={{
+                    contentContainerStyle: AuthStyle.container,
+                }}
+            >
+                <View style={AuthStyle.header}>
+                    <ProgressiveImage
+                        style={AuthStyle.headerLogo}
+                        source={require("../../../assets/images/logo.png")}
+                    />
+                    <CForm
+                        submit={submit}
+                        loading={false}
+                        onCreatePress={() => props.navigation.navigate('sign_up')}
+                    />
+                </View>
             </Container>
-    </View>
-  )
+        </View>
+    )
 }
 
 export default SignIn

@@ -72,6 +72,7 @@ function UserInformation({ route }) {
 
    
     const submit = (values) => {
+        console.log("🚀 ~ file: UserInformation.js ~ line 75 ~ submit ~ values", values)
         const payload = {
             name: values?.name,
             email: values?.email,

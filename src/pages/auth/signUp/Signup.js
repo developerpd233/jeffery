@@ -41,7 +41,8 @@ function Signup(props) {
     };
 
     const submit = (values) => {
-        props.navigation.navigate('user_information')
+        console.log("🚀 ~ file: Signup.js ~ line 44 ~ submit ~ values", values)
+        props.navigation.navigate('user_information' , values)
         // alert('sbjsv')
         // setPhoneError("");
         // let perifix = `${selectedCountry?.idd?.root}${
