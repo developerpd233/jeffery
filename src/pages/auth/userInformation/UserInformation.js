@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container, CountriesModal } from "../../../containers";
-import { CLoading, ProgressiveImage } from "../../../uiComponents";
+import { CLoading, ProgressiveImage  } from "../../../uiComponents";
 import { useSelector, useDispatch } from "react-redux";
 import { Modal, View } from "react-native";
 import AuthStyle from "../Auth.style";
@@ -11,14 +11,18 @@ import ApiSauce from "../../../utils/network";
 import { useNavigation } from "@react-navigation/native";
 import DocumentPicker, { types } from 'react-native-document-picker';
 import { getLocalCountries } from "../../../store/actions/Auth.action";
+import {COUNTRY , SIGN_UP ,IMAGE_URL} from "../../../config/webservices"
 
-function UserInformation({ route }) {
+function UserInformation({ route , values}) {
     const navigation = useNavigation();
     const dispatch = useDispatch();
 
     const [isLoading, setIsLoading] = useState(false);
     const [phoneError, setPhoneError] = useState(" ");
 
+    const [loading , setLoading] = useState(false)
+    const [data , setData] = useState()
+    const [image , setImage] = useState()
 
 
     const reduxState = useSelector(({ auth, global }) => {
@@ -32,8 +36,74 @@ function UserInformation({ route }) {
     });
 
     useEffect(()=>{
-        dispatch(getLocalCountries())
     },[])
+
+    useEffect(()=>{
+        handleApi()
+        SignUp()
+      },[])
+    
+      const SignUp = async () => {
+        const formData = new FormData() 
+        formData.append('name','name')
+        formData.append('display_name','name')
+        formData.append('lastname','name')
+        formData.append('email','testooooo@gmail.com')
+        formData.append('password','123456789')
+        formData.append('username','name')
+        formData.append('image','name')
+        formData.append('country_id','2')
+        formData.append('state_id','name')
+        formData.append('city_id','name')
+        formData.append('date_of_birth','name')
+        formData.append('bio','name')
+        formData.append('facebook','name')
+        formData.append('twitter','name')
+        formData.append('linkedin','name')
+        formData.append('instagram','name')
+        formData.append('profession','name')
+        formData.append('other_profession','name')
+        try{
+          setLoading(true)
+          const data = await ApiSauce.post(SIGN_UP , formData)
+          console.log("🚀 ~ file: UserInformation.js ~ line 69 ~ SignUp ~ data", data)
+        //   setData(data.data)
+        }catch(err){
+        console.log("🚀 ~ file: ContestType.js ~ line 33 ~ handleApi ~ err", err)
+    
+        }finally{
+          setLoading(false)
+        }
+      }
+    
+      const handleApi = async () => {
+        try{
+          setLoading(true)
+          const data = await ApiSauce.getWithoutToken(COUNTRY)
+          setData(data.data)
+        }catch(err){
+        console.log("🚀 ~ file: ContestType.js ~ line 33 ~ handleApi ~ err", err)
+    
+        }finally{
+          setLoading(false)
+        }
+      }
+    //   const handleState = async (item) => {
+    //     try{
+    //       setLoading(true)
+    //       const data = await ApiSauce.getWithoutToken(COUNTRY)
+    //       setData(data.data)
+    //     }catch(err){
+    //     console.log("🚀 ~ file: ContestType.js ~ line 33 ~ handleApi ~ err", err)
+    
+    //     }finally{
+    //       setLoading(false)
+    //     }
+    //   }
+
+
+
+
 
     const [countryModalIsOpen, updateCountryModalIsOpen] = useState(false);
     const [professionModalIsOpen, updateProfessionModalIsOpen] = useState(false);
@@ -43,6 +113,7 @@ function UserInformation({ route }) {
     );
 
     const toggleCountryModal = () => {
+        // alert('hello')
         updateCountryModalIsOpen(!countryModalIsOpen);
     };
 
@@ -54,6 +125,7 @@ function UserInformation({ route }) {
 
     const countryOnSelect = (item) => {
         updateSelectedCountry(item);
+        handleState(item)
         toggleCountryModal();
     };
     const handlePick =async ()=>{
@@ -64,6 +136,7 @@ function UserInformation({ route }) {
               // DocumentPicker.types.allFiles
               // DocumentPicker.types.images
             });
+            setImage(res)
             console.log('res : ' + JSON.stringify(res));
             console.log('URI : ' + res.uri);
             console.log('Type : ' + res.type);
@@ -93,6 +166,7 @@ function UserInformation({ route }) {
     };
 
     return (
+        <>{loading && <CLoading loading={isLoading}/>}
         <Container
             backgroundColor={"theme-color"}
             showPattern={true}
@@ -115,26 +189,29 @@ function UserInformation({ route }) {
                 selectedCountry={selectedCountry}
                 toggleCountryModal={toggleCountryModal}
                 toggleProfeesionalModal={toggleProfeesionalModal}
-
+                imagepic={image}
                 phoneErr={phoneError}
                 handlePick={()=> handlePick()}
                 onLoginPress={() => navigation.navigate("login")}
             />
 
-            {/* <Modal
+            <Modal
                 transparent={true}
                 visible={countryModalIsOpen}
+
+                
                 onRequestClose={() => toggleCountryModal()}
+                
             >
                 <View style={AuthStyle.modalContainer}>
                     <View style={AuthStyle.modalInnerContainer}>
                         <CountriesModal
-                        data={reduxState.data}
+                        data={data}
                             onSelect={(val) => countryOnSelect(val)}
                         />
                     </View>
                 </View>
-            </Modal> */} 
+            </Modal> 
             <Modal
                 transparent={true}
                 visible={professionModalIsOpen}
@@ -143,13 +220,14 @@ function UserInformation({ route }) {
                 <View style={AuthStyle.modalContainer}>
                     <View style={AuthStyle.modalInnerContainer}>
                         <CountriesModal
-                        data={reduxState.data}
+                        data={data}
                             // onSelect={(val) => countryOnSelect(val)}
                         />
                     </View>
                 </View>
             </Modal>
         </Container>
+        </>
     );
 }
 export default UserInformation;

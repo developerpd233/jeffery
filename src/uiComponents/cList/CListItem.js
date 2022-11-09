@@ -25,6 +25,7 @@ function CListItem(props) {
         titleStyles,
         subTitleStyles
     } = props;
+        console.log("🚀 ~ file: CListItem.js ~ line 28 ~ CListItem ~ image", image)
     return (
         <TouchableOpacity
             activeOpacity={activeOpacity}
@@ -51,7 +52,7 @@ function CListItem(props) {
                     ]}
                 >
                     <ProgressiveImage
-                        source={image}
+                        source={ image}
                         resizeMode={imageResizeMode}
                         style={Styles.listItemImage}
                     />

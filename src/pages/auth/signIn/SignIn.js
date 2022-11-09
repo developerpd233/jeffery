@@ -50,7 +50,7 @@ const dispatch = useDispatch()
                 <CForm
                 submit={submit}
                 loading={false}
-                onCreatePress={()=> props.navigation.navigate('user_information')}
+                onCreatePress={()=> props.navigation.navigate('sign_up')}
             />
             
  

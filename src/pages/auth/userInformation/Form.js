@@ -7,7 +7,8 @@ import AuthStyle from "../Auth.style";
 import GlobalStyle from "../../../assets/stylings/GlobalStyle";
 
 function CForm(props) {
-    const { submit, loading  , toggleCountryModal , selectedCountry, phoneErr , toggleProfeesionalModal, handlePick} = props;
+    const { submit, loading  , toggleCountryModal , selectedCountry, phoneErr , toggleProfeesionalModal, handlePick , imagepic} = props;
+    console.log("🚀 ~ file: Form.js ~ line 11 ~ CForm ~ imagepic", imagepic)
 
     const form = useRef(null);
     const fullName = useRef(null);
@@ -209,7 +210,7 @@ function CForm(props) {
                                 buttonText={AuthStyle.filebuttonText}
                             />
                             <CText style={AuthStyle.fileChooseText}>
-                            No file chosen
+                            {imagepic ? imagepic?.[0]?.name : 'No file chosen'} 
                             </CText>
                                 </View>
                             </View>

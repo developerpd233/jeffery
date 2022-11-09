@@ -88,7 +88,7 @@ function TabBar(props) {
 
     return (
         <SafeAreaView edges={['left', 'right', 'bottom']}
-                      style={[Styles.tabContainer ,{height:Platform.OS ==='ios'&& 70}]}>
+                      style={[Styles.tabContainer ,{height:70}]}>
 
             <View style={Styles.absoluteFillObject}>
                 <SpotLight style={[Styles.spotLight, {width: tabWidth}]} pose={`route${state?.index}`}>

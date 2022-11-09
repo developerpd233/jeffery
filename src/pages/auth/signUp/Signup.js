@@ -31,14 +31,7 @@ function Signup(props) {
         reduxState.currentCountry
     );
 
-    const toggleCountryModal = () => {
-        updateCountryModalIsOpen(!countryModalIsOpen);
-    };
-
-    const countryOnSelect = (item) => {
-        updateSelectedCountry(item);
-        toggleCountryModal();
-    };
+  
 
     const submit = (values) => {
         console.log("🚀 ~ file: Signup.js ~ line 44 ~ submit ~ values", values)
@@ -86,8 +79,7 @@ function Signup(props) {
             <CForm
                 submit={submit}
                 loading={reduxState?.loading}
-                selectedCountry={selectedCountry}
-                toggleCountryModal={toggleCountryModal}
+               
                 phoneErr={phoneError}
                 onLoginPress={() => navigation.navigate("login")}
             />

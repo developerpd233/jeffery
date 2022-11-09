@@ -10,7 +10,7 @@ function CountriesModal(props) {
     const {onSelect , data} = props;
 
     const [searchText, updateSearchText] = useState('');
-    const [filteredCountry, updateFilteredCountry] = useState([]);
+    const [filteredCountry, updateFilteredCountry] = useState(data);
     const [loading, setLoading] = useState(true);
 
     const reduxState = useSelector(({global}) => {
@@ -31,28 +31,33 @@ function CountriesModal(props) {
         updateSearchText(val);
         let foundArray = [];
         if(val) {
-            foundArray = reduxState.data.filter((o) =>  o?.cioc?.toLowerCase().includes(val?.toLowerCase()) || o?.name?.common.toLowerCase().includes(val?.toLowerCase()));
+            foundArray = data.filter((o) =>  o?.name?.toLowerCase().includes(val?.toLowerCase()) || o?.name?.toLowerCase().includes(val?.toLowerCase()));
         } else {
-            foundArray = reduxState.data
+            foundArray = data
         }
         updateFilteredCountry(foundArray)
     };
 
     const renderItem = ({item, index}) => {
         console.log("🚀 ~ file: CountriesModal.js ~ line 42 ~ renderItem ~ item", item)
-        return item?.detail?.code ? <TouchableOpacity style={[Styles.listItem, index === 0 && Styles.lastListItem]} onPress={() => onSelect(item)}>
-            {/* <View style={Styles.listItemIcon}>
-                <ProgressiveImage
-                    source={{uri: item?.flags?.png}}
-                    resizeMode={'contain'}
-                    style={[Styles.listItemIconImage]}/>
-            </View> */} 
-            {/* <CText style={Styles.listItemText}> {item.name}</CText>
-            <CText style={[Styles.listItemText, Styles.listItemLastText]}>
-               {item?.detail?.code}
-            </CText> */}
-            <CText>djjd</CText>
-        </TouchableOpacity> : null
+        return(
+            <TouchableOpacity style={[Styles.listItem, index === 0 && Styles.lastListItem]} onPress={() => onSelect(item)}>
+            <CText>{item.name}</CText>
+            </TouchableOpacity>
+        )
+        // return <TouchableOpacity style={[Styles.listItem, index === 0 && Styles.lastListItem]} onPress={() => onSelect(item)}>
+        //     {/* <View style={Styles.listItemIcon}>
+        //         <ProgressiveImage
+        //             source={{uri: item?.flags?.png}}
+        //             resizeMode={'contain'}
+        //             style={[Styles.listItemIconImage]}/>
+        //     </View> */} 
+        //     {/* <CText style={Styles.listItemText}> {item.name}</CText>
+        //     <CText style={[Styles.listItemText, Styles.listItemLastText]}>
+        //        {item?.detail?.code}
+        //     </CText> */}
+        //     <CText>{"ns"}</CText>
+        // </TouchableOpacity> 
 
     };
 
