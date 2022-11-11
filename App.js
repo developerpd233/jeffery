@@ -9,7 +9,6 @@ import SplashScreen from "react-native-splash-screen";
 const App = () => {
     const dispatch = useDispatch();
     const reduxState = useSelector(({ auth }) => {
-        console.log("🚀 ~ file: App.js ~ line 13 ~ reduxState ~ auth", auth);
         return {
             isLoggedIn: auth.isLoggedIn,
             user: auth.user,
@@ -37,7 +36,7 @@ const App = () => {
 
     return (
         <View style={{ backgroundColor: "white", flex: 1 }}>
-              {renderRouting(reduxState?.isLoggedIn)}
+              {renderRouting(true)}
         </View> 
     );
 };

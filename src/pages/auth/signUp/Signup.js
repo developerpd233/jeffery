@@ -34,24 +34,7 @@ function Signup(props) {
   
 
     const submit = (values) => {
-        console.log("🚀 ~ file: Signup.js ~ line 44 ~ submit ~ values", values)
-        props.navigation.navigate('user_information' , values)
-        // alert('sbjsv')
-        // setPhoneError("");
-        // let perifix = `${selectedCountry?.idd?.root}${
-        //     selectedCountry?.idd?.suffixes?.length > 1
-        //         ? ""
-        //         : selectedCountry?.idd?.suffixes[0]
-        // }`;
-        // let payload = _.omit(values, ["phone"]);
-        // payload.phone = `${perifix.replace(
-        //     /[^\w\s]/gi,
-        //     ""
-        // )}${values.phone.replace(/\s+/g, "")}`;
-        // handleCode(payload);
-        // // navigation.navigate("otp_verification");
-
-        // console.log("payload", payload);
+        props.navigation.navigate('user_information' , {values:values})
     };
 
     const handleCode = async (payload) => {

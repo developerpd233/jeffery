@@ -31,7 +31,6 @@ function Header(props) {
             isLoggedIn: auth.isLoggedIn,
         }
     });
-    console.log("🚀 ~ file: Header.js ~ line 19 ~ Header ~ placeholder", placeholder)
     
 
     const renderHeaderTitle = (title) => {

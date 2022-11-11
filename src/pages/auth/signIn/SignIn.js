@@ -17,10 +17,9 @@ const dispatch = useDispatch()
             user_login(values)
             // dispatch(login())
         };
-        const user_login = (values) =>{
+        const user_login =async (values) =>{
             try {
-                     const loginRes = ApiSause.post(LOGIN ,values)
-                     console.log("🚀 ~ file: SignIn.js ~ line 23 ~ SignIn ~ loginRes", loginRes)
+                     const loginRes =await ApiSause.post(LOGIN ,values)
                 
             } catch (error) {
                 console.log("🚀 ~ file: SignIn.js ~ line 26 ~ SignIn ~ error", error)

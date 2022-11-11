@@ -198,7 +198,6 @@ export const getLocalCountries  = (payload, CB) => async (dispatch) => {
     dispatch({ type: GLOBAL.GET_COUNTRIES, loading:true})
     try {
         const resp  = await get(GET_COUNTRY)
-        console.log("🚀 ~ file: Auth.action.js ~ line 201 ~ getLocalCountries ~ resp", resp)
         if(resp){
             dispatch({ type: GLOBAL.GET_COUNTRIES,
                 loading: false,

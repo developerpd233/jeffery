@@ -176,10 +176,10 @@ const CInput = React.forwardRef((props, ref) => {
                         <ProgressiveImage
                             resizeMode={"contain"}
                             style={GlobalStyle.countryViewImage}
-                            source={{ uri: selectedCountry?.flags?.png }}
+                            source={{ uri: selectedCountry?.flag_image }}
                         />
                         <CText style={GlobalStyle.countryViewText}>
-                            {selectedCountry?.detail?.name}
+                            {selectedCountry?.name}
                         </CText>
                         {/* <AntDesign
                             name="caretdown"

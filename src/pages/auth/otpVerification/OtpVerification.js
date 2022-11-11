@@ -20,7 +20,6 @@ function OtpVerification({ route }) {
     });
 
     const submit = (values) => {
-        console.log("values", values);
         const payload = {
             local_storage_phone: phone,
             verification: values.otp,

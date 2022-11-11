@@ -1,18 +1,23 @@
 import { FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { CBtn, CCard, CFooter, CHeader, CInput, CPriceBox, } from '../../components'
+import React , {useState , useEffect} from 'react'
+import { CBtn, CCard, CFooter, CHeader, CInput, CPriceBox,  } from '../../components'
+import {CLoading} from '../../uiComponents'
 import { styles } from './styles'
 import { Upload } from '../../assets'
 import { Colors } from 'react-native/Libraries/NewAppScreen'
-
+import ApiSauce from "../../utils/network";
+import { useNavigation } from "@react-navigation/native";
+import {HOME_CONTEST} from "../../config/webservices"
 const Home = () => {
+
+
   return (
     <View style={styles.container}>
       <View style={styles.titles}>
-<Text style={styles.titlesOne}>Are You One In
-A <Text style={styles.innerText}>Million?</Text></Text>
-<Text style={styles.titlesTwo}>Are You Beautiful And Sexy And
-You Know It ?</Text>
+        <Text style={styles.titlesOne}>Are You One In
+          A <Text style={styles.innerText}>Million?</Text></Text>
+        <Text style={styles.titlesTwo}>Are You Beautiful And Sexy And
+          You Know It ?</Text>
 
       </View>
       <View style={styles.btn}>

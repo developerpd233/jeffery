@@ -22,7 +22,7 @@ const Styles = StyleSheet.create({
 
     list: {
         marginHorizontal: -15  ,
-
+        // backgroundColor:'red'
         },
 
     sliderContainer: {

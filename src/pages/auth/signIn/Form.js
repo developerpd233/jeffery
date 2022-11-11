@@ -10,7 +10,6 @@ import EvilIcons from 'react-native-vector-icons/EvilIcons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
 function CForm(props) {
-    console.log("🚀 ~ file: Form.js ~ line 13 ~ CForm ~ props", props)
     const {
         submit,
         loading,

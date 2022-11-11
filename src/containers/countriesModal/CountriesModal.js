@@ -39,7 +39,6 @@ function CountriesModal(props) {
     };
 
     const renderItem = ({item, index}) => {
-        console.log("🚀 ~ file: CountriesModal.js ~ line 42 ~ renderItem ~ item", item)
         return(
             <TouchableOpacity style={[Styles.listItem, index === 0 && Styles.lastListItem]} onPress={() => onSelect(item)}>
             <CText>{item.name}</CText>

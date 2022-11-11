@@ -12,8 +12,6 @@ import { FlatList } from "react-native-gesture-handler";
 import { themes } from "../../../../theme/colors";
 const ContestUser = (props) => {
     const {item } = props?.route?.params || {}
-    console.log("🚀 ~ file: ContestUser.js ~ line 15 ~ ContestUser ~ item", item)
-  console.log("🚀 ~ file: ContestUser.js ~ line 14 ~ ContestUser ~ props", props)
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const [showProfile , setShowProfile] = useState(true)

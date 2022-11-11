@@ -83,7 +83,7 @@ function CForm(props) {
                                 />
                                  <CInput
                                     ref={displayNmae}
-                                    inputLabel={"Display Nmae"}
+                                    inputLabel={"Display Name"}
                                     placeholder={"Display Name"}
                                     value={values.displayNmae}
                                     onChangeText={handleChange("displayNmae")}

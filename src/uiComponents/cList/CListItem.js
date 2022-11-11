@@ -25,7 +25,6 @@ function CListItem(props) {
         titleStyles,
         subTitleStyles
     } = props;
-        console.log("🚀 ~ file: CListItem.js ~ line 28 ~ CListItem ~ image", image)
     return (
         <TouchableOpacity
             activeOpacity={activeOpacity}
@@ -74,7 +73,7 @@ function CListItem(props) {
                     <CText style={[Styles.listItemTitle , titleStyles]} >
                         {title}
                     </CText>
-                    {price ? (
+                    {price == 0 || price ? (
                         <CText
                             style={[Styles.listItemSubTitle, priceStyle]}
                             numberOfLines={1}

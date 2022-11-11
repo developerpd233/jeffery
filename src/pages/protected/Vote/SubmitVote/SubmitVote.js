@@ -21,7 +21,6 @@ const SubmitVote = (props) => {
   };
 
   const reduxState = useSelector(({ auth, root }) => {
-      console.log("🚀 ~ file: Store.js ~ line 25 ~ reduxState ~ root", root);
       return {
           loading: root?.categoryLoading,
           data: [

@@ -7,8 +7,25 @@ import AuthStyle from "../Auth.style";
 import GlobalStyle from "../../../assets/stylings/GlobalStyle";
 
 function CForm(props) {
-    const { submit, loading  , toggleCountryModal , selectedCountry, phoneErr , toggleProfeesionalModal, handlePick , imagepic} = props;
-    console.log("🚀 ~ file: Form.js ~ line 11 ~ CForm ~ imagepic", imagepic)
+    const {
+        submit,
+        loading,
+        toggleCountryModal,
+        selectedCountry,
+        phoneErr,
+        toggleProfeesionalModal,
+        handlePick,
+        imagepic,
+        selectedState,
+        toggleStateModal,
+        selectedCity,
+        toggleCityModal,
+        countryErr,
+        stateErr,
+        cityErr,
+        selectedProfeesion,
+        slectedProfessionErr
+    } = props;
 
     const form = useRef(null);
     const fullName = useRef(null);
@@ -27,7 +44,7 @@ function CForm(props) {
     return (
         <Formik
             innerRef={form}
-            onSubmit={(values) => submit(values)}
+            onSubmit={(values) =>submit(values)}
             initialValues={{}}
             validationSchema={Validations}
         >
@@ -37,10 +54,10 @@ function CForm(props) {
                         <View style={AuthStyle.card}>
                             <View style={AuthStyle.cardHeader}>
                                 <CText style={AuthStyle.cardHeaderTitle}>
-                                Register
+                                    Register
                                 </CText>
                                 <CText style={AuthStyle.cardHeaderSubTitle}>
-                                Profile Details
+                                    Profile Details
                                 </CText>
                             </View>
 
@@ -51,13 +68,13 @@ function CForm(props) {
                                     placeholder={"Legal name"}
                                     value={values.name}
                                     onChangeText={handleChange("name")}
-                                    error={errors.fullName}
+                                    error={errors.name}
                                     returnKeyType="next"
                                     onSubmitEditing={() =>
                                         address.current.focus()
                                     }
                                 />
-                                 
+
 
                                 <CInput
                                     ref={address}
@@ -65,27 +82,28 @@ function CForm(props) {
                                     placeholder={"Your address"}
                                     value={values.address}
                                     onChangeText={handleChange("address")}
-                                    secureTextEntry={true}
-                                    error={errors.password}
+                                    // secureTextEntry={true}
+                                    error={errors.address}
                                     returnKeyType="next"
                                     onSubmitEditing={() =>
                                         bio.current.focus()
                                     }
                                 />
-                                
-                             
-                                
+
+
+
                                 <CInput
                                     ref={country}
                                     type="number"
                                     // disabled={true}
-                                    onRightPress={()=> toggleCountryModal()}
+                                    onRightPress={() => toggleCountryModal()}
                                     selectedCountry={selectedCountry}
                                     onPress={() => toggleCountryModal()}
                                     inputLabel={"Country"}
                                     placeholder={"-- Select country --"}
-                                    value={values?.country}
-                                     rightIconName='down'
+                                    value={selectedCountry?.name}
+                                    error={countryErr}
+                                    rightIconName='down'
                                     editable={false}
                                     returnKeyType="next"
                                     onSubmitEditing={() => handleSubmit()}
@@ -94,41 +112,42 @@ function CForm(props) {
                                     ref={state}
                                     type="number"
                                     // disabled={true}
-                                    onRightPress={()=> toggleCountryModal()}
-                                    // selectedCountry={selectedCountry}
-                                    onPress={() => toggleCountryModal()}
+                                    onRightPress={() => toggleStateModal()}
+                                    selectedCountry={selectedState}
+                                    onPress={() => toggleStateModal()}
                                     inputLabel={"State"}
                                     placeholder={"-- Select State --"}
-                                    value={values?.country}
-                                     rightIconName='down'
+                                    value={selectedState?.name}
+                                    rightIconName='down'
                                     editable={false}
+                                    error={stateErr}
                                     returnKeyType="next"
                                     onSubmitEditing={() => handleSubmit()}
                                 />
-                                 <CInput
+                                <CInput
                                     ref={city}
                                     type="number"
                                     // disabled={true}
-                                    onRightPress={()=> toggleCountryModal()}
-                                    // selectedCountry={selectedCountry}
-                                    onPress={() => toggleCountryModal()}
+                                    onRightPress={() => toggleCityModal()}
+                                    selectedCountry={selectedCity}
+                                    onPress={() => toggleCityModal()}
                                     inputLabel={"City"}
-                                    error={false}
                                     placeholder={"-- Select City --"}
-                                    value={values?.country}
-                                     rightIconName='down'
+                                    value={selectedCity?.name}
+                                    rightIconName='down'
                                     editable={false}
+                                    error={cityErr}
                                     returnKeyType="next"
                                     onSubmitEditing={() => handleSubmit()}
                                 />
-                                  <CInput
+                                <CInput
                                     ref={bio}
                                     multiline={true}
                                     numberOfLines={4}
                                     inputInnerContainerStyle={AuthStyle.inputInnerContainerStyle}
                                     inputLabel={"Bio"}
                                     placeholder={"Enter your details"}
-                                    value={values.address}
+                                    value={values.bio}
                                     onChangeText={handleChange("bio")}
                                     secureTextEntry={true}
                                     error={errors.bio}
@@ -142,9 +161,9 @@ function CForm(props) {
                                     ref={fbProfile}
                                     inputLabel={"Facebook Profile Page"}
                                     placeholder={"Link here..."}
-                                    value={values.email}
-                                    onChangeText={handleChange("email")}
-                                    error={errors.email}
+                                    value={values.fbProfile}
+                                    onChangeText={handleChange("fbProfile")}
+                                    error={errors.fbProfile}
                                     sec
                                     returnKeyType="next"
                                     onSubmitEditing={() => handleSubmit()}
@@ -153,9 +172,9 @@ function CForm(props) {
                                     ref={linkedInProfile}
                                     inputLabel={"Linkedin Profile Page"}
                                     placeholder={"Link here..."}
-                                    value={values.email}
-                                    onChangeText={handleChange("email")}
-                                    error={errors.email}
+                                    value={values.linkedInProfile}
+                                    onChangeText={handleChange("linkedInProfile")}
+                                    error={errors.linkedInProfile}
                                     sec
                                     returnKeyType="next"
                                     onSubmitEditing={() => handleSubmit()}
@@ -164,9 +183,9 @@ function CForm(props) {
                                     ref={twitterProfile}
                                     inputLabel={"Twitter Profile Page"}
                                     placeholder={"Link here..."}
-                                    value={values.email}
-                                    onChangeText={handleChange("email")}
-                                    error={errors.email}
+                                    value={values.twitterProfile}
+                                    onChangeText={handleChange("twitterProfile")}
+                                    error={errors.twitterProfile}
                                     sec
                                     returnKeyType="next"
                                     onSubmitEditing={() => handleSubmit()}
@@ -175,43 +194,43 @@ function CForm(props) {
                                     ref={instaProfile}
                                     inputLabel={"Instagram Profile Page"}
                                     placeholder={"Link here..."}
-                                    value={values.email}
-                                    onChangeText={handleChange("email")}
-                                    error={errors.email}
+                                    value={values.instaProfile}
+                                    onChangeText={handleChange("instaProfile")}
+                                    error={errors.instaProfile}
                                     sec
                                     returnKeyType="next"
                                     onSubmitEditing={() => handleSubmit()}
                                 />
-                              <CInput
+                                <CInput
                                     ref={profession}
                                     type="number"
                                     // disabled={true}
-                                    onRightPress={()=> toggleProfeesionalModal()}
+                                    onRightPress={() => toggleProfeesionalModal()}
                                     // selectedCountry={selectedCountry}
                                     onPress={() => toggleProfeesionalModal()}
                                     inputLabel={"Profession"}
-                                    error={false}
+                                    error={slectedProfessionErr}
                                     placeholder={"-- Select Profession --"}
-                                    value={values?.country}
+                                    value={selectedProfeesion?.name}
                                     rightIconName='down'
                                     editable={false}
                                     returnKeyType="next"
                                     onSubmitEditing={() => handleSubmit()}
                                 />
-                                 <CText style={GlobalStyle.inputLabel}>
-                                 Image
-                            </CText>
-                                <View style={{flexDirection:'row' ,alignItems:'center' , backgroundColor:'rgba(255,255,255,0.2)' , padding:10 , height:45 , marginTop:5}}>
-                                <CButton
-                                title={"Choose File"}
-                                buttonStyle={AuthStyle.filebuttonStyle}
-                                loading={loading}
-                                onPress={handlePick}
-                                buttonText={AuthStyle.filebuttonText}
-                            />
-                            <CText style={AuthStyle.fileChooseText}>
-                            {imagepic ? imagepic?.[0]?.name : 'No file chosen'} 
-                            </CText>
+                                <CText style={GlobalStyle.inputLabel}>
+                                    Image
+                                </CText>
+                                <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: 'rgba(255,255,255,0.2)', padding: 10, height: 45, marginTop: 5 }}>
+                                    <CButton
+                                        title={"Choose File"}
+                                        buttonStyle={AuthStyle.filebuttonStyle}
+                                        loading={loading}
+                                        onPress={handlePick}
+                                        buttonText={AuthStyle.filebuttonText}
+                                    />
+                                    <CText style={AuthStyle.fileChooseText}>
+                                        {imagepic ? imagepic?.[0]?.name : 'No file chosen'}
+                                    </CText>
                                 </View>
                             </View>
 
