@@ -43,8 +43,8 @@ export const styles = StyleSheet.create({
         height: 53,
         width: 53,
         bottom: 35,
-        alignSelf: 'center'
-
+        alignSelf: 'center',
+        borderRadius:100
     },
     profileData: {
         flexDirection: 'column',

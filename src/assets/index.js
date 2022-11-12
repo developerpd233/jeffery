@@ -17,7 +17,7 @@ import Account from './images/settingIcon/account.png'
 import Help from './images/settingIcon/help.png'
 import Privacy from './images/settingIcon/privacy.png'
 import Payment from './images/settingIcon/payment.png'
-
+import search_icon from './img/search-icon.png'
 
 
 export {
@@ -39,5 +39,6 @@ export {
     Help,
     Payment,
     Privacy,
-    About
+    About,
+    search_icon
 }

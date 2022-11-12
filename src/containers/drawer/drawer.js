@@ -23,6 +23,7 @@ import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { LoginManager } from "react-native-fbsdk-next";
 import { themes } from '../../theme/colors';
 import { logout } from '../../store/actions/Auth.action';
+import AntDesign from 'react-native-vector-icons/AntDesign'
 
      
 
@@ -39,6 +40,9 @@ const Drawer = props => {
 
     return (
         <View style={styles.menuView}>
+            <TouchableOpacity style={{alignSelf:'flex-end' ,marginTop:10,marginRight:5}} onPress={()=>{props.navigation.closeDrawer()}}>
+             <AntDesign name="close" size={20} color='rgba(255, 255, 255, 0.7)' />
+            </TouchableOpacity>
             <View style={styles.ImageView}>
                 <Image source={userIcon} resizeMode='stretch' style={styles.userImage} />
                 <View style={{ marginLeft: 10 }}>
@@ -49,13 +53,16 @@ const Drawer = props => {
 
             
             <View style={styles.View2}>
-                <TouchableOpacity onPress={() => props.navigation.navigate('Contest')} style={styles.btnView}>
+                <TouchableOpacity  onPress={() =>props.navigation.navigate('Contest', {
+                screen: 'Contest',
+                initial: false
+            })} style={styles.btnView}>
                     <Text style={styles.imagetext}>Contests</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => props.navigation.navigate('Contest',{
                      screen: 'Contest_Type', params: {
-                        item: {title:'Country'}
+                        item: {title:'Country',search:false}
                     }
                 })} style={styles.btnView}>
                     <Text style={styles.unSelecttext}>Country</Text>
@@ -126,8 +133,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         backgroundColor: themes['light'].colors.drawer,
-        height: 140,
-paddingLeft:20,
+        height: 80,
+        marginBottom:10,
+        paddingLeft:20,
 
     },
     userNam: {

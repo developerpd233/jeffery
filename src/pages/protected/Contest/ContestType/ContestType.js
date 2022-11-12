@@ -1,20 +1,23 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Text } from "react-native"
 import { Container } from "../../../../containers";
-import { CList, CInput, CListItem, CText, CButton, CLoading } from "../../../../uiComponents";
+import { CList, CListItem, CText, CButton, CLoading } from "../../../../uiComponents";
 import { View } from "react-native";
 import GlobalStyle from "../../../../assets/stylings/GlobalStyle";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation , useIsFocused } from "@react-navigation/native";
 import Styles from '../Contest.Style'
-import { GET_CONTEST, IMAGE_URL } from "../../../../config/webservices"
+import { GET_CONTEST, IMAGE_URL ,GET_CONTEST_BY_COUNTRY,CONTESTANTS,WINNERS } from "../../../../config/webservices"
 import ApiSauce from "../../../../services/networkRequest"
+import {CInput} from "../../../../components"
 const ContestType = (props) => {
   const { item } = props?.route?.params || {}
   const dispatch = useDispatch();
   const navigation = useNavigation();
+  const IsFocused = useIsFocused();
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState()
+  const [countrySlug, setCountrySlug] = useState('United states')
 
   const headerProps = {
     headerTitle: `${item.title}`,
@@ -23,19 +26,46 @@ const ContestType = (props) => {
   };
 
   useEffect(() => {
+    // setCountrySlug()
     handleApi()
-  }, [])
+  }, [IsFocused])
 
 
   const handleApi = async () => {
     try {
       setLoading(true)
-      const data = await ApiSauce.getWithoutToken(GET_CONTEST(
-        item.title == 'Monthly Contest' ?
-        'monthly' : item.title == 'Yearly Contest' ?
-        'yearly' : 'video'
-        ))
-      setData(data.data)
+      if(item.title == 'Monthly Contest'){
+        const data = await ApiSauce.getWithoutToken(GET_CONTEST('monthly'))
+       setData(data.data)
+      }
+      else if(item.title == 'Yearly Contest'){
+        const data = await ApiSauce.getWithoutToken(GET_CONTEST('yearly'))
+       setData(data.data)
+      }
+      else if(item.title == 'Video Contest'){
+        const data = await ApiSauce.getWithoutToken(GET_CONTEST('video'))
+       setData(data.data)
+      }
+      else if(item.title == 'Country'){
+        const data = await ApiSauce.getWithToken(GET_CONTEST_BY_COUNTRY(countrySlug ? countrySlug :'United states' , 'country'))
+        setData(data.data)
+      }
+      else if(item.title == 'State'){
+        const data = await ApiSauce.getWithToken(GET_CONTEST_BY_COUNTRY(countrySlug ? countrySlug :'Alaska' , 'state'))
+        setData(data.data)
+      }
+      else if(item.title == 'Professions'){
+        const data = await ApiSauce.getWithToken(GET_CONTEST_BY_COUNTRY(countrySlug ? countrySlug :'modeling' , 'profession'))
+        setData(data.data)
+      }
+      else if(item.title == 'Contestants'){
+        const data = await ApiSauce.getWithToken(CONTESTANTS)
+        setData(data.data)
+      }
+      else if(item.title == 'Winners'){
+        const data = await ApiSauce.getWithToken(WINNERS)
+        setData(data.data)
+      }
     } catch (err) {
       console.log("🚀 ~ file: ContestType.js ~ line 33 ~ handleApi ~ err", err)
     } finally {
@@ -106,7 +136,7 @@ const ContestType = (props) => {
     console.log("🚀 ~ file: ContestType.js ~ line 106 ~ renderItem ~ item", IMAGE_URL+item?.image)
     return (
       <CListItem
-        title={`Contest ${index + 1}`}
+        title={`Contest ${index}`}
         price={item.amount}
         subTitle={item?.orderNumber}
         image={IMAGE_URL + item?.image}
@@ -131,6 +161,14 @@ const ContestType = (props) => {
         headerProps={headerProps}
         showPattern={true}
       >
+        {!item?.search && <><View style={{justifyContent:'center', alignItems:'center',marginVertical:20}}>
+         <CInput placeholder='Search' onChangeText={(e)=>{setCountrySlug(e)}} onPress={()=>{handleApi()}}/>
+        </View>
+        <View style={{marginHorizontal:20}}>
+          <Text style={{color:'#fff',fontSize:20,fontWeight:'bold'}}>
+          {countrySlug ? countrySlug : 'United states'}
+          </Text>
+        </View></>}
 
         <CList
           style={Styles.ContestList}

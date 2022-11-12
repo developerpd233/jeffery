@@ -15,14 +15,15 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-between',
         flexDirection: 'row',
         alignItems: 'center',
-        borderRadius:3
-
+        borderRadius:3,
+        paddingHorizontal:10
     },
     ph: {
         // width: responsiveWidth(75),
         backgroundColor: Colors.CloudBurst,
         height: 35,
-        fontSize:10
+        fontSize:10,
+        flex:1
     },
     icon: {
         backgroundColor: Colors.CloudBurst,

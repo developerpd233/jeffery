@@ -38,14 +38,17 @@ const Home = (props) => {
               {
                   // image: require("../../../assets/images/flowers/one.png"),
                   title: "Monthly Contest",
+                  search:true
               },
               {
                   // // image: require("../../../assets/images/flowers/two.png"),
                   title: "Yearly Contest",
+                  search:true
               },
               {
                 // // image: require("../../../assets/images/flowers/two.png"),
                 title: "Video Contest",
+                search:true
             },
             
           ],

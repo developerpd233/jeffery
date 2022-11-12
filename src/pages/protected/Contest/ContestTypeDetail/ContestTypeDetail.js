@@ -20,7 +20,6 @@ const ContestTypeDetail = (props) => {
       showCart: false,
     showCenterInput:true,
     placeholder:'Search Participant....'
-
   };
 
   const reduxState = useSelector(({ auth, root }) => {

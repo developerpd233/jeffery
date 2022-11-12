@@ -51,7 +51,7 @@ function CListItem(props) {
                     ]}
                 >
                     <ProgressiveImage
-                        source={ image}
+                        source={{uri: image}}
                         resizeMode={imageResizeMode}
                         style={Styles.listItemImage}
                     />
