@@ -11,6 +11,7 @@ import { About, Account, Dots, Help, Payment, Privacy, Profile, ProfileIcon, Sen
 import { FlatList } from "react-native-gesture-handler";
 import { themes } from "../../../theme/colors";
 import AntDesign from 'react-native-vector-icons/AntDesign'
+
 const ContestUser = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
@@ -26,15 +27,8 @@ const ContestUser = () => {
           loading: root?.categoryLoading,
           data: [
           {value:"Account" , icon:Account} ,  {value: 'About' , icon:About} ,{value:"Privacy and policy" , icon:Privacy} ,{value:"Help and support" , icon:Help}, {value:"Payment" , icon:Payment}
-              
-            
-           
           ],
-
           profileData :[
-
-
-
           ]
       };
   });
@@ -44,7 +38,7 @@ const ContestUser = () => {
 
 
 
-const renderProfile  = () =>(
+const renderProfile  = (props) =>(
     <View style={{marginVertical:10}}>
        {reduxState.profileData?.map((item)=>{
         return(
@@ -74,7 +68,9 @@ const renderProfile  = () =>(
     
     <View style={Styles.Container}>
              <View style={Styles.ImageView}>
+                <TouchableOpacity onPress={()=>{navigation.navigate('Profile')}}>
                 <Image source={userIcon} resizeMode='stretch' style={Styles.userImage} />
+                </TouchableOpacity>
                 <View style={{ marginLeft: 10 }}>
                     <CText style={Styles.userNam}>User</CText>
                     <CText style={Styles.userEmail}>User@mail.com</CText>

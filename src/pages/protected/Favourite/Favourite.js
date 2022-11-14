@@ -19,7 +19,6 @@ const ContestTypeDetail = (props) => {
   console.log("🚀 ~ file: Favourite.js ~ line 19 ~ ContestTypeDetail ~ data", data)
   const dispatch = useDispatch();
   const navigation = useNavigation();
-
   const headerProps = {
     headerTitle: "Favourites",
     subtitle: "Explore all contests",
@@ -45,7 +44,6 @@ const ContestTypeDetail = (props) => {
   }
 
   const reduxState = useSelector(({ auth, root }) => {
-    console.log("🚀 ~ file: Store.js ~ line 25 ~ reduxState ~ root", root);
     return {
       loading: root?.categoryLoading,
       data: [
@@ -115,7 +113,7 @@ const ContestTypeDetail = (props) => {
       headerProps={headerProps}
       showPattern={true}
     >
-      {isLoading && <CLoading />}
+      {isLoading && <CLoading loading={isLoading} />}
       <CList
         style={Styles.list}
         numColumns={2}

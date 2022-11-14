@@ -1,117 +1,167 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Container } from "../../../../containers";
-import { CList, CInput, CListItem, CText, CButton } from "../../../../uiComponents";
+import { CList, CInput, CListItem, CText, CButton, CLoading } from "../../../../uiComponents";
 import { View } from "react-native";
 import GlobalStyle from "../../../../assets/stylings/GlobalStyle";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation ,useIsFocused } from "@react-navigation/native";
 import Styles from '../Contest.Style'
-import {CCard} from '../../../../uiComponents'
+import { CCard } from '../../../../uiComponents'
+import { SINGLE_CONTEST , ADD_FAVOURITIES , REMOVE_FAVOURITIES } from "../../../../config/webservices"
+import ApiSauce from "../../../../services/networkRequest"
 const ContestTypeDetail = (props) => {
 
-  const {item , index} = props?.route?.params || {}
-  const [heart , setHeart] = useState(false)
+  const { item, index } = props?.route?.params || {}
+  const [heart, setHeart] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [data, setData] = useState()
+
   const dispatch = useDispatch();
   const navigation = useNavigation();
-
+  const isFocused = useIsFocused()
   const headerProps = {
-      headerTitle: "Monthly Contests",
-      subtitle :"Explore all contests",
-      showCart: false,
-    showCenterInput:true,
-    placeholder:'Search Participant....'
+    headerTitle: "Monthly Contests",
+    subtitle: "Explore all contests",
+    showCart: false,
+    showCenterInput: true,
+    placeholder: 'Search Participant....'
   };
 
   const reduxState = useSelector(({ auth, root }) => {
-      console.log("🚀 ~ file: Store.js ~ line 25 ~ reduxState ~ root", root);
-      return {
-          loading: root?.categoryLoading,
-          data: [
-              {
-                  image: require("../../../../assets/images/flowers/one.png"),
-                  title: "Monthly Contest",
-                  orderNumber:'FROM SEP 02 TO OCT 31',
-                  prize:'To Win $11.86 USD, 9 Contestants'
-              },
-              {
-                image: require("../../../../assets/images/flowers/one.png"),
-                title: "Monthly Contest",
-                orderNumber:'FROM SEP 02 TO OCT 31',
-                prize:'To Win $11.86 USD, 9 Contestants'
-              },
-              {
-                image: require("../../../../assets/images/flowers/one.png"),
-                  title: "Monthly Contest",
-                  orderNumber:'FROM SEP 02 TO OCT 31',
-                  prize:'To Win $11.86 USD, 9 Contestants'
-            },
-            {
-                image: require("../../../../assets/images/flowers/one.png"),
-                  title: "Monthly Contest",
-                  orderNumber:'FROM SEP 02 TO OCT 31',
-                  prize:'To Win $11.86 USD, 9 Contestants'
-            },
-            {
-              image: require("../../../../assets/images/flowers/one.png"),
-              title: "Monthly Contest",
-              orderNumber:'FROM SEP 02 TO OCT 31',
-              prize:'To Win $11.86 USD, 9 Contestants'
-            },
-            {
-              image: require("../../../../assets/images/flowers/one.png"),
-                title: "Monthly Contest",
-                orderNumber:'FROM SEP 02 TO OCT 31',
-                prize:'To Win $11.86 USD, 9 Contestants'
-          },
-         
-          
-            
-          ],
-      };
+    return {
+      loading: root?.categoryLoading,
+      data: [
+        {
+          image: require("../../../../assets/images/flowers/one.png"),
+          title: "Monthly Contest",
+          orderNumber: 'FROM SEP 02 TO OCT 31',
+          prize: 'To Win $11.86 USD, 9 Contestants'
+        },
+        {
+          image: require("../../../../assets/images/flowers/one.png"),
+          title: "Monthly Contest",
+          orderNumber: 'FROM SEP 02 TO OCT 31',
+          prize: 'To Win $11.86 USD, 9 Contestants'
+        },
+        {
+          image: require("../../../../assets/images/flowers/one.png"),
+          title: "Monthly Contest",
+          orderNumber: 'FROM SEP 02 TO OCT 31',
+          prize: 'To Win $11.86 USD, 9 Contestants'
+        },
+        {
+          image: require("../../../../assets/images/flowers/one.png"),
+          title: "Monthly Contest",
+          orderNumber: 'FROM SEP 02 TO OCT 31',
+          prize: 'To Win $11.86 USD, 9 Contestants'
+        },
+        {
+          image: require("../../../../assets/images/flowers/one.png"),
+          title: "Monthly Contest",
+          orderNumber: 'FROM SEP 02 TO OCT 31',
+          prize: 'To Win $11.86 USD, 9 Contestants'
+        },
+        {
+          image: require("../../../../assets/images/flowers/one.png"),
+          title: "Monthly Contest",
+          orderNumber: 'FROM SEP 02 TO OCT 31',
+          prize: 'To Win $11.86 USD, 9 Contestants'
+        },
+
+
+
+      ],
+    };
   });
 
-  const select = () => {
-    console.log('itemitemitemitemitemitemitemitemitemitem', item)
+  const select = (val) => {
     navigation.navigate("ContestUser", {
-        item:props.route.params.item,
+      item: val,
     });
-};
+  };
 
   const renderItem = ({ item, index }) => {
     return (
-        <CCard  onHeartPress={()=> setHeart(!heart)}  heart={index} onPress={()=> select(item)} />
+      <CCard 
+      onPress={() => select(item)}
+      Profile={item?.image}
+      Positon={item?.position}
+      Votes={item?.votes_count}
+      userProfile={item?.user?.image }
+      profileName={item?.name}
+      heart={item?.favourite}
+      FavouriteOnPress={()=>{handleFav(item?.id , item?.favourite)}}
+      />
+      
     );
-};
-const onRefreshHandler = () => {
-  // handleCategory();
-};
+  };
+  const onRefreshHandler = () => {
+    // handleCategory();
+  };
+
+
+  useEffect(() => {
+    handleApi()
+  }, [isFocused])
+
+
+  const handleApi = async () => {
+    try {
+      setLoading(true)
+      const data = await ApiSauce.getWithToken(SINGLE_CONTEST(item?.id))
+      setData(data.data)
+    } catch (err) {
+      console.log("🚀 ~ file: ContestType.js ~ line 33 ~ handleApi ~ err", err)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleFav =async (id ,favourite) => {
+    try {
+      setLoading(true)
+      if(favourite == false ){
+        const data = await ApiSauce.getWithToken(ADD_FAVOURITIES(id))
+      }
+      else{
+        const data = await ApiSauce.getWithToken(REMOVE_FAVOURITIES(id))
+      }
+    } catch (err) {
+      console.log("🚀 ~ file: ContestType.js ~ line 33 ~ handleApi ~ err", err)
+    } finally {
+      handleApi()
+      setLoading(false)
+    }
+  }
 
   return (
     <Container
-    bottomSpace
-    edges={["left", "right"]}
-    headerProps={headerProps}
-    showPattern={true}
-    
->
-<CText style={Styles.normalTitle}>
-Contest {index}
-</CText>
-<CButton title='Join the Contest' buttonStyle={Styles.buttonStyle2} />
+      bottomSpace
+      edges={["left", "right"]}
+      headerProps={headerProps}
+      showPattern={true}
 
-    <CList
+    >
+      {loading && <CLoading loading={loading} />}
+      <CText style={Styles.normalTitle}>
+        Contest {index}
+      </CText>
+      <CButton title='Join the Contest' buttonStyle={Styles.buttonStyle2} />
+
+      <CList
         style={Styles.ContestList}
-        contentContainerStyle={[GlobalStyle.list, { marginBottom: 35 , 
-          alignSelf:'center',
+        contentContainerStyle={[GlobalStyle.list, {
+          marginBottom: 35,
+          alignSelf: 'center',
         }]}
-        data={reduxState.data}
+        data={data?.participants}
         numColumns={2}
         loading={reduxState.loading}
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
         emptyOptions={{
-            // icon: require('../../assets/images/empty.png'),
-            text: "Store not found",
+          // icon: require('../../assets/images/empty.png'),
+          text: "Store not found",
         }}
         onRefreshLoading={reduxState.loading}
         onRefreshHandler={() => onRefreshHandler()}
@@ -119,8 +169,8 @@ Contest {index}
         onEndReachedThreshold={0.1}
         maxToRenderPerBatch={10}
         windowSize={10}
-    />
-</Container>
+      />
+    </Container>
   )
 }
 

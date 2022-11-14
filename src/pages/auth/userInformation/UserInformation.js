@@ -12,7 +12,7 @@ import { useNavigation } from "@react-navigation/native";
 import DocumentPicker, { types } from 'react-native-document-picker';
 import { getLocalCountries } from "../../../store/actions/Auth.action";
 import {COUNTRY , SIGN_UP ,STATE , CITY , PROFESSION} from "../../../config/webservices"
-
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 function UserInformation(props) {
 const preValue = props?.route?.params?.values
 
@@ -69,7 +69,11 @@ const preValue = props?.route?.params?.values
         formData.append('email','a'+signUpValues?.email)
         formData.append('password',signUpValues?.password)
         formData.append('username',val?.name)
-        // formData.append('image',image)
+        formData.append('image', {
+          name:'name',
+          type:'name/jpg',
+          uri:image?.uri
+        })
         formData.append('country_id',selectedCountry?.id)
         formData.append('state_id',slectedState?.id)
         formData.append('city_id',slectedCity.id)
@@ -84,13 +88,14 @@ const preValue = props?.route?.params?.values
         try{
           setLoading(true)
           const data = await ApiSauce.post(SIGN_UP , formData)
+          props.navigation.navigate('otp_verification')
+          console.log("🚀 ~ file: UserInformation.js ~ line 94 ~ SignUp ~ data", data)
         }catch(err){
         console.log("🚀 ~ file: ContestType.js ~ line 33 ~ handleApi ~ err", err)
         }finally{
           setLoading(false)
         }
       }
-    
       const handleCountryApi = async () => {
         try{
           setLoading(true)
@@ -114,7 +119,6 @@ const preValue = props?.route?.params?.values
           setLoading(false)
         }
       }
-
       const handleCity = async (item) => {
         try{
           setLoading(true)
@@ -126,7 +130,6 @@ const preValue = props?.route?.params?.values
           setLoading(false)
         }
       }
-
       const handleProfessionApi = async () => {
         try{
           setLoading(true)
@@ -139,12 +142,10 @@ const preValue = props?.route?.params?.values
           setLoading(false)
         }
       }
-
     const toggleCountryModal = () => {
         updateCountryModalIsOpen(!countryModalIsOpen);
         updateSelectedCountryErr()
     };
-
     const toggleStateModal = () =>{
         setStateModal(!stateModal);
         setSlectedStateErr()
@@ -153,7 +154,6 @@ const preValue = props?.route?.params?.values
         setCityModal(!cityModal)
         setSlectedCityErr()
     }
-
     const toggleProfeesionalModal = () => {
         setProfessionModal(!ProfessionModal);
         setSlectedProfessionErr()
@@ -164,7 +164,6 @@ const preValue = props?.route?.params?.values
         toggleCountryModal();
         handleState(item)
     };
-
     const stateOnSelect = (item) => {
         setStateModal(false);
         setSlectedState(item)
@@ -175,32 +174,49 @@ const preValue = props?.route?.params?.values
         setCityModal(false)
         setSlectedCity(item)
     }
-
     const professionSelect = (item) => {
         setProfessionModal(false)
         setSlectedProfession(item)
     }
-
     const handlePick =async ()=>{
-        try {
-            const res = await DocumentPicker.pick({
-              type: [DocumentPicker.types.allFiles],
-            });
-            setImage(res)
-            console.log('res : ' + JSON.stringify(res));
-            console.log('URI : ' + res.uri);
-            console.log('Type : ' + res.type);
-            console.log('File Name : ' + res.name);
-            console.log('File Size : ' + res.size);
-          } catch (err) {
-            if (DocumentPicker.isCancel(err)) {
+        let options = {
+            storageOptions: {
+              skipBackup: true,
+              path: 'images',
+            },
+          };
+          launchImageLibrary(options, (res) => {
+            console.log('Response = ', res);
+            if (res.didCancel) {
+              console.log('User cancelled image picker');
+            } else if (res.error) {
+              console.log('ImagePicker Error: ', res.error);
+            } else if (res.customButton) {
+              console.log('User tapped custom button: ', res.customButton);
+            //   alert(res.customButton);
             } else {
-              
+              const source = { uri: res.uri };
+              console.log('response', JSON.stringify(res?.assets?.[0]));
+              setImage(res?.assets?.[0])
+            //   this.setState({
+            //     filePath: res,
+            //     fileData: res.data,
+            //     fileUri: res.uri
+            //   });
             }
-          }
+          });
+        // try {
+        //     const res = await DocumentPicker.pick({
+        //       type: [DocumentPicker.types.allFiles],
+        //     });
+        //     setImage(res)
+        //   } catch (err) {
+        //     if (DocumentPicker.isCancel(err)) {
+        //     } else {
+              
+        //     }
+        //   }
     }
-
-   
     const submit = (values) => {
         if(!selectedCountry){
             updateSelectedCountryErr('please select country')
@@ -220,7 +236,7 @@ const preValue = props?.route?.params?.values
     };
 
     return (
-        <>{loading && <CLoading loading={isLoading}/>}
+        <>{loading && <CLoading loading={loading}/>}
         <Container
             backgroundColor={"theme-color"}
             showPattern={true}
@@ -267,7 +283,8 @@ const preValue = props?.route?.params?.values
                     <View style={AuthStyle.modalInnerContainer}>
                         <CountriesModal
                         data={Country}
-                            onSelect={(val) => countryOnSelect(val)}
+                        onSelect={(val) => countryOnSelect(val)}
+                        onPress={()=>{updateCountryModalIsOpen(false)}}
                         />
                     </View>
                 </View>
@@ -282,6 +299,7 @@ const preValue = props?.route?.params?.values
                         <CountriesModal
                         data={state}
                         onSelect={(val) => stateOnSelect(val)}
+                        onPress={()=>{setStateModal(false)}}
                         />
                     </View>
                 </View>
@@ -296,6 +314,8 @@ const preValue = props?.route?.params?.values
                         <CountriesModal
                         data={city}
                         onSelect={(val) => stateOnCity(val)}
+                        onPress={()=>{setCityModal(false)}}
+
                         />
                     </View>
                 </View>
@@ -310,6 +330,8 @@ const preValue = props?.route?.params?.values
                         <CountriesModal
                         data={profession}
                             onSelect={(val) => professionSelect(val)}
+                        onPress={()=>{setProfessionModal(false)}}
+
                         />
                     </View>
                 </View>

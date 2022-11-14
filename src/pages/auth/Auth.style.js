@@ -158,7 +158,7 @@ export default StyleSheet.create({
 
     modalContainer: {
         flex: 1,
-        backgroundColor: 'rgba(124, 128, 97, 0.7)',
+        backgroundColor: 'rgba(124, 118, 97, 0.7)',
         paddingTop: 200,
         paddingHorizontal: 20
     },

@@ -81,7 +81,7 @@ commentProfile:{
     height:40,
     marginHorizontal:10,
     marginVertical:5,
-
+    borderRadius:100
 },
 ListHeaderComponentStyle:{
   borderBottomWidth:1,

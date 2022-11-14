@@ -14,27 +14,16 @@ const ContestUser = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const [showProfile , setShowProfile] = useState(true)
-
   const headerProps = {
-     
       showCart: false,
       headerRightText:    showProfile ? "Pose 2 Post" :'Information'
-
   };
   const reduxState = useSelector(({ auth, root }) => {
-      console.log("🚀 ~ file: Store.js ~ line 25 ~ reduxState ~ root", root);
       return {
           loading: root?.categoryLoading,
           data: [
-              
-            
-           
           ],
-
           profileData :[
-
-
-
           ]
       };
   });

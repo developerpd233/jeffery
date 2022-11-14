@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from "react";
-import {TouchableOpacity, View} from "react-native";
+import {TouchableOpacity, View ,Text} from "react-native";
 import GlobalStyle from "../../assets/stylings/GlobalStyle";
 import {useSelector} from "react-redux";
 import {CInput, CList, CText, ProgressiveImage} from "../../uiComponents";
 import Styles from "./CountriesModal.style";
+import AntDesign from 'react-native-vector-icons/AntDesign'
 
 function CountriesModal(props) {
 
-    const {onSelect , data} = props;
+    const {onSelect , data , onPress} = props;
 
     const [searchText, updateSearchText] = useState('');
     const [filteredCountry, updateFilteredCountry] = useState(data);
@@ -62,6 +63,9 @@ function CountriesModal(props) {
 
     return (
         <View style={[GlobalStyle.fullContainer, {backgroundColor: 'transparent'}]}>
+           <TouchableOpacity style={{alignSelf:'flex-end' ,marginTop:10,marginRight:10}} onPress={onPress}>
+             <AntDesign name="close" size={20} color='rgba(0, 0, 0, 0.7)' />
+            </TouchableOpacity>
             <View style={GlobalStyle.listHeader}>
                 <CInput
                     value={searchText}

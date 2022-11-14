@@ -194,7 +194,7 @@ export default StyleSheet.create({
 
     list: {
         paddingHorizontal: 30,
-        paddingBottom: 110,
+        // paddingBottom: 110,
     },
     listItem: {
         flexDirection: 'row',

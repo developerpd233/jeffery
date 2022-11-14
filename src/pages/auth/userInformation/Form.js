@@ -228,8 +228,8 @@ function CForm(props) {
                                         onPress={handlePick}
                                         buttonText={AuthStyle.filebuttonText}
                                     />
-                                    <CText style={AuthStyle.fileChooseText}>
-                                        {imagepic ? imagepic?.[0]?.name : 'No file chosen'}
+                                    <CText style={AuthStyle.fileChooseText} numberOfLines={1}>
+                                        {imagepic ? imagepic?.fileName : 'No file chosen'}
                                     </CText>
                                 </View>
                             </View>

@@ -50,6 +50,7 @@ const CInput = React.forwardRef((props, ref) => {
         placeholder,
         secureTextEntry = false,
         lableandSubLabelStyle,
+        onChangeText,
         placeholderTextColor=themes["light"].colors.white5   
     } = props;
 
@@ -132,6 +133,7 @@ const CInput = React.forwardRef((props, ref) => {
                 style={[ value ? {  ...GlobalStyle.inputStyle, ...style }:{...GlobalStyle.placeholderStyle,}]}
                 autoCapitalize="none"
                 value={value}
+                onChangeText={onChangeText}
                 {...props}
             />
         );

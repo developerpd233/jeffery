@@ -74,7 +74,6 @@ const ContestType = (props) => {
   }
 
   const reduxState = useSelector(({ auth, root }) => {
-    console.log("🚀 ~ file: Store.js ~ line 25 ~ reduxState ~ root", root);
     return {
       loading: root?.categoryLoading,
       data: [
@@ -125,7 +124,7 @@ const ContestType = (props) => {
     };
   });
 
-  const select = (index) => {
+  const select = (item , index) => {
     navigation.navigate("ContestTypeDetails", {
       index,
       item
@@ -133,7 +132,6 @@ const ContestType = (props) => {
   };
 
   const renderItem = ({ item, index }) => {
-    console.log("🚀 ~ file: ContestType.js ~ line 106 ~ renderItem ~ item", IMAGE_URL+item?.image)
     return (
       <CListItem
         title={`Contest ${index}`}
@@ -144,7 +142,7 @@ const ContestType = (props) => {
         priceStyle={Styles.price}
         subTitleStyles={Styles.subTitleStyles}
         listItemView={Styles.listItemView}
-        onPress={() => select(index)}
+        onPress={() => select(item ,index)}
       />
     );
   };
