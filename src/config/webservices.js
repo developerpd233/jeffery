@@ -12,6 +12,7 @@ export const CONTESTANTS =  `${BASE_URL}contestants`
 export const WINNERS =  `${BASE_URL}winners`
 export const FAVOURITIES =  `${BASE_URL}favourites`
 export const POST_COMMENTS =  `${BASE_URL}comments`
+export const GET_PROFILE =  `${BASE_URL}users/show-profile`
 export const GET_COMMENTS = (id , pageno) => `${BASE_URL}comments?participant_id=${id}&page=${pageno}`
 
 export const SINGLE_CONTEST = (id) =>  `${BASE_URL}single-contest/${id}`

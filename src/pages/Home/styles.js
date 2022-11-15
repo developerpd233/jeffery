@@ -50,22 +50,5 @@ export const styles = StyleSheet.create({
         padding: 3,
     },
 
-    mainView:{
-      marginHorizontal:20,
-    },
-    imageView:{
-        justifyContent:'center',
-        alignItems:'center',
-    },
-    userImage:{
-        backgroundColor:'green',
-        height:150,
-        width:150,
-        borderRadius:100
-    },
-    textView:{
-        backgroundColor:'red',
-        
-    }
 
 })

@@ -1,19 +1,33 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, {useState , useEffect} from "react";
 import { Container } from "../../../containers";
-import { CList, CInput, CListItem, CText, CButton } from "../../../uiComponents";
-import { View  , Text , Image, TouchableOpacity, Dimensions} from "react-native";
-import GlobalStyle from "../../../assets/stylings/GlobalStyle";
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigation } from "@react-navigation/native";
-import Styles from './Profile.Style'
-import {CCard} from '../../../uiComponents'
-import { Dots, Profile, ProfileIcon, Send } from "../../../assets";
-import { FlatList } from "react-native-gesture-handler";
-import { themes } from "../../../theme/colors";
-import { styles } from "../../Home/styles";
-
+import { View  , Text , Image, FlatList} from "react-native";
+import  Styles  from "./Profile.Style";
+import { CList, CInput, CListItem, CText, CButton, CLoading } from "../../../uiComponents";
+import ApiSauce from "../../../services/networkRequest"
+import {GET_PROFILE} from "../../../config/webservices"
+import { object } from "yup";
 const ContestUser = () => {
+  const [isLoading, setIsLoading] = useState(false)
+  const [data, setData] = useState()
+  console.log("🚀 ~ file: index.js ~ line 12 ~ ContestUser ~ data", data)
 
+  useEffect(() => {
+    handleApi()
+  }, [])
+
+
+  const handleApi = async () => {
+    try {
+      setIsLoading(true)
+      const response = await ApiSauce.getWithToken(GET_PROFILE)
+      // setData(response)
+      data.push([response])
+    } catch (err) {
+      console.log("🚀 ~ file: ContestType.js ~ line 33 ~ handleApi ~ err", err)
+    } finally {
+      setIsLoading(false)
+    }
+  }
   const headerProps = {
       showCart: false,
       headerRightText:"Profile"
@@ -25,19 +39,33 @@ const ContestUser = () => {
     headerProps={headerProps}
     showPattern={true}
     scrollView={true}>
+      {isLoading && <CLoading loading={isLoading}/>}
 
-      <View style={styles.mainView}>
-        <View style={styles.imageView}>
-           <Image source={'a'} style={styles.userImage} />
+      <View style={Styles.mainView}>
+        <View style={Styles.imageView}>
+           <Image source={'a'} style={Styles.userImage} />
         </View>
-        <View style={styles.textView}>
-          <Text>
-            Name
-          </Text>
-          <Text>
-            hello
-          </Text>
+
+        {/* {data?.map((val)=>{
+          return(
+            <View style={Styles.textView}>
+          <Text style={Styles.key}>{val} :</Text>
+          <Text numberOfLines={1} style={Styles.value}>hello</Text>
         </View>
+          )
+        })} */}
+        {/* <FlatList 
+        data={data}
+        renderItem={({item})=>{
+          return(
+        <View style={Styles.textView}>
+          <Text style={Styles.key}>Name :</Text>
+          <Text numberOfLines={1} style={Styles.value}>hello</Text>
+        </View>
+          )
+        }}
+        /> */}
+
       </View>
     </Container>
   )

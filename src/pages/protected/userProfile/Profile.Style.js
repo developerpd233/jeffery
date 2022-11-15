@@ -65,6 +65,42 @@ const Styles = StyleSheet.create({
         alignSelf:'center',
     
     },
+
+
+
+    
+    mainView:{
+        marginHorizontal:20,
+      },
+      imageView:{
+          justifyContent:'center',
+          alignItems:'center',
+      },
+      userImage:{
+          backgroundColor:'green',
+          height:150,
+          width:150,
+          borderRadius:100
+      },
+      textView:{
+          flexDirection:'row',
+          justifyContent:'space-between',
+          marginVertical:10,
+          borderBottomWidth:1,
+          borderBottomColor:'#999',
+          alignItems:'center',
+      },
+      key:{
+          fontSize:20,
+          fontWeight:'normal',
+          color:'#fff'
+      },
+      value:{
+          flex:1,
+          color:'#fff',
+          fontSize:22,
+          marginLeft:10
+      }
   })
 
 export default Styles
