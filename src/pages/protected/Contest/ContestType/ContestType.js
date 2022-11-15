@@ -10,6 +10,7 @@ import Styles from '../Contest.Style'
 import { GET_CONTEST, IMAGE_URL ,GET_CONTEST_BY_COUNTRY,CONTESTANTS,WINNERS } from "../../../../config/webservices"
 import ApiSauce from "../../../../services/networkRequest"
 import {CInput} from "../../../../components"
+
 const ContestType = (props) => {
   const { item } = props?.route?.params || {}
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const ContestType = (props) => {
   const IsFocused = useIsFocused();
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState()
-  const [countrySlug, setCountrySlug] = useState('United states')
+  const [countrySlug, setCountrySlug] = useState()
 
   const headerProps = {
     headerTitle: `${item.title}`,
@@ -51,6 +52,7 @@ const ContestType = (props) => {
         setData(data.data)
       }
       else if(item.title == 'State'){
+        // alert('dcbjn')
         const data = await ApiSauce.getWithToken(GET_CONTEST_BY_COUNTRY(countrySlug ? countrySlug :'Alaska' , 'state'))
         setData(data.data)
       }
@@ -164,7 +166,7 @@ const ContestType = (props) => {
         </View>
         <View style={{marginHorizontal:20}}>
           <Text style={{color:'#fff',fontSize:20,fontWeight:'bold'}}>
-          {countrySlug ? countrySlug : 'United states'}
+          {countrySlug ? countrySlug : item.title == 'Country' ?  'United states' : item.title == 'State' ? 'Alaska' :item.title == 'Professions' && 'modeling' }
           </Text>
         </View></>}
 

@@ -9,9 +9,7 @@ import Payment from './Vote/Payment/Payment'
 import ProfileScreen from './Profile/Profile'
 import Favourite from './Favourite/Favourite'
 import Setting from './Setting/Setting'
-
-
-
+import UserProfile from "./userProfile"
 export {
     Home,
     Contest,
@@ -23,6 +21,6 @@ export {
     Payment,
     ProfileScreen,
     Favourite,
-    Setting
-                                                                                                                 
+    Setting,
+    UserProfile
 }

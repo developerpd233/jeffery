@@ -93,7 +93,7 @@ const Drawer = props => {
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => props.navigation.navigate('Contest',{
                      screen: 'Contest_Type', params: {
-                        item: {title:'Winners'}
+                        item: {title:'Winners' , search:true}
                     }
                 })} style={styles.btnView}>
                     <Text style={styles.unSelecttext}>Winners</Text>

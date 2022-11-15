@@ -12,10 +12,8 @@ import { FlatList } from "react-native-gesture-handler";
 import { themes } from "../../../theme/colors";
 import AntDesign from 'react-native-vector-icons/AntDesign'
 
-const ContestUser = () => {
+const ContestUser = (props) => {
   const dispatch = useDispatch();
-  const navigation = useNavigation();
-
   const headerProps = {
      headerTitle: `Settings`,
      
@@ -68,7 +66,7 @@ const renderProfile  = (props) =>(
     
     <View style={Styles.Container}>
              <View style={Styles.ImageView}>
-                <TouchableOpacity onPress={()=>{navigation.navigate('Profile')}}>
+                <TouchableOpacity onPress={()=>{props.navigation.navigate('UserProfile')}}>
                 <Image source={userIcon} resizeMode='stretch' style={Styles.userImage} />
                 </TouchableOpacity>
                 <View style={{ marginLeft: 10 }}>
