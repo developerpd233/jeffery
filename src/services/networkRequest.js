@@ -39,7 +39,6 @@ class ApiSauce {
   }
 
   async getWithToken(url, token) {
-    console.log("🚀 ~ file: networkRequest.js ~ line 42 ~ ApiSauce ~ getWithToken ~ token", token)
     const Header = {
       headers: {
         'Content-Type': 'application/json',

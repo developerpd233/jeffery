@@ -16,7 +16,6 @@ function OtpVerification({ route}) {
     const dispatch = useDispatch();
     const [userEmail , setUserEmail] = useState(email)
     const [loading , setLoading] = useState(false)
-    console.log("🚀 ~ file: OtpVerification.js ~ line 15 ~ OtpVerification ~ userEmail", userEmail)
     const navigation = useNavigation();
 
     const reduxState = useSelector(({ auth, global }) => {
@@ -26,14 +25,12 @@ function OtpVerification({ route}) {
     });
 
     const submit =async (values) => {
-        console.log("🚀 ~ file: OtpVerification.js ~ line 27 ~ submit ~ values", values)
         const formData = new FormData()
         formData.append('otp_number' , values.otp)
         formData.append('email' , userEmail)
         try{
             setLoading(true)
             const responce = await ApiSauce.post(VERIFY_EMAIL , formData)
-            console.log("🚀 ~ file: OtpVerification.js ~ line 34 ~ submit ~ responce", responce)
             props.navigation.navigate('sign_in')
           }catch(err){
           console.log("🚀 ~ file: ContestType.js ~ line 33 ~ handleApi ~ err", err)

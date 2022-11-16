@@ -28,7 +28,6 @@ const ContestUser = (props) => {
             user: auth?.user,
         };
     });
-    console.log("🚀 ~ file: ContestUser.js ~ line 31 ~ reduxState ~ reduxState", reduxState?.user?.user?.id)
     const headerProps = {
         showCart: false,
         headerRightText: showProfile ? "Pose 2 Post" : 'Information'
@@ -156,7 +155,6 @@ const ContestUser = (props) => {
         try {
             setLoading(true)
             const data = await ApiSauce.getWithToken(GET_COMMENTS(item?.id , '1') , reduxState?.user?.token)
-            console.log("🚀 ~ file: ContestUser.js ~ line 153 ~ getComments ~ data", data)
             setCommentData(data.comments.data)
         } catch (err) {
             console.log("🚀 ~ file: ContestType.js ~ line 33 ~ handleApi ~ err", err)

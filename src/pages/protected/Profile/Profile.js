@@ -11,9 +11,6 @@ import { Dots, Profile, ProfileIcon, Send } from "../../../assets";
 import { FlatList } from "react-native-gesture-handler";
 import { themes } from "../../../theme/colors";
 const ContestUser = (props) => {
-    console.log("🚀 ~ file: Profile.js ~ line 14 ~ ContestUser ~ props", props)
-    // const { user } = props?.route?.params
-    // console.log("🚀 ~ file: SubmitVote.js ~ line 11 ~ SubmitVote ~ user", user)
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const [showProfile , setShowProfile] = useState(true)

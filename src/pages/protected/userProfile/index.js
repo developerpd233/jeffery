@@ -10,7 +10,6 @@ import { useSelector } from "react-redux";
 const ContestUser = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState()
-  console.log("🚀 ~ file: index.js ~ line 12 ~ ContestUser ~ data", data)
   const reduxState = useSelector(({ auth, root }) => {
     return {
       loading: root?.categoryLoading,

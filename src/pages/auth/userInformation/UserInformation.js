@@ -89,7 +89,6 @@ const preValue = props?.route?.params?.values
           setLoading(true)
           const data = await ApiSauce.post(SIGN_UP , formData)
           props.navigation.navigate('otp_verification',{email:signUpValues?.email})
-          console.log("🚀 ~ file: UserInformation.js ~ line 94 ~ SignUp ~ data", data)
         }catch(err){
         console.log("🚀 ~ file: ContestType.js ~ line 33 ~ handleApi ~ err", err)
         }finally{
@@ -186,7 +185,6 @@ const preValue = props?.route?.params?.values
             },
           };
           launchImageLibrary(options, (res) => {
-            console.log('Response = ', res);
             if (res.didCancel) {
               console.log('User cancelled image picker');
             } else if (res.error) {

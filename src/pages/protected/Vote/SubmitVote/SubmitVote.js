@@ -12,7 +12,6 @@ const SubmitVote = (props) => {
     const { user } = props?.route?.params
     const [loading, setLoading] = useState(false)
     const [data, setData] = useState()
-    console.log("🚀 ~ file: SubmitVote.js ~ line 11 ~ SubmitVote ~ user", user)
 
     const dispatch = useDispatch();
     const isFocused = useIsFocused()

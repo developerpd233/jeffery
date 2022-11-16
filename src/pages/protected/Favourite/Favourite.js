@@ -16,7 +16,6 @@ const ContestTypeDetail = (props) => {
   const { item, index } = props?.route?.params || {}
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState()
-  console.log("🚀 ~ file: Favourite.js ~ line 19 ~ ContestTypeDetail ~ data", data)
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const headerProps = {
@@ -83,16 +82,11 @@ const ContestTypeDetail = (props) => {
     }
   }
 
-
-  console.log("🚀 ~ file: Favourite.js ~ line 85 ~ reduxState ~ reduxState", reduxState?.user?.token)
-
   const select = () => {
-    console.log('itemitemitemitemitemitemitemitemitemitem', item)
 
   };
 
   const renderItem = ({ item, index }) => {
-    console.log("🚀 ~ file: Favourite.js ~ line 93 ~ renderItem ~ item", item)
     return (
       <CCard
         icon={Red_heart}

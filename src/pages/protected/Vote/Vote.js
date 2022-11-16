@@ -10,11 +10,9 @@ import { Send } from "../../../assets";
 import { GET_PARTICIPANT_VOTES,ADD_FAVOURITIES ,REMOVE_FAVOURITIES} from "../../../config/webservices";
 import ApiSauce from "../../../services/networkRequest"
 const Vote = (props) => {
-    console.log("🚀 ~ file: Vote.js ~ line 11 ~ Vote ~ props", props)
     const {user} = props?.route?.params
     const [loading, setLoading] = useState(false)
     const [data, setData] = useState()
-    console.log("🚀 ~ file: Vote.js ~ line 13 ~ Vote ~ data", user)
     const dispatch = useDispatch();
     const navigation = useNavigation();
     const headerProps = {
@@ -45,7 +43,6 @@ const Vote = (props) => {
             user:auth?.user
         };
     });
-    console.log("🚀 ~ file: Vote.js ~ line 48 ~ reduxState ~ reduxState", reduxState?.user?.token)
 
     const select = (item) => {
         navigation.navigate("Contest_Type", {

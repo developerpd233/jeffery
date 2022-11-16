@@ -30,8 +30,6 @@ const SignIn = (props) => {
                         user: loginRes,
                         isLoggedIn: true,
             })
-            console.log("🚀 ~ file: SignIn.js ~ line 22 ~ constuser_login= ~ loginRes", loginRes)
-
         } catch (error) {
             console.log("🚀 ~ file: SignIn.js ~ line 26 ~ SignIn ~ error", error)
 
@@ -95,7 +93,6 @@ const SignIn = (props) => {
             formData.append('provider_id', accessToken);
             formData.append('email', res.email);
         }
-        console.log("🚀 ~ file: index.js ~ line 111 ~ handleCreate ~ formData", formData)
         try {
             const res = await ApiSause.post(SOCIAL_LOGIN, formData);
             handleCheckUserData(res);
@@ -121,7 +118,6 @@ const SignIn = (props) => {
                         user: loginRes,
                         isLoggedIn: true,
             })
-            console.log("🚀 ~ file: SignIn.js ~ line 121 ~ handleCheckUserData ~ loginRes", loginRes)
         }
     }
 

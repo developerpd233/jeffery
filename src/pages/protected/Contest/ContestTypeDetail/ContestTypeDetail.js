@@ -28,7 +28,6 @@ const ContestTypeDetail = (props) => {
   };
 
   const reduxState = useSelector(({ auth, root }) => {
-    console.log("🚀 ~ file: ContestTypeDetail.js ~ line 31 ~ reduxState ~ auth", auth)
     return {
       loading: root?.categoryLoading,
       data: [
@@ -104,7 +103,6 @@ const ContestTypeDetail = (props) => {
   }, [isFocused])
 
 const token = reduxState.user
-  console.log("🚀 ~ file: ContestTypeDetail.js ~ line 107 ~ ContestTypeDetail ~ token", token?.token)
   const handleApi = async () => {
     try {
       setLoading(true)
