@@ -44,7 +44,10 @@ const Drawer = props => {
              <AntDesign name="close" size={20} color='rgba(255, 255, 255, 0.7)' />
             </TouchableOpacity>
             <View style={styles.ImageView}>
+                <TouchableOpacity onPress={()=>{props.navigation.navigate('UserProfile')}}>
                 <Image source={userIcon} resizeMode='stretch' style={styles.userImage} />
+
+                </TouchableOpacity>
                 <View style={{ marginLeft: 10 }}>
                     <Text style={styles.userNam}>User</Text>
                     <Text style={styles.userEmail}>User@mail.com</Text>

@@ -4,7 +4,7 @@ import { View  , Text , Image, FlatList} from "react-native";
 import  Styles  from "./Profile.Style";
 import { CList, CInput, CListItem, CText, CButton, CLoading } from "../../../uiComponents";
 import ApiSauce from "../../../services/networkRequest"
-import {GET_PROFILE} from "../../../config/webservices"
+import {GET_PROFILE , IMAGE_URL} from "../../../config/webservices"
 import { object } from "yup";
 const ContestUser = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -20,8 +20,7 @@ const ContestUser = () => {
     try {
       setIsLoading(true)
       const response = await ApiSauce.getWithToken(GET_PROFILE)
-      // setData(response)
-      data.push([response])
+      setData(response.data)
     } catch (err) {
       console.log("🚀 ~ file: ContestType.js ~ line 33 ~ handleApi ~ err", err)
     } finally {
@@ -43,29 +42,57 @@ const ContestUser = () => {
 
       <View style={Styles.mainView}>
         <View style={Styles.imageView}>
-           <Image source={'a'} style={Styles.userImage} />
+           <Image source={data?.image ? {uri :IMAGE_URL + data?.image} : {uri : IMAGE_URL + data?.avatar}} style={Styles.userImage} />
         </View>
-
-        {/* {data?.map((val)=>{
-          return(
-            <View style={Styles.textView}>
-          <Text style={Styles.key}>{val} :</Text>
-          <Text numberOfLines={1} style={Styles.value}>hello</Text>
-        </View>
-          )
-        })} */}
-        {/* <FlatList 
-        data={data}
-        renderItem={({item})=>{
-          return(
         <View style={Styles.textView}>
           <Text style={Styles.key}>Name :</Text>
-          <Text numberOfLines={1} style={Styles.value}>hello</Text>
+          <Text numberOfLines={1} style={Styles.value}>{data?.display_name}</Text>
         </View>
-          )
-        }}
-        /> */}
+        <View style={Styles.textView}>
+          <Text style={Styles.key}>Email :</Text>
+          <Text numberOfLines={1} style={Styles.value}>{data?.email}</Text>
+        </View>
+        <View style={Styles.textView}>
+          <Text style={Styles.key}>Address :</Text>
+          <Text numberOfLines={1} style={Styles.value}>{data?.address}</Text>
+        </View>
+        <View style={Styles.textView}>
+          <Text style={Styles.key}>Date_of_birth :</Text>
+          <Text numberOfLines={1} style={Styles.value}>{data?.date_of_birth}</Text>
+        </View>
+        <View style={Styles.textView}>
+          <Text style={Styles.key}>Facebook :</Text>
+          <Text numberOfLines={1} style={Styles.value}>{data?.facebook}</Text>
+        </View>
+        <View style={Styles.textView}>
+          <Text style={Styles.key}>Instagram :</Text>
+          <Text numberOfLines={1} style={Styles.value}>{data?.instagram}</Text>
+        </View>
+        <View style={Styles.textView}>
+          <Text style={Styles.key}>Linkedin :</Text>
+          <Text numberOfLines={1} style={Styles.value}>{data?.linkedin}</Text>
+        </View>
+        <View style={Styles.textView}>
+          <Text style={Styles.key}>Twitter :</Text>
+          <Text numberOfLines={1} style={Styles.value}>{data?.twitter}</Text>
+        </View>
+        <View style={Styles.textView}>
+          <Text style={Styles.key}>Country :</Text>
+          <Text numberOfLines={1} style={Styles.value}>{data?.country_id}</Text>
+        </View>
+        <View style={Styles.textView}>
+          <Text style={Styles.key}>City :</Text>
+          <Text numberOfLines={1} style={Styles.value}>{data?.city_id}</Text>
+        </View>
+        <View style={Styles.textView}>
+          <Text style={Styles.key}>State :</Text>
+          <Text numberOfLines={1} style={Styles.value}>{data?.state_id}</Text>
+        </View>
 
+        {/* <View style={Styles.textView}>
+          <Text style={Styles.key}>Name :</Text>
+          <Text numberOfLines={1} style={Styles.value}>{data?.display_name}</Text>
+        </View> */}
       </View>
     </Container>
   )

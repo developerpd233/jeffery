@@ -71,13 +71,13 @@ const Styles = StyleSheet.create({
     
     mainView:{
         marginHorizontal:20,
+        paddingBottom:40
       },
       imageView:{
           justifyContent:'center',
           alignItems:'center',
       },
       userImage:{
-          backgroundColor:'green',
           height:150,
           width:150,
           borderRadius:100
