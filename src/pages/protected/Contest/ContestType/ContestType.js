@@ -25,56 +25,6 @@ const ContestType = (props) => {
     subtitle: "Explore all contests",
     showCart: false,
   };
-
-  useEffect(() => {
-    // setCountrySlug()
-    handleApi()
-  }, [IsFocused])
-
-
-  const handleApi = async () => {
-    try {
-      setLoading(true)
-      if(item.title == 'Monthly Contest'){
-        const data = await ApiSauce.getWithoutToken(GET_CONTEST('monthly'))
-       setData(data.data)
-      }
-      else if(item.title == 'Yearly Contest'){
-        const data = await ApiSauce.getWithoutToken(GET_CONTEST('yearly'))
-       setData(data.data)
-      }
-      else if(item.title == 'Video Contest'){
-        const data = await ApiSauce.getWithoutToken(GET_CONTEST('video'))
-       setData(data.data)
-      }
-      else if(item.title == 'Country'){
-        const data = await ApiSauce.getWithToken(GET_CONTEST_BY_COUNTRY(countrySlug ? countrySlug :'United states' , 'country'))
-        setData(data.data)
-      }
-      else if(item.title == 'State'){
-        // alert('dcbjn')
-        const data = await ApiSauce.getWithToken(GET_CONTEST_BY_COUNTRY(countrySlug ? countrySlug :'Alaska' , 'state'))
-        setData(data.data)
-      }
-      else if(item.title == 'Professions'){
-        const data = await ApiSauce.getWithToken(GET_CONTEST_BY_COUNTRY(countrySlug ? countrySlug :'modeling' , 'profession'))
-        setData(data.data)
-      }
-      else if(item.title == 'Contestants'){
-        const data = await ApiSauce.getWithToken(CONTESTANTS)
-        setData(data.data)
-      }
-      else if(item.title == 'Winners'){
-        const data = await ApiSauce.getWithToken(WINNERS)
-        setData(data.data)
-      }
-    } catch (err) {
-      console.log("🚀 ~ file: ContestType.js ~ line 33 ~ handleApi ~ err", err)
-    } finally {
-      setLoading(false)
-    }
-  }
-
   const reduxState = useSelector(({ auth, root }) => {
     return {
       loading: root?.categoryLoading,
@@ -123,8 +73,60 @@ const ContestType = (props) => {
         },
 
       ],
+      user:auth?.user
     };
   });
+
+  useEffect(() => {
+    // setCountrySlug()
+    handleApi()
+  }, [IsFocused])
+
+
+  const handleApi = async () => {
+    try {
+      setLoading(true)
+      if(item.title == 'Monthly Contest'){
+        const data = await ApiSauce.getWithoutToken(GET_CONTEST('monthly') , reduxState?.user?.token)
+       setData(data.data)
+      }
+      else if(item.title == 'Yearly Contest'){
+        const data = await ApiSauce.getWithoutToken(GET_CONTEST('yearly') , reduxState?.user?.token)
+       setData(data.data)
+      }
+      else if(item.title == 'Video Contest'){
+        const data = await ApiSauce.getWithoutToken(GET_CONTEST('video') , reduxState?.user?.token)
+       setData(data.data)
+      }
+      else if(item.title == 'Country'){
+        const data = await ApiSauce.getWithToken(GET_CONTEST_BY_COUNTRY(countrySlug ? countrySlug :'United states' , 'country') , reduxState?.user?.token)
+        setData(data.data)
+      }
+      else if(item.title == 'State'){
+        // alert('dcbjn')
+        const data = await ApiSauce.getWithToken(GET_CONTEST_BY_COUNTRY(countrySlug ? countrySlug :'Alaska' , 'state'), reduxState?.user?.token)
+        setData(data.data)
+      }
+      else if(item.title == 'Professions'){
+        const data = await ApiSauce.getWithToken(GET_CONTEST_BY_COUNTRY(countrySlug ? countrySlug :'modeling' , 'profession'), reduxState?.user?.token)
+        setData(data.data)
+      }
+      else if(item.title == 'Contestants'){
+        const data = await ApiSauce.getWithToken(CONTESTANTS ,reduxState?.user?.token)
+        setData(data.data)
+      }
+      else if(item.title == 'Winners'){
+        const data = await ApiSauce.getWithToken(WINNERS , reduxState?.user?.token)
+        setData(data.data)
+      }
+    } catch (err) {
+      console.log("🚀 ~ file: ContestType.js ~ line 33 ~ handleApi ~ err", err)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+ 
 
   const select = (item , index) => {
     navigation.navigate("ContestTypeDetails", {

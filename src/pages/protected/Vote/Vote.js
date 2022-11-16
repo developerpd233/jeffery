@@ -1,30 +1,28 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Container } from "../../../containers";
-import { CList, CInput, CListItem, CText, CButton, CCard } from "../../../uiComponents";
+import { CList, CInput, CListItem, CText, CButton, CCard , CLoading } from "../../../uiComponents";
 import { View, Image } from "react-native";
 import GlobalStyle from "../../../assets/stylings/GlobalStyle";
 import Styles from "./Vote.Styles";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation , useIsFocused } from "@react-navigation/native";
 import { Send } from "../../../assets";
+import { GET_PARTICIPANT_VOTES,ADD_FAVOURITIES ,REMOVE_FAVOURITIES} from "../../../config/webservices";
+import ApiSauce from "../../../services/networkRequest"
 const Vote = (props) => {
     console.log("🚀 ~ file: Vote.js ~ line 11 ~ Vote ~ props", props)
-    // const {data} = props?.route?.params
-    // console.log("🚀 ~ file: Vote.js ~ line 12 ~ Vote ~ data", data)
+    const {user} = props?.route?.params
+    const [loading, setLoading] = useState(false)
+    const [data, setData] = useState()
+    console.log("🚀 ~ file: Vote.js ~ line 13 ~ Vote ~ data", user)
     const dispatch = useDispatch();
-
-
     const navigation = useNavigation();
-
     const headerProps = {
-
         showCart: false,
         headerRightText: 'Vote',
-        onRightPress: () => navigation.navigate('SubmitVote'),
-
-
-
+        onRightPress: () => navigation.navigate('SubmitVote' , {user:user}),
     };
+    const isFocused = useIsFocused()
 
     const reduxState = useSelector(({ auth, root }) => {
         return {
@@ -44,8 +42,10 @@ const Vote = (props) => {
                 },
 
             ],
+            user:auth?.user
         };
     });
+    console.log("🚀 ~ file: Vote.js ~ line 48 ~ reduxState ~ reduxState", reduxState?.user?.token)
 
     const select = (item) => {
         navigation.navigate("Contest_Type", {
@@ -67,6 +67,40 @@ const Vote = (props) => {
         // handleCategory();
     };
 
+    useEffect(() => {
+        handleApi()
+    }, [isFocused])
+
+
+    const handleApi = async () => {
+        try {
+            setLoading(true)
+            const data = await ApiSauce.getWithToken(GET_PARTICIPANT_VOTES(user) , reduxState?.user?.token)
+            setData(data.participant)
+        } catch (err) {
+            console.log("🚀 ~ file: ContestType.js ~ line 33 ~ handleApi ~ err", err)
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    const handleFav =async (id ,favourite) => {
+        try {
+          setLoading(true)
+          if(favourite == false ){
+            const data = await ApiSauce.getWithToken(ADD_FAVOURITIES(id) , reduxState?.user?.token)
+          }
+          else{
+            const data = await ApiSauce.getWithToken(REMOVE_FAVOURITIES(id) , reduxState?.user?.token)
+          }
+        } catch (err) {
+          console.log("🚀 ~ file: ContestType.js ~ line 33 ~ handleApi ~ err", err)
+        } finally {
+          handleApi()
+          setLoading(false)
+        }
+      }
+
     return (
         <Container
             bottomSpace={true}
@@ -75,18 +109,19 @@ const Vote = (props) => {
             showPattern={true}
             scrollView={true}
         >
+            {loading && <CLoading loading={loading} />}
             <CCard
                 mainContainer={Styles.cardmainContainer}
-                // Profile={data?.image}
-                // userProfile={data?.user?.image}
-                // Positon={data?.position}
-                // Votes={data?.vote_count}
-                // profileName={data?.name}
-                // heart={data?.favourite}
-                // FavouriteOnPress={() => { handleFav(data?.id, data?.favourite) }}
+                Profile={data?.image}
+                userProfile={data?.user?.image}
+                Positon={data?.position}
+                Votes={data?.vote_count}
+                profileName={data?.name}
+                heart={data?.favourite}
+                FavouriteOnPress={() => { handleFav(data?.id, data?.favourite) }}
             />
             <View style={Styles.userDesc} >
-                <CText style={Styles.desc} >Please Ensure The Accuracy Of Your Email Adress As We Are Providing The Winning Partcipantsa Notice. That Could Be You. Voters Must Be In Numbers Only. Do Not Include Decimals O Commas When Entering Your Vote Amount Example Placing A Vote For $1,000.00 Should Be Typed As 1000 Warning: Due To Browser Delays Amd Potential High Volumes Of Voting Activity It Is Not A Advised To Wait Too Long T Place A Vote For Your Favourite Photo.</CText>
+                <CText style={Styles.desc} >{user?.description}</CText>
             </View>
             <View style={Styles.VotingViews}>
                 <View style={Styles.voteList}>
@@ -109,11 +144,11 @@ const Vote = (props) => {
                 </View>
                 <View style={Styles.voteList}>
                     <CText style={Styles.voteText}>City, State Or Territory</CText>
-                    <CText style={Styles.voteText}>ceder lake, indaiana</CText>
+                    <CText style={Styles.voteText}>{user?.city} {user?.state}, indaiana</CText>
                 </View>
                 <View style={Styles.voteList}>
                     <CText style={Styles.voteText}>Country</CText>
-                    <CText style={Styles.voteText}>United States</CText>
+                    <CText style={Styles.voteText}>{user?.country}</CText>
                 </View>
 
             </View>

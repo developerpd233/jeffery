@@ -13,7 +13,10 @@ export const WINNERS =  `${BASE_URL}winners`
 export const FAVOURITIES =  `${BASE_URL}favourites`
 export const POST_COMMENTS =  `${BASE_URL}comments`
 export const GET_PROFILE =  `${BASE_URL}users/show-profile`
+export const VERIFY_EMAIL =  `${BASE_URL}register-otp-check`
 export const GET_COMMENTS = (id , pageno) => `${BASE_URL}comments?participant_id=${id}&page=${pageno}`
+export const FB_GET_USER = (access_token) => `https://graph.facebook.com/me?access_token=${access_token}&fields=email`
+export const SOCIAL_LOGIN =  `${BASE_URL}social-login`
 
 export const SINGLE_CONTEST = (id) =>  `${BASE_URL}single-contest/${id}`
 export const ADD_FAVOURITIES = (id) =>  `${BASE_URL}add-favourite?participant_id=${id}`

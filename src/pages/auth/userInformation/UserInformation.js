@@ -66,7 +66,7 @@ const preValue = props?.route?.params?.values
         formData.append('name',signUpValues?.name)
         formData.append('display_name',signUpValues?.displayNmae)
         formData.append('lastname',val?.name)
-        formData.append('email','a'+signUpValues?.email)
+        formData.append('email', signUpValues?.email)
         formData.append('password',signUpValues?.password)
         formData.append('username',val?.name)
         formData.append('image', {
@@ -88,7 +88,7 @@ const preValue = props?.route?.params?.values
         try{
           setLoading(true)
           const data = await ApiSauce.post(SIGN_UP , formData)
-          props.navigation.navigate('otp_verification')
+          props.navigation.navigate('otp_verification',{email:signUpValues?.email})
           console.log("🚀 ~ file: UserInformation.js ~ line 94 ~ SignUp ~ data", data)
         }catch(err){
         console.log("🚀 ~ file: ContestType.js ~ line 33 ~ handleApi ~ err", err)

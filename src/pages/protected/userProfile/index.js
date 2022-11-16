@@ -6,11 +6,50 @@ import { CList, CInput, CListItem, CText, CButton, CLoading } from "../../../uiC
 import ApiSauce from "../../../services/networkRequest"
 import {GET_PROFILE , IMAGE_URL} from "../../../config/webservices"
 import { object } from "yup";
+import { useSelector } from "react-redux";
 const ContestUser = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState()
   console.log("🚀 ~ file: index.js ~ line 12 ~ ContestUser ~ data", data)
+  const reduxState = useSelector(({ auth, root }) => {
+    return {
+      loading: root?.categoryLoading,
+      data: [
+        {
+          image: require("../../../assets/images/flowers/one.png"),
+          title: "Monthly Contest",
+          orderNumber: 'FROM SEP 02 TO OCT 31',
+          prize: 'To Win $11.86 USD, 9 Contestants'
+        },
+        {
+          image: require("../../../assets/images/flowers/one.png"),
+          title: "Monthly Contest",
+          orderNumber: 'FROM SEP 02 TO OCT 31',
+          prize: 'To Win $11.86 USD, 9 Contestants'
+        },
+        {
+          image: require("../../../assets/images/flowers/one.png"),
+          title: "Monthly Contest",
+          orderNumber: 'FROM SEP 02 TO OCT 31',
+          prize: 'To Win $11.86 USD, 9 Contestants'
+        },
+        {
+          image: require("../../../assets/images/flowers/one.png"),
+          title: "Monthly Contest",
+          orderNumber: 'FROM SEP 02 TO OCT 31',
+          prize: 'To Win $11.86 USD, 9 Contestants'
+        },
+        {
+          image: require("../../../assets/images/flowers/one.png"),
+          title: "Monthly Contest",
+          orderNumber: 'FROM SEP 02 TO OCT 31',
+          prize: 'To Win $11.86 USD, 9 Contestants'
+        },
 
+      ],
+      user:auth?.user
+    };
+  })
   useEffect(() => {
     handleApi()
   }, [])
@@ -19,7 +58,7 @@ const ContestUser = () => {
   const handleApi = async () => {
     try {
       setIsLoading(true)
-      const response = await ApiSauce.getWithToken(GET_PROFILE)
+      const response = await ApiSauce.getWithToken(GET_PROFILE , reduxState?.user?.token)
       setData(response.data)
     } catch (err) {
       console.log("🚀 ~ file: ContestType.js ~ line 33 ~ handleApi ~ err", err)

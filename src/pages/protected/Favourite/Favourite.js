@@ -26,23 +26,6 @@ const ContestTypeDetail = (props) => {
 
   };
 
-  useEffect(() => {
-    handleApi()
-  }, [])
-
-
-  const handleApi = async () => {
-    try {
-      setIsLoading(true)
-      const data = await ApiSauce.getWithToken(FAVOURITIES)
-      setData(data.data)
-    } catch (err) {
-      console.log("🚀 ~ file: ContestType.js ~ line 33 ~ handleApi ~ err", err)
-    } finally {
-      setIsLoading(false)
-    }
-  }
-
   const reduxState = useSelector(({ auth, root }) => {
     return {
       loading: root?.categoryLoading,
@@ -79,8 +62,29 @@ const ContestTypeDetail = (props) => {
         },
 
       ],
+      user:auth?.user
     };
   });
+
+  useEffect(() => {
+    handleApi()
+  }, [])
+
+
+  const handleApi = async () => {
+    try {
+      setIsLoading(true)
+      const data = await ApiSauce.getWithToken(FAVOURITIES , reduxState?.user?.token)
+      setData(data.data)
+    } catch (err) {
+      console.log("🚀 ~ file: ContestType.js ~ line 33 ~ handleApi ~ err", err)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+
+  console.log("🚀 ~ file: Favourite.js ~ line 85 ~ reduxState ~ reduxState", reduxState?.user?.token)
 
   const select = () => {
     console.log('itemitemitemitemitemitemitemitemitemitem', item)

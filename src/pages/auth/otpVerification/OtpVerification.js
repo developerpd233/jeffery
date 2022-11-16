@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Container } from "../../../containers";
 import { useSelector, useDispatch } from "react-redux";
 import AuthStyle from "../Auth.style";
@@ -6,11 +6,17 @@ import CForm from "./Form";
 import events from "../../../utils/events";
 import { useNavigation } from "@react-navigation/native";
 import { sendOtp, verifyOtp } from "../../../store/actions/Auth.action";
+import ApiSauce from "../../../services/networkRequest"
+import {VERIFY_EMAIL} from "../../../config/webservices"
+import { CLoading, ProgressiveImage  } from "../../../uiComponents";
 
-function OtpVerification({ route }) {
+function OtpVerification({ route}) {
     const { phone } = route?.params || {};
+    const { email } = route?.params || {};
     const dispatch = useDispatch();
-
+    const [userEmail , setUserEmail] = useState(email)
+    const [loading , setLoading] = useState(false)
+    console.log("🚀 ~ file: OtpVerification.js ~ line 15 ~ OtpVerification ~ userEmail", userEmail)
     const navigation = useNavigation();
 
     const reduxState = useSelector(({ auth, global }) => {
@@ -19,18 +25,21 @@ function OtpVerification({ route }) {
         };
     });
 
-    const submit = (values) => {
-        const payload = {
-            local_storage_phone: phone,
-            verification: values.otp,
-        };
-        dispatch(verifyOtp(payload)).then((response) => {
-            console.log(response);
-            if (response?.response.data?.success) {
-                navigation.navigate("user_information", { phone });
-            }
-        });
-        // navigation.navigate("user_information", { phone });
+    const submit =async (values) => {
+        console.log("🚀 ~ file: OtpVerification.js ~ line 27 ~ submit ~ values", values)
+        const formData = new FormData()
+        formData.append('otp_number' , values.otp)
+        formData.append('email' , userEmail)
+        try{
+            setLoading(true)
+            const responce = await ApiSauce.post(VERIFY_EMAIL , formData)
+            console.log("🚀 ~ file: OtpVerification.js ~ line 34 ~ submit ~ responce", responce)
+            props.navigation.navigate('sign_in')
+          }catch(err){
+          console.log("🚀 ~ file: ContestType.js ~ line 33 ~ handleApi ~ err", err)
+          }finally{
+            setLoading(false)
+          }
     };
 
     const resendOtp = () => {
@@ -54,6 +63,7 @@ function OtpVerification({ route }) {
                 contentContainerStyle: AuthStyle.container,
             }}
         >
+            {loading && <CLoading  loading={loading}/>}
             <CForm
                 submit={submit}
                 resendOtp={resendOtp}

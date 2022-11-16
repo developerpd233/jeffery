@@ -36,7 +36,7 @@ const App = () => {
 
     return (
         <View style={{ backgroundColor: "white", flex: 1 }}>
-              {renderRouting(true)}
+              {renderRouting(reduxState?.isLoggedIn)}
         </View> 
     );
 };

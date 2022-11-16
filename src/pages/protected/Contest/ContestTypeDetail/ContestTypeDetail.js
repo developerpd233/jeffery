@@ -28,6 +28,7 @@ const ContestTypeDetail = (props) => {
   };
 
   const reduxState = useSelector(({ auth, root }) => {
+    console.log("🚀 ~ file: ContestTypeDetail.js ~ line 31 ~ reduxState ~ auth", auth)
     return {
       loading: root?.categoryLoading,
       data: [
@@ -67,10 +68,8 @@ const ContestTypeDetail = (props) => {
           orderNumber: 'FROM SEP 02 TO OCT 31',
           prize: 'To Win $11.86 USD, 9 Contestants'
         },
-
-
-
       ],
+      user:auth?.user
     };
   });
 
@@ -104,11 +103,12 @@ const ContestTypeDetail = (props) => {
     handleApi()
   }, [isFocused])
 
-
+const token = reduxState.user
+  console.log("🚀 ~ file: ContestTypeDetail.js ~ line 107 ~ ContestTypeDetail ~ token", token?.token)
   const handleApi = async () => {
     try {
       setLoading(true)
-      const data = await ApiSauce.getWithToken(SINGLE_CONTEST(item?.id))
+      const data = await ApiSauce.getWithToken(SINGLE_CONTEST(item?.id) , reduxState?.user?.token)
       setData(data.data)
     } catch (err) {
       console.log("🚀 ~ file: ContestType.js ~ line 33 ~ handleApi ~ err", err)
@@ -121,10 +121,10 @@ const ContestTypeDetail = (props) => {
     try {
       setLoading(true)
       if(favourite == false ){
-        const data = await ApiSauce.getWithToken(ADD_FAVOURITIES(id))
+        const data = await ApiSauce.getWithToken(ADD_FAVOURITIES(id) , reduxState?.user?.token)
       }
       else{
-        const data = await ApiSauce.getWithToken(REMOVE_FAVOURITIES(id))
+        const data = await ApiSauce.getWithToken(REMOVE_FAVOURITIES(id) , reduxState?.user?.token)
       }
     } catch (err) {
       console.log("🚀 ~ file: ContestType.js ~ line 33 ~ handleApi ~ err", err)

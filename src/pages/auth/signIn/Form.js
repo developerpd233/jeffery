@@ -17,6 +17,7 @@ function CForm(props) {
         toggleCountryModal,
         phoneErr,
         onCreatePress,
+        onGooglePress
     } = props;
 
     const form = useRef(null);
@@ -89,13 +90,13 @@ function CForm(props) {
                                 Or Sign In With
                             </CText>
                             <View style={AuthStyle.iconView}>
-                                <View style={AuthStyle.bottomButton}>
+                                {/* <View style={AuthStyle.bottomButton}>
                                     <EvilIcons name="sc-facebook"  size={22} style={AuthStyle.Icon} />
 
-                                </View>
-                                <View style={AuthStyle.bottomButton}>
-                                    <FontAwesome name="linkedin"  size={17} style={AuthStyle.Icon} />
-                                </View>
+                                </View> */}
+                                <TouchableOpacity style={AuthStyle.bottomButton} onPress={onGooglePress}>
+                                    <FontAwesome name="google"  size={17} style={AuthStyle.Icon} />
+                                </TouchableOpacity>
                             </View>
                             </View>
                             <TouchableOpacity onPress={onCreatePress}>

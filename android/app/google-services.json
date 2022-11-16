@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "951985103272",
+    "project_id": "jeffery-e8426",
+    "storage_bucket": "jeffery-e8426.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:951985103272:android:1810dcb7d6161a3988bd9d",
+        "android_client_info": {
+          "package_name": "com.jeffery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "951985103272-7c38dk8d1fon2mjn2fcfmjsqb7oehjb7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6tqqqMbiIlAGGV6udWnvW3TAZydqZn7Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "951985103272-7c38dk8d1fon2mjn2fcfmjsqb7oehjb7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

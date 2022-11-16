@@ -12,6 +12,7 @@ import { FlatList } from "react-native-gesture-handler";
 import { themes } from "../../../../theme/colors";
 import { GET_PARTICIPANT_VOTES, IMAGE_URL ,POST_COMMENTS ,GET_COMMENTS ,ADD_FAVOURITIES ,REMOVE_FAVOURITIES} from "../../../../config/webservices";
 import ApiSauce from "../../../../services/networkRequest"
+
 const ContestUser = (props) => {
     const { item } = props?.route?.params || {}
     const [loading, setLoading] = useState(false)
@@ -21,57 +22,63 @@ const ContestUser = (props) => {
     const dispatch = useDispatch();
     const navigation = useNavigation();
     const [showProfile, setShowProfile] = useState(true)
-
+    const reduxState = useSelector(({ auth }) => {
+        return {
+            isLoggedIn: auth.isLoggedIn,
+            user: auth?.user,
+        };
+    });
+    console.log("🚀 ~ file: ContestUser.js ~ line 31 ~ reduxState ~ reduxState", reduxState?.user?.user?.id)
     const headerProps = {
         showCart: false,
         headerRightText: showProfile ? "Pose 2 Post" : 'Information'
     };
-    const reduxState = useSelector(({ auth, root }) => {
-        return {
-            loading: root?.categoryLoading,
-            data: [
-                {
-                    image: require("../../../../assets/images/flowers/one.png"),
-                    title: "Monthly Contest",
-                    orderNumber: 'FROM SEP 02 TO OCT 31',
-                    prize: 'To Win $11.86 USD, 9 Contestants'
-                },
-                {
-                    image: require("../../../../assets/images/flowers/one.png"),
-                    title: "Monthly Contest",
-                    orderNumber: 'FROM SEP 02 TO OCT 31',
-                    prize: 'To Win $11.86 USD, 9 Contestants'
-                },
-                {
-                    image: require("../../../../assets/images/flowers/one.png"),
-                    title: "Monthly Contest",
-                    orderNumber: 'FROM SEP 02 TO OCT 31',
-                    prize: 'To Win $11.86 USD, 9 Contestants'
-                },
-                {
-                    image: require("../../../../assets/images/flowers/one.png"),
-                    title: "Monthly Contest",
-                    orderNumber: 'FROM SEP 02 TO OCT 31',
-                    prize: 'To Win $11.86 USD, 9 Contestants'
-                },
+    // const reduxState = useSelector(({ auth, root }) => {
+    //     return {
+    //         loading: root?.categoryLoading,
+    //         data: [
+    //             {
+    //                 image: require("../../../../assets/images/flowers/one.png"),
+    //                 title: "Monthly Contest",
+    //                 orderNumber: 'FROM SEP 02 TO OCT 31',
+    //                 prize: 'To Win $11.86 USD, 9 Contestants'
+    //             },
+    //             {
+    //                 image: require("../../../../assets/images/flowers/one.png"),
+    //                 title: "Monthly Contest",
+    //                 orderNumber: 'FROM SEP 02 TO OCT 31',
+    //                 prize: 'To Win $11.86 USD, 9 Contestants'
+    //             },
+    //             {
+    //                 image: require("../../../../assets/images/flowers/one.png"),
+    //                 title: "Monthly Contest",
+    //                 orderNumber: 'FROM SEP 02 TO OCT 31',
+    //                 prize: 'To Win $11.86 USD, 9 Contestants'
+    //             },
+    //             {
+    //                 image: require("../../../../assets/images/flowers/one.png"),
+    //                 title: "Monthly Contest",
+    //                 orderNumber: 'FROM SEP 02 TO OCT 31',
+    //                 prize: 'To Win $11.86 USD, 9 Contestants'
+    //             },
 
 
-            ],
+    //         ],
 
-            profileData: [
-                { key: 'Participant Name', value: 'Michael Robert' },
-                { key: 'Position', value: '1' },
-                { key: 'Contest Name', value: 'Video Contest' },
-                { key: 'Number', value: '45' },
+    //         profileData: [
+    //             { key: 'Participant Name', value: 'Michael Robert' },
+    //             { key: 'Position', value: '1' },
+    //             { key: 'Contest Name', value: 'Video Contest' },
+    //             { key: 'Number', value: '45' },
 
-                { key: 'City, State Or Territory', value: ' Bear, Delaware' },
-                { key: 'Votes', value: '3' },
-                { key: 'Close Time', value: '31 Oct, 2022 00:00 Am' },
+    //             { key: 'City, State Or Territory', value: ' Bear, Delaware' },
+    //             { key: 'Votes', value: '3' },
+    //             { key: 'Close Time', value: '31 Oct, 2022 00:00 Am' },
 
 
-            ]
-        };
-    });
+    //         ]
+    //     };
+    // });
     const select = (item) => {
         navigation.navigate("Contest_Type", {
             item,
@@ -136,7 +143,7 @@ const ContestUser = (props) => {
     const handleApi = async () => {
         try {
             setLoading(true)
-            const data = await ApiSauce.getWithToken(GET_PARTICIPANT_VOTES(item?.id))
+            const data = await ApiSauce.getWithToken(GET_PARTICIPANT_VOTES(item?.id) , reduxState?.user?.token)
             setData(data.participant)
         } catch (err) {
             console.log("🚀 ~ file: ContestType.js ~ line 33 ~ handleApi ~ err", err)
@@ -148,7 +155,7 @@ const ContestUser = (props) => {
     const getComments = async () => {
         try {
             setLoading(true)
-            const data = await ApiSauce.getWithToken(GET_COMMENTS(item?.id , '1'))
+            const data = await ApiSauce.getWithToken(GET_COMMENTS(item?.id , '1') , reduxState?.user?.token)
             console.log("🚀 ~ file: ContestUser.js ~ line 153 ~ getComments ~ data", data)
             setCommentData(data.comments.data)
         } catch (err) {
@@ -161,11 +168,12 @@ const ContestUser = (props) => {
     const postComments = async () => {
         const formData = new FormData()
         formData.append('participant_id' , item?.id)
-        formData.append('user_id' , '36')
+        formData.append('user_id' , reduxState?.user?.user?.id)
         formData.append('comment' , comment)
         try {
             setLoading(true)
-            const data = await ApiSauce.postWithToken(POST_COMMENTS , formData)
+            const data = await ApiSauce.postWithToken(POST_COMMENTS , formData , reduxState?.user?.token)
+            setComment('')
             getComments()
         } catch (err) {
             console.log("🚀 ~ file: ContestType.js ~ line 33 ~ handleApi ~ err", err)
@@ -177,10 +185,10 @@ const ContestUser = (props) => {
         try {
           setLoading(true)
           if(favourite == false ){
-            const data = await ApiSauce.getWithToken(ADD_FAVOURITIES(id))
+            const data = await ApiSauce.getWithToken(ADD_FAVOURITIES(id) , reduxState?.user?.token)
           }
           else{
-            const data = await ApiSauce.getWithToken(REMOVE_FAVOURITIES(id))
+            const data = await ApiSauce.getWithToken(REMOVE_FAVOURITIES(id) , reduxState?.user?.token)
           }
         } catch (err) {
           console.log("🚀 ~ file: ContestType.js ~ line 33 ~ handleApi ~ err", err)
@@ -208,7 +216,7 @@ const ContestUser = (props) => {
                 heart={data?.favourite}
                 FavouriteOnPress={()=>{handleFav(data?.id , data?.favourite)}}
             />
-            <CButton buttonStyle={Styles.buttonStyle2} title='Vote Now' onPress={()=>{props.navigation.navigate("Vote", {data})}} />
+            <CButton buttonStyle={Styles.buttonStyle2} title='Vote Now' onPress={()=>{props.navigation.navigate("Vote",{screen: 'Vote', params: { user: item?.id }})}} />
             {showProfile ?
                 <>
                     <View style={Styles.ListHeaderComponentStyle}>
@@ -257,7 +265,7 @@ const ContestUser = (props) => {
                                     <View style={{ width: Dimensions.get('window').width * 0.555, height: 50, }}>
                                         <CInput
                                             placeholder={"Lorem Ipsum is simply text . . . . . . "}
-                                            value=''
+                                            value={comment}
                                             inputInnerContainerStyle={{ height: 50, flex: 1 }}
                                             onChangeText={(e, unmasked)=>{setComment(e)}}
                                         />

@@ -1,12 +1,10 @@
 import { create } from 'apisauce';
-
 const api = create({
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json',
   },
 });
-
 class ApiSauce {
   async post(url, payload) {
     const Header = {
@@ -26,7 +24,7 @@ class ApiSauce {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
-        Authorization: `Bearer ${'72|72LxXfqYgRHsf7YrudtKIeLucYl0FDTZVGHi25Gs'}`,
+        Authorization: `Bearer ${token ? token : '72|72LxXfqYgRHsf7YrudtKIeLucYl0FDTZVGHi25Gs'}`,
       },
     };
 
@@ -41,11 +39,12 @@ class ApiSauce {
   }
 
   async getWithToken(url, token) {
+    console.log("🚀 ~ file: networkRequest.js ~ line 42 ~ ApiSauce ~ getWithToken ~ token", token)
     const Header = {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
-        Authorization: `Bearer ${'72|72LxXfqYgRHsf7YrudtKIeLucYl0FDTZVGHi25Gs'}`,
+        Authorization: `Bearer ${token ? token : '72|72LxXfqYgRHsf7YrudtKIeLucYl0FDTZVGHi25Gs'}`,
       },
     };
     const response = await api.get(url, {}, Header);

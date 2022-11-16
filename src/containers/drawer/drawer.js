@@ -36,6 +36,7 @@ const Drawer = props => {
     const handlLogout = () => {
         props.navigation.closeDrawer();
         dispatch(logout())
+        GoogleSignin.signOut()
     };
 
     return (
