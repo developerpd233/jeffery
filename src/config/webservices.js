@@ -1,7 +1,7 @@
 export const BASE_URL  =  `https://jaffery.webappcart.com/api/v1/`
 export const IMAGE_URL  =  `https://jaffery.webappcart.com/storage/`
 export const LOGIN =  `${BASE_URL}login`
-export const FORGOT_PASS =  `${BASE_URL}forgotpassword`
+export const FORGOT_PASS =  `${BASE_URL}forgot-password`
 
 export const GET_CONTEST = (type) =>  `${BASE_URL}contests-by-type/${type}`
 export const COUNTRY =  `${BASE_URL}location/country`  
@@ -23,6 +23,8 @@ export const JOIN_PARTICIPATE =  `${BASE_URL}participate/upload-image`
 export const GET_COMMENTS = (id , pageno) => `${BASE_URL}comments?participant_id=${id}&page=${pageno}`
 export const FB_GET_USER = (access_token) => `https://graph.facebook.com/me?access_token=${access_token}&fields=email`
 export const SOCIAL_LOGIN =  `${BASE_URL}social-login`
+export const CHNAGE_PASSWORD =  `${BASE_URL}forgot-password-reset`
+export const FORGET_PSS_OTP_CHECK =  `${BASE_URL}forgot-password-otpcheck`
 
 export const SINGLE_CONTEST = (id) =>  `${BASE_URL}single-contest/${id}`
 export const ADD_FAVOURITIES = (id) =>  `${BASE_URL}add-favourite?participant_id=${id}`

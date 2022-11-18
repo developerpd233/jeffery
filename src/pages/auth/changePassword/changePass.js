@@ -2,18 +2,20 @@ import React, {useState} from "react";
 import { Container } from "../../../containers";
 import { useSelector, useDispatch } from "react-redux";
 import AuthStyle from "../Auth.style";
-import CForm from "./Form";
+import CForm from "./form";
 import events from "../../../utils/events";
 import { useNavigation } from "@react-navigation/native";
 import { sendOtp, verifyOtp } from "../../../store/actions/Auth.action";
 import ApiSauce from "../../../services/networkRequest"
-import {FORGOT_PASS, VERIFY_EMAIL} from "../../../config/webservices"
+import {FORGOT_PASS, CHNAGE_PASSWORD} from "../../../config/webservices"
 import { CLoading, ProgressiveImage  } from "../../../uiComponents";
 import { View } from "react-native";
 
-function Forget({ route}) {
+function changePassword({ route}) {
     const { phone } = route?.params || {};
     const { email } = route?.params || {};
+    const { responce } = route?.params || {};
+    console.log("🚀 ~ file: changePass.js ~ line 18 ~ changePassword ~ responce", responce?.token)
     const dispatch = useDispatch();
     const [userEmail , setUserEmail] = useState(email)
     const [loading , setLoading] = useState(false)
@@ -27,20 +29,19 @@ function Forget({ route}) {
 
     const submit =async (values) => {
         const formData = new FormData()
-        const payload ={
-            email: values.email
-        }
-        setLoading(true)
-
+        formData.append('password' , values.password),
+        formData.append('password_confirmation' , values.conformPassword ),
+        formData.append('token' , responce?.token )
         try{
-            const responce = await ApiSauce.post(FORGOT_PASS , payload)
-            navigation.navigate('otp_verification' , {email:values.email , changePass:true})
+            setLoading(true)
+            const responce = await ApiSauce.post(CHNAGE_PASSWORD , formData)
+            navigation.navigate('sign_in')
           }catch(err){
           console.log("🚀 ~ file: ContestType.js ~ line 33 ~ handleApi ~ err", err)
           }finally{
             setLoading(false)
           }
-    };
+    }
 
     const resendOtp = () => {
         events.emit("restartOTPTimer", {});
@@ -50,6 +51,7 @@ function Forget({ route}) {
         showCenterLogo: false,
         // headerRight: true,
         transparent: true,
+        headerTitle:'Change Password'
     };
 
     return (
@@ -71,7 +73,7 @@ function Forget({ route}) {
                     />
                    <CForm
                 submit={submit}
-                resendOtp={resendOtp}
+                // resendOtp={resendOtp}
                 loading={reduxState?.loading}
             />
 
@@ -81,4 +83,4 @@ function Forget({ route}) {
         </Container>
     );
 }
-export default Forget;
+export default changePassword;
