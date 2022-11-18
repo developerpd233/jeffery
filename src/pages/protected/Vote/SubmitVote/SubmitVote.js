@@ -133,7 +133,7 @@ const SubmitVote = (props) => {
                 <CText style={Styles.winText}>*All Winning Votes Are Considered A Commitment As Per Rules</CText>
                 <CText style={Styles.winText}>* Voting Rules Will Not Allow You To Withdraw Your Votes</CText>
                 <CText style={Styles.winText}>* Review Through Terms And Conditions Before Placing Your Vote</CText>
-                <CButton onPress={() => {}} title='Submit' buttonStyle={[Styles.buttonStyle, { marginHorizontal: 20, }]} />
+                <CButton onPress={() => {navigation.navigate('Payment')}} title='Submit' buttonStyle={[Styles.buttonStyle, { marginHorizontal: 20, }]} />
 
             </View>
 

@@ -143,10 +143,10 @@ const Styles = StyleSheet.create({
         fontSize: 22,
         fontFamily: themes.font.medium,
         color: themes['light'].colors.tertiary,
-        marginBottom: 10,
+        marginBottom: 30,
         lineHeight:36,
         textAlign:'center',
-        fontWeight:'500'
+        fontWeight:'500',
     },
     cardHeaderSubTitle: {
         fontSize: 14,

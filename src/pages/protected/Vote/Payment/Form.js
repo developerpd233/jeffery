@@ -6,8 +6,7 @@ import { CButton, CInput, CText } from "../../../../uiComponents";
 import VoteStyle from "../Vote.Styles";
 
 function CForm(props) {
-    const { submit, loading, selectedCountry, toggleCountryModal } = props;
-
+    const { submit, loading, selectedCountry, toggleCountryModal , cardNum, setcardNo} = props;
     const form = useRef(null);
     const amount = useRef(null);
     const cardNo = useRef(null);
@@ -21,6 +20,9 @@ function CForm(props) {
     const state = useRef(null);
     const zipCode = useRef(null);
     const country = useRef(null);
+    const creditCardMask = [/\d/, /\d/, /\d/, /\d/, " ", [/\d/], [/\d/], [/\d/], [/\d/], " ", [/\d/], [/\d/], [/\d/], [/\d/], " ", /\d/, /\d/, /\d/, /\d/];
+    const Exp = [/\d/, /\d/, "/" ,/\d/, /\d/];
+    // const Cvv = [/\d/, /\d/, ,];
 
 
 
@@ -50,7 +52,7 @@ function CForm(props) {
             validationSchema={Validations(selectedCountry)}
         >
             {({ handleChange, values, handleSubmit, errors }) => {
-               console.log("🚀 ~ file: Form.js ~ line 53 ~ CForm ~ errors", errors)
+               console.log("🚀 ~ file: Form.js ~ line 53 ~ CForm ~ errors", values)
                
                 return (
                     <View>
@@ -78,10 +80,14 @@ function CForm(props) {
                                 />
                                   <CInput
                                     ref={cardNo}
+                                    mask={creditCardMask}
                                     inputLabel={"Card Number"}
                                     placeholder={"5420002155558888"}
                                     value={values.cardNo}
-                                    onChangeText={handleChange("cardNo")}
+                                //    onChangeText={(masked,unmasked)=>console.log('masked', masked, unmasked)}
+                                            onChangeText={handleChange("cardNo")}
+
+                                    // onChangeText={handleChange("cardNo"), }
                                     error={errors.cardNo}
                                     sec
                                     returnKeyType="next"
@@ -95,9 +101,10 @@ function CForm(props) {
                                     ref={expDate}
                                     inputLabel={"Expiration Date"}
                                     placeholder={"12/25"}
+                                    mask={Exp}
                                     value={values.expDate}
                                     onChangeText={handleChange("expDate")}
-                                    secureTextEntry={true}
+                                    secureTextEntry={false}
                                     error={errors.expDate}
                                     returnKeyType="next"
                                     onSubmitEditing={() =>
@@ -115,7 +122,7 @@ function CForm(props) {
                                     onSubmitEditing={() => handleSubmit()}
                                 />
                                  
-                                <CInput
+                                {/* <CInput
                                     ref={city}
                                     type="number"
                                     // disabled={true}
@@ -129,10 +136,10 @@ function CForm(props) {
                                     editable={false}
                                     returnKeyType="next"
                                     onSubmitEditing={() => handleSubmit()}
-                                />
+                                /> */}
 
                                 
-                                <CText style={[VoteStyle.cardHeaderTitle , { marginVertical:20 }]}>
+                                <CText style={[VoteStyle.cardHeaderTitle , { marginVertical:30 ,  }]}>
                                 Authorize.net
                                 </CText>
                               

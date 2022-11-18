@@ -1,6 +1,8 @@
 export const BASE_URL  =  `https://jaffery.webappcart.com/api/v1/`
 export const IMAGE_URL  =  `https://jaffery.webappcart.com/storage/`
 export const LOGIN =  `${BASE_URL}login`
+export const FORGOT_PASS =  `${BASE_URL}forgotpassword`
+
 export const GET_CONTEST = (type) =>  `${BASE_URL}contests-by-type/${type}`
 export const COUNTRY =  `${BASE_URL}location/country`  
 export const STATE = (id) =>  `${BASE_URL}location/state/${id}`  

@@ -141,6 +141,7 @@ const SignIn = (props) => {
                     <CForm
                         submit={submit}
                         loading={false}
+                        onPressSubLabel={()=> props.navigation.navigate("Forget")}
                         onCreatePress={() => props.navigation.navigate('sign_up')}
                         onGooglePress={() => { RequestGoogleLogin() }}
                     />

@@ -51,6 +51,7 @@ const CInput = React.forwardRef((props, ref) => {
         secureTextEntry = false,
         lableandSubLabelStyle,
         onChangeText,
+        onPressSubLabel,
         placeholderTextColor=themes["light"].colors.white5   
     } = props;
 
@@ -63,7 +64,7 @@ const CInput = React.forwardRef((props, ref) => {
     };
     const renderSubLabel = () => {
         return (
-            <CText
+            <CText onPress={onPressSubLabel}
                 style={{ ...GlobalStyle.inputSubLabel, ...inputSubLabelStyle }}
             >
                 {inputSubLabel}

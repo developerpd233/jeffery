@@ -17,7 +17,8 @@ function CForm(props) {
         toggleCountryModal,
         phoneErr,
         onCreatePress,
-        onGooglePress
+        onGooglePress,
+        onPressSubLabel
     } = props;
 
     const form = useRef(null);
@@ -67,6 +68,7 @@ function CForm(props) {
                                     value={values.password}
                                     onChangeText={handleChange("password")}
                                     secureTextEntry={true}
+                                    onPressSubLabel={onPressSubLabel}
                                     inputSubLabel='Forget Password?'
                                     lableandSubLabelStyle={AuthStyle.lableandSubLabelStyle}
 
