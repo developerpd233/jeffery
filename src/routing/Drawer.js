@@ -7,7 +7,7 @@ import Root from "./Root";
 import { CustomDrawer } from "../containers";
 import { useWindowDimensions } from 'react-native';
 import { ContestStack } from "./stacks";
-import { Favourite, Setting  ,ProfileScreen , UserProfile} from "../pages/protected";
+import { Favourite, Setting  ,ProfileScreen , UserProfile, Join} from "../pages/protected";
 const Drawer = createDrawerNavigator();
 
 function CustomDrawerContent(props) {

@@ -1,5 +1,7 @@
 import Home from './home/Home'
 import Contest from './Contest/Contest'
+import Join from './join/Join'
+
 import ContestType from './Contest/ContestType/ContestType'
 import ContestTypeDetails from './Contest/ContestTypeDetail/ContestTypeDetail'
 import ContestUser from './Contest/ContestUser/ContestUser'
@@ -22,5 +24,6 @@ export {
     ProfileScreen,
     Favourite,
     Setting,
-    UserProfile
+    UserProfile,
+    Join
 }

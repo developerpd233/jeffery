@@ -163,7 +163,7 @@ const Home = (props) => {
                     You Know It ?
                 </CText>
 
-                <CButton title='Join the Contest' />
+                <CButton onPress={()=> props.navigation.navigate("Join")} title='Join the Contest' />
 
             </View>
             <ScrollView>

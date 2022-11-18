@@ -196,24 +196,10 @@ const preValue = props?.route?.params?.values
               const source = { uri: res.uri };
               console.log('response', JSON.stringify(res?.assets?.[0]));
               setImage(res?.assets?.[0])
-            //   this.setState({
-            //     filePath: res,
-            //     fileData: res.data,
-            //     fileUri: res.uri
-            //   });
+            
             }
           });
-        // try {
-        //     const res = await DocumentPicker.pick({
-        //       type: [DocumentPicker.types.allFiles],
-        //     });
-        //     setImage(res)
-        //   } catch (err) {
-        //     if (DocumentPicker.isCancel(err)) {
-        //     } else {
-              
-        //     }
-        //   }
+      
     }
     const submit = (values) => {
         if(!selectedCountry){

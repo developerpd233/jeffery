@@ -27,10 +27,13 @@ function Forget({ route}) {
 
     const submit =async (values) => {
         const formData = new FormData()
-        formData.append('email' , values.email)
+        const payload ={
+            email: values.email
+        }
+        setLoading(true)
+
         try{
-            setLoading(true)
-            const responce = await ApiSauce.post(FORGOT_PASS , formData)
+            const responce = await ApiSauce.post(FORGOT_PASS , payload)
             console.log("🚀 ~ file: Forget.js ~ line 34 ~ submit ~ responce", responce)
             // props.navigation.navigate('sign_in')
           }catch(err){
@@ -46,7 +49,7 @@ function Forget({ route}) {
 
     const headerProps = {
         showCenterLogo: false,
-        headerRight: true,
+        // headerRight: true,
         transparent: true,
     };
 

@@ -17,7 +17,8 @@ export default StyleSheet.create({
         width: 130,
         height: 85,
         alignSelf:'center',
-        marginBottom:10
+        marginBottom:10,
+        marginTop:-10,
     },
 
     card: {
@@ -100,7 +101,8 @@ export default StyleSheet.create({
     inputInnerContainerStyle:{
         height:100,
         alignItems:'flex-start',
-        justifyContent:'flex-start'
+        justifyContent:'flex-start',
+       
         
     },
 
@@ -169,7 +171,7 @@ export default StyleSheet.create({
         borderTopRightRadius: 20,
     },buttonStyle:{
         fontSize:14,
-        fontFamily:themes.font.extraLight,
+        fontFamily:themes.font.medium,
         fontWeight:'600'
     },
     Icon:{
