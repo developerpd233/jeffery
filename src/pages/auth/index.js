@@ -3,6 +3,7 @@ import OtpVerification from './otpVerification/OtpVerification';
 import UserInformation from './userInformation/UserInformation';
 import Signup from './signUp/Signup';
 import Forget from './forget/Forget';
+import changePassword from "./changePassword/changePass"
 
 
 export {
@@ -10,5 +11,6 @@ export {
     OtpVerification,
     UserInformation,
     Signup,
-    Forget
+    Forget,
+    changePassword
 }

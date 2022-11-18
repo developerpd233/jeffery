@@ -7,12 +7,13 @@ import events from "../../../utils/events";
 import { useNavigation } from "@react-navigation/native";
 import { sendOtp, verifyOtp } from "../../../store/actions/Auth.action";
 import ApiSauce from "../../../services/networkRequest"
-import {VERIFY_EMAIL} from "../../../config/webservices"
+import {VERIFY_EMAIL , FORGET_PSS_OTP_CHECK} from "../../../config/webservices"
 import { CLoading, ProgressiveImage  } from "../../../uiComponents";
 
 function OtpVerification({ route}) {
     const { phone } = route?.params || {};
     const { email } = route?.params || {};
+    const { changePass } = route?.params || {};
     const dispatch = useDispatch();
     const [userEmail , setUserEmail] = useState(email)
     const [loading , setLoading] = useState(false)
@@ -27,11 +28,11 @@ function OtpVerification({ route}) {
     const submit =async (values) => {
         const formData = new FormData()
         formData.append('otp_number' , values.otp)
-        formData.append('email' , userEmail)
+        {!changePass && formData.append('email' , userEmail)}
         try{
             setLoading(true)
-            const responce = await ApiSauce.post(VERIFY_EMAIL , formData)
-            props.navigation.navigate('sign_in')
+            const responce = await ApiSauce.post(!changePass ? VERIFY_EMAIL : FORGET_PSS_OTP_CHECK , formData)
+            navigation.navigate(!changePass ? 'sign_in' : 'changePassword' , {responce:responce})
           }catch(err){
           console.log("🚀 ~ file: ContestType.js ~ line 33 ~ handleApi ~ err", err)
           }finally{
@@ -45,8 +46,9 @@ function OtpVerification({ route}) {
 
     const headerProps = {
         showCenterLogo: false,
-        headerRight: true,
+        // headerRight: true,
         transparent: true,
+        headerTitle:'OTP Verification'
     };
 
     return (

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 // import Welcome from "../pages/welcome/Welcome";
-import { SignIn, OtpVerification, UserInformation , Signup, Forget } from "../pages/auth";
+import { SignIn, OtpVerification, UserInformation , Signup, Forget ,changePassword } from "../pages/auth";
 import { useDispatch } from "react-redux";
 import { CLoading } from "../uiComponents";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -38,6 +38,10 @@ function Auth({ initial }) {
                     <Stack.Screen
                         name="Forget"
                         component={Forget}
+                    />
+                    <Stack.Screen
+                        name="changePassword"
+                        component={changePassword}
                     />
                 </Stack.Navigator>
             );
