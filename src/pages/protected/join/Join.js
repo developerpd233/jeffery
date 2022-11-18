@@ -2,25 +2,27 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Container } from "../../../containers";
 import { CList, CInput, CListItem, CText, CButton, CLoading,  } from "../../../uiComponents";
 import { TouchableOpacity, View  , Image} from "react-native";
-import GlobalStyle from "../../../assets/stylings/GlobalStyle";
 import Styles from "./Join.styles";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
-import AuthStyle from "../../auth/Auth.style";
 import ApiSauce from "../../../utils/network";
-import { HOME_CONTEST } from "../../../config/webservices"
+import {  JOIN_PARTICIPATE } from "../../../config/webservices"
 import { ScrollView } from "react-native-gesture-handler";
-import RadioButtonRN from 'radio-buttons-react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import { showTowst } from "../../../utils/utilFunctions";
 
 import CForm from './Form'
+import { TOKEN } from "../../../utils/asyncStorage/Constants";
 const Join = (props) => {
+  const { item, } = props?.route?.params || {}
+  console.log("🚀 ~ file: Join.js ~ line 21 ~ Join ~ item", item)
+
     const dispatch = useDispatch();
-    const [data, setData] = useState()
-    const [month, setMonth] = useState()
-    const [annaul, setAnnaul] = useState()
+    const [name, setName] = useState()
+    const [email, setEmail] = useState()
+    const [details, setDetails] = useState()
     const [video, setVideo] = useState()
     const [Loading, setLoading] = useState(false)
     const [imageOne, setImageOne] = useState(false)
@@ -38,6 +40,7 @@ const Join = (props) => {
       showCart: false,
 
     };
+
 
     const reduxState = useSelector(({ auth, root }) => {
         return {
@@ -60,54 +63,13 @@ const Join = (props) => {
               
 
             ],
+            user:auth.user
         };
     });
-    const renderItem = ({ item, index }) => {
-        return (
-            <CListItem
-                title={`${item?.title} Monthly Contest`}
-                titleStyles={Styles.title}
-                price={item?.amount}
-                priceStyle={Styles.price}
-                onPress={() => props.navigation.openDrawer()}
-            />
-        );
-    };
 
-    const renderItemOne = ({ item, index }) => {
-        return (
-            <CListItem
-                title={`${item?.title}`}
-                titleStyles={Styles.title}
-                price={item?.amount}
-                priceStyle={Styles.price}
-                onPress={() => props.navigation.openDrawer()}
-            />
-        );
-    };
+    
 
-    const onRefreshHandler = () => {
-        // handleCategory();
-    };
-
-    useEffect(() => {
-        handleContest()
-    }, [])
-
-    const handleContest = async () => {
-        try {
-            setLoading(true)
-            const data = await ApiSauce.getWithoutToken(HOME_CONTEST)
-            setData(data.data)
-            setMonth(data.data.monthly_contests)
-            setAnnaul([data.data.annual_contest , data.data.video_contest ])
-
-        } catch (err) {
-            console.log("🚀 ~ file: ContestType.js ~ line 33 ~ handleApi ~ err", err)
-        } finally {
-            setLoading(false)
-        }
-    }
+   
 
     const handlePick =async ()=>{
         let options = {
@@ -205,6 +167,54 @@ const Join = (props) => {
           });
       
     }
+    const submit = async (values) => {
+      console.log("🚀 ~ file: Join.js ~ line 171 ~ submit ~ values", values)
+      setLoading(true)
+        const formData = new FormData()
+
+        
+        formData.append('image', {
+            name:'name',
+            type:"name/jpg",
+            uri:"https://localwp.com/wp-content/uploads/2021/08/local-sharing.png"
+          })
+          formData.append('name', "aaaa")
+          formData.append('detail', "aaaa")
+          formData.append('description', "aaaa")
+          formData.append('contest_id', item?.id)
+          formData.append('images[]', {
+            name:'name',
+            type:'name/jpg',
+            uri:"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+          })
+          formData.append('images[]', {
+            name:'name',
+            type:'name/jpg',
+            uri:"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+          })
+          formData.append('images[]', {
+            name:'name',
+            type:'name/jpg',
+            uri:"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+          })
+          try {
+          const res =  await ApiSauce.postWithToken(JOIN_PARTICIPATE ,  formData, reduxState?.user?.token)
+            console.log("🚀 ~ file: Join.js ~ line 204 ~ submit ~ res", res)
+            showTowst('success', 'Join Contest' ,res.message)
+            navigation.goBack()
+          } catch (error) {
+            showTowst('false', 'Join Contest' ,error.message)
+
+            console.log("🚀 ~ file: Join.js ~ line 206 ~ submit ~ error", error)
+            
+          } finally{
+            setLoading(false)
+          }
+
+
+
+
+    }
 
     return (
         <Container
@@ -216,7 +226,7 @@ const Join = (props) => {
         >
             <ScrollView>
 
-            {/* {Loading && <CLoading />} */}
+            {Loading && <CLoading  loading={Loading}/>}
 
             <View style={Styles.container}>
               
@@ -224,49 +234,22 @@ const Join = (props) => {
                   Follow The Instruction To Join The Contest
                 </CText>
                 <CForm
-                // submit={submit}
+                submit={submit}
+                imageOne={imageOne}
+                imgaeTwo={imgaeTwo}
+                imageThree={imageThree}
+                imageFour={imageFour}
+                handlePick={handlePick}
+                handlePickTwo={handlePickTwo}
+                handlePickThree={handlePickThree}
+                handlePickFour={handlePickFour}
+
+
                 // resendOtp={resendOtp}
                 // loading={reduxState?.loading}
                 />
                 
-                <View style={{marginTop:0,flexDirection:'row' , justifyContent:'space-between', marginLeft:-8 , marginBottom:20}}>
-                    <View style={{alignItems:'center'}}>
-                    <CText style={Styles.imageText}>Featured Image</CText>
-                    <TouchableOpacity onPress={handlePick} style={Styles.imgView}>
-                    {imageOne?.uri ?  <Image source={imageOne}  resizeMode="cover" style={{width:70 , height:70}} /> :      <Ionicons size={50} name='add-circle-outline' color="#2c9dd1" />}    
-                    </TouchableOpacity>
-
-                    </View>
-                    <View style={{alignItems:'center'}}>
-                    <CText style={Styles.imageText}>Image</CText>
-
-                    <TouchableOpacity onPress={handlePickTwo} style={Styles.imgView} >
-                    {imgaeTwo?.uri ?  <Image source={imgaeTwo}  resizeMode="cover" style={{width:70 , height:70}} /> :      <Ionicons size={50} name='add-circle-outline' color="#2c9dd1" />}    
-                    </TouchableOpacity>
-
-                    </View>
-                    <View style={{alignItems:'center'}}>
-                    <CText style={Styles.imageText}>Image</CText>
-                    <TouchableOpacity onPress={handlePickThree} style={Styles.imgView}>
-                    {imageThree?.uri ?  <Image source={imageThree}  resizeMode="cover" style={{width:70 , height:70}} /> :      <Ionicons size={50} name='add-circle-outline' color="#2c9dd1" />}    
-                    </TouchableOpacity>
-
-                    </View>
-                    <View style={{alignItems:'center'}}>
-                    <CText style={Styles.imageText}>Image</CText>
-                    <TouchableOpacity onPress={handlePickFour} style={Styles.imgView}>
-                    {imageFour?.uri ?  <Image source={imageFour}  resizeMode="cover" style={{width:70 , height:70}} /> :      <Ionicons size={50} name='add-circle-outline' color="#2c9dd1" />}    
-                    </TouchableOpacity>
-
-                    </View>
-               
-               
-                </View>
-                <CButton
-                                    title={"Join Contest"}
-                                    buttonText={AuthStyle.buttonStyle}
-                                    onPress={() => handleSubmit()}
-                                />
+              
 
             </View>
          

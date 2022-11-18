@@ -41,6 +41,7 @@ const Styles = StyleSheet.create({
     ContestList:{
         marginHorizontal: -25 ,
         marginVertical:10,
+        marginBottom:80,
 
     },
     ContestprofileList:{

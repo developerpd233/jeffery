@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Contest, ContestType, ContestTypeDetails, ContestUser, Home} from "../../pages/protected";
+import {Contest, ContestType, ContestTypeDetails, ContestUser, Home, Join} from "../../pages/protected";
 import {createStackNavigator} from "@react-navigation/stack";
 import VoteStack from "./Vote";
 
@@ -17,6 +17,7 @@ function ContestStack() {
             <Stack.Screen name="ContestTypeDetails" component={ContestTypeDetails} />
             <Stack.Screen name="ContestUser" component={ContestUser} />
             <Stack.Screen name="Vote" component={VoteStack} />
+            <Stack.Screen name="Join" component={Join} />
 
 
 

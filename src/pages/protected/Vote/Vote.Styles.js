@@ -42,16 +42,18 @@ const Styles = StyleSheet.create({
         
     },
     inputInnerContainerStyle:{
-        height:25,
-        minHeight:25,
-        marginTop:-2,
+        
+        height:30,
+        minHeight:30,
         marginLeft:5,
         width:50,
-        marginVertical:-20
+        marginVertical:-13
     },
+    input:{ paddingTop:-17 , width:35, height:20 ,padding:0 , paddingLeft:5},
+   
     USD:{
         backgroundColor: themes['light'].colors.primary,
-        height:25,
+        height:30,
         marginTop:3,
         paddingHorizontal:6,
         alignItems:'center',

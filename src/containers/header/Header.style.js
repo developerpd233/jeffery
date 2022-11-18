@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
         width:100,
     },
     inputInnerContainerStyle:{
-        height:35,
+        height:40,
         minHeight:35
     },
     rightTextStyles:{

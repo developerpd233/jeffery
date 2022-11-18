@@ -12,7 +12,6 @@ function HomeStack() {
     return (
         <Stack.Navigator initialRouteName="home" screenOptions={StackScreenOptions}>
             <Stack.Screen name="home" component={Home} />
-            <Stack.Screen name="Join" component={Join} />
 
         </Stack.Navigator>
     );

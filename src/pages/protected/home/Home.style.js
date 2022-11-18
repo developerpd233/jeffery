@@ -11,8 +11,8 @@ const Styles = StyleSheet.create({
     },
     container: {
         paddingHorizontal: 20,
-        paddingBottom: 15,
-        marginVertical:20
+        // paddingBottom: 15,
+        // marginVertical:20
     },
 
     center: {

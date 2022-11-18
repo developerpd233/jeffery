@@ -12,13 +12,15 @@ import ApiSauce from "../../../services/networkRequest"
 const Vote = (props) => {
     const {user} = props?.route?.params
     const [loading, setLoading] = useState(false)
+    const [amount, setAmount] = useState(1)
+
     const [data, setData] = useState()
     const dispatch = useDispatch();
     const navigation = useNavigation();
     const headerProps = {
         showCart: false,
         headerRightText: 'Vote',
-        onRightPress: () => navigation.navigate('SubmitVote' , {user:user}),
+        onRightPress: () => navigation.navigate('SubmitVote' , {user:user , amount:amount}),
     };
     const isFocused = useIsFocused()
 
@@ -45,9 +47,9 @@ const Vote = (props) => {
     });
 
     const select = (item) => {
-        navigation.navigate("Contest_Type", {
-            item,
-        });
+            navigation.navigate("Contest_Type", {
+                item,
+            });
     };
 
     const renderItem = ({ item, index }) => {
@@ -132,7 +134,7 @@ const Vote = (props) => {
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                         <CText style={Styles.voteText}>$</CText>
-                        <CInput inputInnerContainerStyle={Styles.inputInnerContainerStyle} placeholderTextColor='white' placeholder='2' />
+                        <CInput value={amount} onChangeText={setAmount} style={Styles.input} inputInnerContainerStyle={Styles.inputInnerContainerStyle} placeholderTextColor='white' placeholder='1' />
                         <View style={Styles.USD}>
                             <CText style={[Styles.usdText]}>USD</CText>
 
@@ -149,7 +151,7 @@ const Vote = (props) => {
                 </View>
 
             </View>
-            <CButton title='Submit' buttonStyle={[Styles.buttonStyle, { marginHorizontal: 20, marginBottom: 90 }]} />
+            <CButton   onPress={ () => navigation.navigate('SubmitVote' , {user:user , amount:amount})} title='Submit' buttonStyle={[Styles.buttonStyle, { marginHorizontal: 20, marginBottom: 90 }]} />
 
         </Container>
 

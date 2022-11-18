@@ -3,7 +3,6 @@ import { validateNumberRegex } from "../../../utils/methods";
 
 const scheme = (regex) =>
     Yup.object().shape({
-        amount: Yup.string().required("Please enter your amount"),
         cardNo: Yup.string().required("Please enter your card number"),
         expDate: Yup.string().required("Please enter your expiry date"),
         cvv: Yup.string().required("Please enter your Cvv"),

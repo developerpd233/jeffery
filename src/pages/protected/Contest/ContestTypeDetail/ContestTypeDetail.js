@@ -12,6 +12,7 @@ import ApiSauce from "../../../../services/networkRequest"
 const ContestTypeDetail = (props) => {
 
   const { item, index } = props?.route?.params || {}
+  console.log("🚀 ~ file: ContestTypeDetail.js ~ line 15 ~ ContestTypeDetail ~ item", item)
   const [heart, setHeart] = useState(false)
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState()
@@ -79,6 +80,7 @@ const ContestTypeDetail = (props) => {
   };
 
   const renderItem = ({ item, index }) => {
+    console.log("🚀 ~ file: ContestTypeDetail.js ~ line 83 ~ renderItem ~ item", item)
     return (
       <CCard 
       onPress={() => select(item)}
@@ -144,7 +146,7 @@ const token = reduxState.user
       <CText style={Styles.normalTitle}>
         Contest {index}
       </CText>
-      <CButton title='Join the Contest' buttonStyle={Styles.buttonStyle2} />
+      <CButton onPress={()=> props.navigation.navigate('Join' ,{item})} title='Join the Contest' buttonStyle={Styles.buttonStyle2} />
 
       <CList
         style={Styles.ContestList}

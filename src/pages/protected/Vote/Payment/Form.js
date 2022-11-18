@@ -6,7 +6,7 @@ import { CButton, CInput, CText } from "../../../../uiComponents";
 import VoteStyle from "../Vote.Styles";
 
 function CForm(props) {
-    const { submit, loading, selectedCountry, toggleCountryModal , cardNum, setcardNo} = props;
+    const { submit, loading, selectedCountry, toggleCountryModal , cardNum, totalAmount,setcardNo} = props;
     const form = useRef(null);
     const amount = useRef(null);
     const cardNo = useRef(null);
@@ -21,7 +21,7 @@ function CForm(props) {
     const zipCode = useRef(null);
     const country = useRef(null);
     const creditCardMask = [/\d/, /\d/, /\d/, /\d/, " ", [/\d/], [/\d/], [/\d/], [/\d/], " ", [/\d/], [/\d/], [/\d/], [/\d/], " ", /\d/, /\d/, /\d/, /\d/];
-    const Exp = [/\d/, /\d/, "/" ,/\d/, /\d/];
+    const Exp = [/\d/, /\d/, "/" ,/\d/, /\d/, /\d/, /\d/];
     // const Cvv = [/\d/, /\d/, ,];
 
 
@@ -70,7 +70,9 @@ function CForm(props) {
                                     ref={amount}
                                     inputLabel={"Amount"}
                                     placeholder={"1"}
-                                    value={values.amount}
+                editable={false}
+                                    
+                                    value={totalAmount}
                                     onChangeText={handleChange("amount")}
                                     error={errors.amount}
                                     returnKeyType="next"
@@ -80,7 +82,6 @@ function CForm(props) {
                                 />
                                   <CInput
                                     ref={cardNo}
-                                    mask={creditCardMask}
                                     inputLabel={"Card Number"}
                                     placeholder={"5420002155558888"}
                                     value={values.cardNo}
@@ -145,6 +146,7 @@ function CForm(props) {
                               
                                 <CInput
                                     ref={fname}
+                                    
                                     inputLabel={"First Name (Ellen)"}
                                     placeholder={"Ellen"}
                                     value={values.fname}

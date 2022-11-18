@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SafeAreaView from '../safeAreaView/SafeAreaView';
 import { View, TouchableOpacity , Image } from 'react-native';
 import Styles from './Header.style';
@@ -25,6 +25,7 @@ function Header(props) {
         transparent, theme,
         onRightPress
     } = props;
+    const [value , setValue] = useState('')
 
     const {isLoggedIn} = useSelector(({auth }) => {
         return {
@@ -130,7 +131,8 @@ function Header(props) {
             <View style={Styles.headerLogo}>
                <CInput
                   placeholder={placeholder}
-                  
+                  value={value}
+                  onChangeText={setValue}
                   inputInnerContainerStyle={Styles.inputInnerContainerStyle}/>
        
             </View>

@@ -9,7 +9,8 @@ import { useNavigation , useIsFocused } from "@react-navigation/native";
 import { GET_PARTICIPANT_VOTES,ADD_FAVOURITIES ,REMOVE_FAVOURITIES} from "../../../../config/webservices";
 import ApiSauce from "../../../../services/networkRequest"
 const SubmitVote = (props) => {
-    const { user } = props?.route?.params
+    const { user  , amount} = props?.route?.params || {}
+    console.log("🚀 ~ file: SubmitVote.js ~ line 13 ~ SubmitVote ~ user", user)
     const [loading, setLoading] = useState(false)
     const [data, setData] = useState()
 
@@ -126,14 +127,14 @@ const SubmitVote = (props) => {
             </View>
             <View style={[Styles.PrizeView, { marginVertical: 10, padding: 7, marginBottom: 0 }]}>
                 <CText style={Styles.voteAmount}>YOU VOTED AMOUNT </CText>
-                <CText style={Styles.voteAmount}>$1</CText>
+                <CText style={Styles.voteAmount}>${amount}</CText>
             </View>
 
             <View style={{ marginVertical: 20, marginHorizontal: 25, justifyContent: 'center', alignSelf: 'center', marginBottom: 90 }} >
                 <CText style={Styles.winText}>*All Winning Votes Are Considered A Commitment As Per Rules</CText>
                 <CText style={Styles.winText}>* Voting Rules Will Not Allow You To Withdraw Your Votes</CText>
                 <CText style={Styles.winText}>* Review Through Terms And Conditions Before Placing Your Vote</CText>
-                <CButton onPress={() => {navigation.navigate('Payment')}} title='Submit' buttonStyle={[Styles.buttonStyle, { marginHorizontal: 20, }]} />
+                <CButton onPress={() => {navigation.navigate('Payment' ,{amount , user})}} title='Submit' buttonStyle={[Styles.buttonStyle, { marginHorizontal: 20, }]} />
 
             </View>
 

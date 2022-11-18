@@ -10,7 +10,11 @@ import _ from "lodash";
 import ApiSauce from "../../../../utils/network";
 import { useNavigation } from "@react-navigation/native";
 import axios from 'axios'
+import { showTowst } from "../../../../utils/utilFunctions";
+import { PART_VOTE } from "../../../../config/webservices";
 function Signup(props) {
+    const { user  , amount} = props?.route?.params || {}
+
     const navigation = useNavigation();
     const [isLoading, setIsLoading] = useState(false);
     const [phoneError, setPhoneError] = useState(" ");
@@ -24,8 +28,10 @@ function Signup(props) {
             loading: false,
             currentCountry: global.currentCountry,
             countries: global.countries,
+            user:auth?.user
         };
     });
+
 
     const [countryModalIsOpen, updateCountryModalIsOpen] = useState(false);
     const [selectedCountry, updateSelectedCountry] = useState(
@@ -60,6 +66,7 @@ function Signup(props) {
 
     const submit = async (values) => {
         console.log("🚀 ~ file: Payment.js ~ line 62 ~ submit ~ values", values)
+        setIsLoading(true)
         const myData = {
             
                 createTransactionRequest: {
@@ -73,9 +80,9 @@ function Signup(props) {
                         amount: "200",
                         payment: {
                             creditCard: {
-                             cardNumber: "4007000000027",
-                                expirationDate: "09/2025",
-                                cardCode: "123"
+                             cardNumber: values?.cardNo,
+                                expirationDate: values?.expDate,
+                                cardCode: values?.cvv
                             }
                         },
                         poNumber: "456654",
@@ -83,14 +90,14 @@ function Signup(props) {
                             id: "99999456654"
                         },
                         billTo: {
-                            firstName: "Hello",
-                            lastName: "Hell01",
-                            company: "Hell02",
-                            address: "Hello3",
-                            city: "Hello4",
-                            state : "Hello5",
-                            zip: "Hello6",
-                            country: "Hello7"
+                            firstName: values.fname,
+                            lastName: values.lname,
+                            company: values?.company,
+                            address: values?.address,
+                            city: values?.city,
+                            state : values?.state,
+                            zip:  values?.zipCode,
+                            country: values?.country
                         },
                         customerIP: "192.168.1.1",
                         userFields: {
@@ -122,15 +129,49 @@ function Signup(props) {
         }
         try {
        const res=  await ApiSauce.post('https://api.authorize.net/xml/v1/request.api', myData )
-            console.log("🚀 ~ file: Payment.js ~ line 125 ~ submit ~ res", res)
-            console.log("🚀 ~ file: Payment.js ~ line 125 ~ submit ~ res", res)
-            alert(res.messages.message[0].text)
+       if (res.messages.resultCode == "Error") {
+            showTowst('error' ,'Payment ' ,res.messages?.message?.[0].text)
+
+       } else {
+       console.log("🚀 ~ file: Payment.js ~ line 130 ~ submit ~ res", res)
+
+        const payload ={
+            participant_id:user,
+            amount:amount,
+            order_id:res.transactionResponse.transId,
+            method:res.transactionResponse.accountType,
+            message:res.messages?.message?.[0].text
+        }
+        try {
+            const payRes =  await ApiSauce.postWithToken(PART_VOTE, payload ,reduxState?.user?.token  )
+            showTowst('success', 'payment' , payRes?.message)
+            navigation.navigate('Contest', {
+                screen: 'Contest',
+                initial: false
+            })
+            console.log("🚀 ~ file: Payment.js ~ line 147 ~ submit ~ payRes", payRes)
+            
+        } catch (error) {
+            showTowst('error', 'payment' , 'SomeThing went wrong')
+
+            
+        } finally{
+            setIsLoading(false)
+
+        }
+
+
+       }
+            // alert(res.messages.message[0].text)
             
             // alert(res?.transactionResponse?.errors?.[0]?.errorText)
             
         } catch (error) {
             console.log("🚀 ~ file: Payment.js ~ line 127 ~ submit ~ error", error)
             
+        }
+        finally{
+            setIsLoading(false)
         }
         // props.navigation.navigate('Profile')
         
@@ -161,6 +202,7 @@ function Signup(props) {
                 selectedCountry={selectedCountry}
                 toggleCountryModal={toggleCountryModal}
                 phoneErr={phoneError}
+                totalAmount={amount}
                 setcardNo={setcardNo}
                 cardNum={cardNo}
                 onLoginPress={() => navigation.navigate("login")}

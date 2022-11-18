@@ -24,7 +24,7 @@ class ApiSauce {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
-        Authorization: `Bearer ${token ? token : '72|72LxXfqYgRHsf7YrudtKIeLucYl0FDTZVGHi25Gs'}`,
+        Authorization: `Bearer ${token}`,
       },
     };
 
@@ -43,7 +43,7 @@ class ApiSauce {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
-        Authorization: `Bearer ${token ? token : '72|72LxXfqYgRHsf7YrudtKIeLucYl0FDTZVGHi25Gs'}`,
+        Authorization: `Bearer ${token}`,
       },
     };
     const response = await api.get(url, {}, Header);

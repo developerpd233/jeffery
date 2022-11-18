@@ -16,6 +16,10 @@ export const FAVOURITIES =  `${BASE_URL}favourites`
 export const POST_COMMENTS =  `${BASE_URL}comments`
 export const GET_PROFILE =  `${BASE_URL}users/show-profile`
 export const VERIFY_EMAIL =  `${BASE_URL}register-otp-check`
+export const PART_VOTE =  `${BASE_URL}participant/vote`
+
+export const JOIN_PARTICIPATE =  `${BASE_URL}participate/upload-image`
+
 export const GET_COMMENTS = (id , pageno) => `${BASE_URL}comments?participant_id=${id}&page=${pageno}`
 export const FB_GET_USER = (access_token) => `https://graph.facebook.com/me?access_token=${access_token}&fields=email`
 export const SOCIAL_LOGIN =  `${BASE_URL}social-login`
