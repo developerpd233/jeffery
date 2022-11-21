@@ -12,6 +12,7 @@ import ApiSause from '../../../utils/network'
 import { LOGIN, FB_GET_USER, SOCIAL_LOGIN } from '../../../config/webservices';
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 import Auth from '../../../store/constants/Auth.constant'
+import { showTowst } from '../../../utils/utilFunctions';
 
 // import { LoginManager, AccessToken, Profile } from 'react-native-fbsdk-next';
 const SignIn = (props) => {
@@ -22,6 +23,8 @@ const SignIn = (props) => {
         user_login(values)
     };
     const user_login = async (values) => {
+        setIsLoading(true)
+
         try {
             const loginRes = await ApiSause.post(LOGIN, values)
             dispatch({
@@ -31,7 +34,12 @@ const SignIn = (props) => {
                         isLoggedIn: true,
             })
         } catch (error) {
+            showTowst('error' , 'Login' , error.msg || 'Something went wrong')
             console.log("🚀 ~ file: SignIn.js ~ line 26 ~ SignIn ~ error", error)
+
+        }
+        finally{
+        setIsLoading(false)
 
         }
     }

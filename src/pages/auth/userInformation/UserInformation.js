@@ -13,6 +13,7 @@ import DocumentPicker, { types } from 'react-native-document-picker';
 import { getLocalCountries } from "../../../store/actions/Auth.action";
 import {COUNTRY , SIGN_UP ,STATE , CITY , PROFESSION} from "../../../config/webservices"
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import { showTowst } from "../../../utils/utilFunctions";
 function UserInformation(props) {
 const preValue = props?.route?.params?.values
 
@@ -72,7 +73,7 @@ const preValue = props?.route?.params?.values
         formData.append('image', {
           name:'name',
           type:'name/jpg',
-          uri:image?.uri
+          uri:"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
         })
         formData.append('country_id',selectedCountry?.id)
         formData.append('state_id',slectedState?.id)
@@ -90,6 +91,7 @@ const preValue = props?.route?.params?.values
           const data = await ApiSauce.post(SIGN_UP , formData)
           props.navigation.navigate('otp_verification',{email:signUpValues?.email})
         }catch(err){
+          showTowst('error' , 'Register' , err?.message)
         console.log("🚀 ~ file: ContestType.js ~ line 33 ~ handleApi ~ err", err)
         }finally{
           setLoading(false)

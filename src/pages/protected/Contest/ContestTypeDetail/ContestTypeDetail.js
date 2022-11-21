@@ -11,7 +11,7 @@ import { SINGLE_CONTEST , ADD_FAVOURITIES , REMOVE_FAVOURITIES } from "../../../
 import ApiSauce from "../../../../services/networkRequest"
 const ContestTypeDetail = (props) => {
 
-  const { item, index } = props?.route?.params || {}
+  const { item, index , contestType } = props?.route?.params || {}
   console.log("🚀 ~ file: ContestTypeDetail.js ~ line 15 ~ ContestTypeDetail ~ item", item)
   const [heart, setHeart] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -76,6 +76,7 @@ const ContestTypeDetail = (props) => {
   const select = (val) => {
     navigation.navigate("ContestUser", {
       item: val,
+      contestType:contestType
     });
   };
 

@@ -10,6 +10,7 @@ import ApiSauce from "../../../services/networkRequest"
 import {FORGOT_PASS, VERIFY_EMAIL} from "../../../config/webservices"
 import { CLoading, ProgressiveImage  } from "../../../uiComponents";
 import { View } from "react-native";
+import { showTowst } from "../../../utils/utilFunctions";
 
 function Forget({ route}) {
     const { phone } = route?.params || {};
@@ -34,8 +35,13 @@ function Forget({ route}) {
 
         try{
             const responce = await ApiSauce.post(FORGOT_PASS , payload)
+            showTowst('success' , 'Forgot Pass' , responce.message)
+
+            console.log("🚀 ~ file: Forget.js ~ line 38 ~ submit ~ responce", responce)
+
             navigation.navigate('otp_verification' , {email:values.email , changePass:true})
           }catch(err){
+            showTowst('error' , 'Forgot Pass' , err.error)
           console.log("🚀 ~ file: ContestType.js ~ line 33 ~ handleApi ~ err", err)
           }finally{
             setLoading(false)

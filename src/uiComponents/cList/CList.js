@@ -13,7 +13,7 @@ function CList(props) {
                 <View style={styles.listFooter}>
                     <ActivityIndicator size="large" color={Theme['light'].colors.primary} />
                 </View>
-            );
+            );  
         }
         return null;
     };

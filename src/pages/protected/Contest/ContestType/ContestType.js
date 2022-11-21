@@ -128,10 +128,11 @@ const ContestType = (props) => {
 
  
 
-  const select = (item , index) => {
+  const select = (item, index) => {
     navigation.navigate("ContestTypeDetails", {
       index,
-      item
+      item,
+      contestType:props?.route?.params?.item
     });
   };
 
@@ -139,7 +140,7 @@ const ContestType = (props) => {
     return (
       <CListItem
         title={`Contest ${index}`}
-        price={item.amount}
+        price={`$${item.amount}`}
         subTitle={item?.orderNumber}
         image={IMAGE_URL + item?.image}
         titleStyles={Styles.title}
@@ -153,6 +154,8 @@ const ContestType = (props) => {
   const onRefreshHandler = () => {
     // handleCategory();
   };
+
+
 
   return (
     <>
@@ -173,7 +176,8 @@ const ContestType = (props) => {
         </View></>}
 
         <CList
-          style={Styles.ContestList}
+
+          style={[Styles.ContestList ,{marginBottom : item.title == 'Country' ||  item.title == 'State'  ||   item.title == 'Professions' ||item.title == 'Contestants' || item.title == 'Winners'   ? 0 :80}]}
           contentContainerStyle={[GlobalStyle.list, { marginBottom: 35, }]}
           data={data}
           numColumns={2}

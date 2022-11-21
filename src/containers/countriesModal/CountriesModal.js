@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {TouchableOpacity, View ,Text} from "react-native";
+import {TouchableOpacity, View ,Text , Image} from "react-native";
 import GlobalStyle from "../../assets/stylings/GlobalStyle";
 import {useSelector} from "react-redux";
 import {CInput, CList, CText, ProgressiveImage} from "../../uiComponents";
@@ -23,9 +23,7 @@ function CountriesModal(props) {
 
     useEffect(() => {
         updateFilteredCountry(data);
-        setTimeout(() => {
-            setLoading(false)
-        }, 2000)
+        
     }, []);
 
     const handleChange = (val) => {
@@ -40,8 +38,10 @@ function CountriesModal(props) {
     };
 
     const renderItem = ({item, index}) => {
+        console.log("🚀 ~ file: CountriesModal.js ~ line 41 ~ renderItem ~ item", item)
         return(
             <TouchableOpacity style={[Styles.listItem, index === 0 && Styles.lastListItem]} onPress={() => onSelect(item)}>
+                {/* <Image source /> */}
             <CText>{item.name}</CText>
             </TouchableOpacity>
         )
@@ -79,7 +79,7 @@ function CountriesModal(props) {
                 />
             </View>
             <CList
-                loading={loading}
+                loading={ filteredCountry  ? props?.loading : true}
                 contentContainerStyle={GlobalStyle.list}
                 data={filteredCountry}
                 renderItem={renderItem}

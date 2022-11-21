@@ -176,11 +176,11 @@ const CInput = React.forwardRef((props, ref) => {
                     <ActivityIndicator color="#000080" size={24} />
                 ) : (
                     <Fragment>
-                        <ProgressiveImage
+                        {/* <ProgressiveImage
                             resizeMode={"contain"}
                             style={GlobalStyle.countryViewImage}
                             source={{ uri: selectedCountry?.flag_image }}
-                        />
+                        /> */}
                         <CText style={GlobalStyle.countryViewText}>
                             {selectedCountry?.name}
                         </CText>

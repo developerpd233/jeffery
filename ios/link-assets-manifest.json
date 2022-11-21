@@ -42,6 +42,10 @@
       "sha1": "dd48971530e3f19f7067ad80ce6c215365fe7269"
     },
     {
+      "path": "src/assets/fonts/Poppins-SemiBold.ttf",
+      "sha1": "8c0d5c6d40881839910161929e727aac847666c6"
+    },
+    {
       "path": "src/assets/fonts/SFProDisplay-Black.ttf",
       "sha1": "e3263641787151d41c0bf2009d5c31a3b0cc2d62"
     },

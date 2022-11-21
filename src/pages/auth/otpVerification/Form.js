@@ -43,6 +43,7 @@ function CForm(props) {
                                 <View style={AuthStyle.otpContainer}>
                                     <OTPInputView
                                         code={values?.otp}
+                                        secureTextEntry={true}
                                         onCodeChanged={handleChange('otp')}
                                         codeInputFieldStyle={[AuthStyle.codeInputFieldStyle]}
                                         codeInputHighlightStyle={AuthStyle.codeInputHighlightStyle}

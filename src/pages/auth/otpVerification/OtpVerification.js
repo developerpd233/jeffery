@@ -9,6 +9,7 @@ import { sendOtp, verifyOtp } from "../../../store/actions/Auth.action";
 import ApiSauce from "../../../services/networkRequest"
 import {VERIFY_EMAIL , FORGET_PSS_OTP_CHECK} from "../../../config/webservices"
 import { CLoading, ProgressiveImage  } from "../../../uiComponents";
+import { showTowst } from "../../../utils/utilFunctions";
 
 function OtpVerification({ route}) {
     const { phone } = route?.params || {};
@@ -26,6 +27,7 @@ function OtpVerification({ route}) {
     });
 
     const submit =async (values) => {
+        console.log("🚀 ~ file: OtpVerification.js ~ line 29 ~ submit ~ values", values)
         const formData = new FormData()
         formData.append('otp_number' , values.otp)
         {!changePass && formData.append('email' , userEmail)}
@@ -33,7 +35,10 @@ function OtpVerification({ route}) {
             setLoading(true)
             const responce = await ApiSauce.post(!changePass ? VERIFY_EMAIL : FORGET_PSS_OTP_CHECK , formData)
             navigation.navigate(!changePass ? 'sign_in' : 'changePassword' , {responce:responce})
+            showTowst('success', 'OTP' , responce?.message)
+
           }catch(err){
+            showTowst('error', 'OTP' , err?.message)
           console.log("🚀 ~ file: ContestType.js ~ line 33 ~ handleApi ~ err", err)
           }finally{
             setLoading(false)

@@ -10,8 +10,9 @@ import ApiSauce from "../../../services/networkRequest"
 import {FORGOT_PASS, CHNAGE_PASSWORD} from "../../../config/webservices"
 import { CLoading, ProgressiveImage  } from "../../../uiComponents";
 import { View } from "react-native";
+import { showTowst } from "../../../utils/utilFunctions";
 
-function changePassword({ route}) {
+function changePass({ route}) {
     const { phone } = route?.params || {};
     const { email } = route?.params || {};
     const { responce } = route?.params || {};
@@ -32,15 +33,25 @@ function changePassword({ route}) {
         formData.append('password' , values.password),
         formData.append('password_confirmation' , values.conformPassword ),
         formData.append('token' , responce?.token )
-        try{
-            setLoading(true)
-            const responce = await ApiSauce.post(CHNAGE_PASSWORD , formData)
-            navigation.navigate('sign_in')
-          }catch(err){
-          console.log("🚀 ~ file: ContestType.js ~ line 33 ~ handleApi ~ err", err)
-          }finally{
-            setLoading(false)
-          }
+        if(values.password === values.conformPassword){
+            try{
+                setLoading(true)
+                const responce = await ApiSauce.post(CHNAGE_PASSWORD , formData)
+            showTowst('success', 'Change Password' , responce.message)
+
+                console.log("🚀 ~ file: changePass.js ~ line 38 ~ submit ~ responce", responce)
+                navigation.navigate('sign_in')
+              }catch(err){
+                showTowst('error', 'Change Password' , err,)
+              console.log("🚀 ~ file: ContestType.js ~ line 33 ~ handleApi ~ err", err)
+              }finally{
+                setLoading(false)
+              }
+        } else {
+            showTowst('error', 'Change Password' , 'Please check password')
+
+        }
+      
     }
 
     const resendOtp = () => {
@@ -83,4 +94,4 @@ function changePassword({ route}) {
         </Container>
     );
 }
-export default changePassword;
+export default changePass;

@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
 
     headerCartButton: {
         width: 35,
-        height: 35,
+        height: 40,
         backgroundColor: theme['light'].colors.primary,
         marginRight:-20,
         justifyContent: 'center',

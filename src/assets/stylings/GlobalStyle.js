@@ -132,7 +132,7 @@ export default StyleSheet.create({
     countryViewText: {
         color: theme['light'].colors.tertiary,
         fontFamily: theme.font.regular,
-        fontSize: 14,
+        fontSize: 13,
         marginLeft: 10,
         flex:1
     },

@@ -110,7 +110,7 @@ const Styles = StyleSheet.create({
         fontSize: 30,
         color: themes['light'].colors.tertiary,
         fontFamily: themes.font.medium,
-        fontWeight:'700',
+        fontWeight:'600',
     },
 
     text: {

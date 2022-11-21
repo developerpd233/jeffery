@@ -98,7 +98,7 @@ const Home = (props) => {
             <CListItem
                 title={`${item?.title} Monthly Contest`}
                 titleStyles={Styles.title}
-                price={item?.amount}
+                price={`$${item?.amount}`}
                 priceStyle={Styles.price}
                 onPress={() => props.navigation.openDrawer()}
             />
@@ -110,7 +110,7 @@ const Home = (props) => {
             <CListItem
                 title={`${item?.title}`}
                 titleStyles={Styles.title}
-                price={item?.amount}
+                price={`$${item?.amount}`}
                 priceStyle={Styles.price}
                 onPress={() => props.navigation.openDrawer()}
             />

@@ -120,7 +120,7 @@ export default StyleSheet.create({
         position: 'relative',
         fontSize: 20,
         fontFamily: themes.font.regular,
-        color: themes['light'].colors.primary,
+        color: themes['light'].colors.white5,
         borderRadius: 10,
         backgroundColor:  themes['light'].colors.secondary3,
         height: 62,
@@ -134,7 +134,7 @@ export default StyleSheet.create({
     codeInputHighlightStyle: {
         borderColor: themes['light'].colors.secondary,
         borderWidth: 2,
-        color: themes['light'].colors.fontColor
+        color: themes['light'].colors.white5
     },
 
     linkButtonContainer: {
@@ -196,6 +196,7 @@ export default StyleSheet.create({
     },fileChooseText:{
         color:themes['light'].colors.white5,
         fontFamily:themes.font.regular,
+        width:200,
         paddingLeft:10,
         fontSize:12
 

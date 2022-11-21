@@ -1,4 +1,4 @@
-import React, { useRef, memo } from "react";
+import React, { useRef, memo, useState } from "react";
 import { Formik } from "formik";
 import Validations from "./Validations";
 import { View } from "react-native";
@@ -25,6 +25,7 @@ function CForm(props) {
     const form = useRef(null);
     const email = useRef(null);
     const password = useRef(null);
+    const [checkbox , setCheckBox] = useState(false)
     return (
         <Formik
             innerRef={form}
@@ -78,7 +79,7 @@ function CForm(props) {
                                     onSubmitEditing={() => handleSubmit()}
                                 />
                                 <View style={{marginTop:-25}}>
-                                <CheckBox   title="Remember Me"/>
+                                <CheckBox  onChange={()=> setCheckBox(!checkbox)} value={checkbox} title="Remember Me"/>
 
                                 </View>
 

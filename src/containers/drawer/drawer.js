@@ -121,7 +121,7 @@ const Drawer = props => {
 
 const styles = StyleSheet.create({
     menuView: {
-        height:Dimensions.get('screen') .height*0.884,
+        height:Dimensions.get('screen') .height*0.99,
         backgroundColor: themes['light'].colors.drawer,
         borderRightWidth:7,
         borderRightColor:themes['light'].colors.primary

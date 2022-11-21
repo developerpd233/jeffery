@@ -34,6 +34,7 @@
 		EE938F95EA9844B2830E5E02 /* SFProDisplay-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA3FEAB143A2400CA9BB7981 /* SFProDisplay-Semibold.ttf */; };
 		F48E588563FA4C979028742E /* SFProDisplay-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 245EAB9719BC4382ACB87D4D /* SFProDisplay-Medium.ttf */; };
 		FE5C8AA55B2E4CDA8596C198 /* SFProDisplay-Ultralight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C42D8A61426D4C45A3D2936B /* SFProDisplay-Ultralight.ttf */; };
+		948945F834D24629A3CCB943 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0733BF371575414D8609029B /* Poppins-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		EA3FEAB143A2400CA9BB7981 /* SFProDisplay-Semibold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProDisplay-Semibold.ttf"; path = "../src/assets/fonts/SFProDisplay-Semibold.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F8742821C2534CF195942E5D /* SFProDisplay-Heavy.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProDisplay-Heavy.ttf"; path = "../src/assets/fonts/SFProDisplay-Heavy.ttf"; sourceTree = "<group>"; };
+		0733BF371575414D8609029B /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; name = "Poppins-SemiBold.ttf"; path = "../src/assets/fonts/Poppins-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 				414F2F20DB324B3190F1F107 /* icomoon.ttf */,
 				1E74DEC78716474C844304A4 /* Poppins-ExtraLight.ttf */,
 				0F4BBA162E9846F4AAB26644 /* Poppins-Light.ttf */,
+				0733BF371575414D8609029B /* Poppins-SemiBold.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				4B9F9786E51C47C8BFB63BA7 /* icomoon.ttf in Resources */,
 				9699C1060E0E4E83881DBF39 /* Poppins-ExtraLight.ttf in Resources */,
 				022BC138A29E49B797E43849 /* Poppins-Light.ttf in Resources */,
+				948945F834D24629A3CCB943 /* Poppins-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
